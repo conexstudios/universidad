@@ -19,18 +19,16 @@ createRoot(document.getElementById("root")).render(
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />} />
-        <Route path="/dashboard" element={<Dashboard/>}>
-          <Route path="mensajeria" element={<Mensajeria/>}></Route>
-          <Route path="notificacion "element={<Notificacion/>}></Route>
-          <Route path="calificacion" element={<Calificacion/>}></Route>
-          <Route path="asignaturas" element={<Asignaturas/>}></Route>
-          <Route path="lista" element={<Lista/>}></Route>
-          <Route path="factura" element={<Factura/>}></Route>
-          <Route path="extraer" element={<Extraer/>}></Route>
-          <Route path="camara" element={<Camara/>}></Route>
-          <Route path="horario" element={<Horario/>}></Route>
-
-        </Route>
+        <Route path="/dashboard" element={<Dashboard/>}></Route>
+        <Route path="/dashboard/mensajeria" element={<Mensajeria/>}></Route>
+        <Route path="/dashboard/notificacion "element={<Notificacion/>}></Route>
+        <Route path="/dashboard/calificacion" element={<Calificacion/>}></Route>
+        <Route path="/dashboard/asignaturas" element={<Asignaturas/>}></Route>
+        <Route path="/dashboard/lista" element={<Lista/>}></Route>
+        <Route path="/dashboard/factura" element={<Factura/>}></Route>
+        <Route path="/dashboard/extraer" element={<Extraer/>}></Route>
+        <Route path="/dashboard/camara" element={<Camara/>}></Route>
+        <Route path="/dashboard/horario" element={<Horario/>}></Route>
       </Routes>
     </BrowserRouter>
   </StrictMode>
