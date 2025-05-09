@@ -1,8 +1,16 @@
+import React from "react";
+import "../styles/HomeWork.css";
+import calendar from "../assets/calendar.png";
+import Calendar from "react-calendar";
+import "react-calendar/dist/Calendar.css";
+
 const HomeWork = () => {
   return (
     <div className="homework">
-      <h1>Homework</h1>
-      <p>Here you can find your homework assignments.</p>
+      <h3 className="homework-title">
+        Plan de Evaluación <img width={30} src={calendar} alt="" />
+        <Calendar></Calendar>
+      </h3>
     </div>
   );
 };

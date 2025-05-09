@@ -4,15 +4,17 @@ import Menu from "../components/Menu";
 import Buscador from "../components/Buscador";
 import BarraInformativa from "../components/BarraInformativa";
 import WelcomeArea from "../components/WelcomeArea";
+import HomeWork from "../components/HomeWork";
 
 const Dashboard = () => {
   return (
     <>
       <Menu></Menu>
-      <main className="main-content">
+      <main className="main-content dashboard-content">
+        <BarraInformativa></BarraInformativa>
         <Buscador></Buscador>
         <WelcomeArea></WelcomeArea>
-        <BarraInformativa></BarraInformativa>
+        <HomeWork></HomeWork>
       </main>
     </>
   );

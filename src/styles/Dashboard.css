@@ -1,0 +1,23 @@
+.dashboard-content{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-areas: "mensajes buscador"
+                         "mensajes welcome"
+                         "mensajes homework";
+}
+
+.messages-section{
+    grid-area: mensajes;
+}
+
+.buscador{
+    grid-area:buscador;
+}
+
+.welcome-area{
+    grid-area: welcome;
+}
+
+.homework{
+    grid-area: homework;
+}

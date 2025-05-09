@@ -5,7 +5,6 @@ const Buscador = () => {
   return (
     <>
       <div className="buscador">
-        <h1>Buscar</h1>
         <div className="buscador-input">
           <input
             className="form-control search"
