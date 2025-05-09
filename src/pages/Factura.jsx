@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
 import '../styles/Factura.css'
-
+import Menu from "../components/Menu";
 const Factura = () => {
     return (
         <>
-            <h1>Detalles de Facturacion </h1>
+             <Menu></Menu>
         </>
     )
 }

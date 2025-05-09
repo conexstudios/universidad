@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom";
 import '../styles/Notificacion.css'
+import Menu from "../components/Menu";
 
 const Notificacion = () => {
     return (
         <>
-            <h1>Notificacion</h1>
+             <Menu></Menu>
         </>
     )
 }

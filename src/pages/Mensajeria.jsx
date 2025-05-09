@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
 import '../styles/Mensajeria.css'
-
+import Menu from "../components/Menu";
 const Mensajeria = () => {
     return (
         <>
-            <h1>Mensajeria</h1>
+             <Menu></Menu>
         </>
     )
 }

@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
 import '../styles/Lista.css'
-
+import Menu from "../components/Menu";
 const Lista = () => {
     return (
         <>
-            <h1>Lista de solicitudes de servicio</h1>
+             <Menu></Menu>
         </>
     )
 }

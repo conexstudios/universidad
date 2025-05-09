@@ -1,0 +1,9 @@
+.messages-bar{
+    border: 1px solid var(--primary-color);
+    width: 100%;
+    max-width: 370px;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: var(--box-shadow);
+    margin: 1rem;
+}

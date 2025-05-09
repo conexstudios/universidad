@@ -23,7 +23,7 @@ const Menu = () => {
                 </ul>
                 <ul className="menu">
                     <li className="menu-item"><Link to="/dashboard">Dashboard</Link></li>
-                    <li className="menu-item"><Link to="/dashboard/calendario">Calendario</Link></li>
+                    <li className="menu-item"><Link to="/dashboard/">Horario</Link></li>
                     <li className="menu-item"><Link to="/dashboard/mensajeria">Mensajeria</Link></li>
                     <li className="menu-item"><Link to="/dashboard/tareas">Tareas</Link></li>
                     <li className="menu-item"><Link to="/dashboard/evaluaciones">Evaluaciones</Link></li>

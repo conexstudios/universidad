@@ -3,8 +3,9 @@
     position: fixed;
     top: 0;
     left: 0;
-    background-color: #3FA9F3;
+    background-color: var(--primary-color);
     height: 100vh;
+    box-shadow: var(--box-shadow);
 }
 
 .navbar .menu{
@@ -16,7 +17,7 @@
     list-style: none;
     text-align: left;
     min-width: 250px;
-    background-color: #2F87C5;
+    background-color: var(--accent-color);
 }
 
 .icons{
@@ -39,6 +40,7 @@
     display: block;
     color: #fff;
     padding: 15px;
+    text-decoration: none;
 }
 
 .menu-item a:hover{

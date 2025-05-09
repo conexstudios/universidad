@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
 import '../styles/Horario.css'
-
+import Menu from "../components/Menu";
 const Horario = () => {
     return (
         <>
-            <h1>Asignaturas y Horarios</h1>
+             <Menu></Menu>
         </>
     )
 }
