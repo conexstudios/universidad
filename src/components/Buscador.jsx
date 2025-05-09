@@ -12,7 +12,6 @@ const Buscador = () => {
             type="text"
             placeholder="Escribe aquí..."
           />
-          <button>Buscar</button>
         </div>
       </div>
     </>

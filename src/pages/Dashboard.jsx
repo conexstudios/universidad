@@ -3,6 +3,7 @@ import "../styles/Dashboard.css";
 import Menu from "../components/Menu";
 import Buscador from "../components/Buscador";
 import BarraInformativa from "../components/BarraInformativa";
+import WelcomeArea from "../components/WelcomeArea";
 
 const Dashboard = () => {
   return (
@@ -10,6 +11,7 @@ const Dashboard = () => {
       <Menu></Menu>
       <main className="main-content">
         <Buscador></Buscador>
+        <WelcomeArea></WelcomeArea>
         <BarraInformativa></BarraInformativa>
       </main>
     </>

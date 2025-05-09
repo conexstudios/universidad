@@ -1,9 +1,36 @@
 .messages-bar{
     border: 1px solid var(--primary-color);
     width: 100%;
-    max-width: 370px;
+    max-width: 300px;
     border-radius: 20px;
     padding: 20px;
     box-shadow: var(--box-shadow);
     margin: 1rem;
+}
+
+.messages-bar .title{
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-color);
+    text-align: center;
+}
+
+.search-bar{
+    margin: 1rem;
+}
+
+.message-list{
+    background-color: #fafafa;
+    border-radius: 20px;
+    padding: 1em 0;
+    height:500px;
+    overflow-y: auto;
+}
+
+.message-list .message{
+    padding: 1em;
+}
+
+.message-list .message:not(:last-child){
+    border-bottom: 1px solid var(--primary-color);
 }
