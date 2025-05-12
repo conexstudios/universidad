@@ -13,6 +13,11 @@ import Factura from "./pages/Factura.jsx";
 import Extraer from "./pages/Extraer.jsx";
 import Camara from "./pages/Camara.jsx";
 import Horario from "./pages/Horario.jsx";
+import Personales from "./pages/Personales.jsx";
+import Direccion from "./pages/Direccion.jsx";
+import Academico from "./pages/Academico.jsx";
+import Salud from "./pages/Salud.jsx";
+import Extracurriculares from "./pages/Extracurriculares.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -29,7 +34,12 @@ createRoot(document.getElementById("root")).render(
         <Route path="/dashboard/extraer" element={<Extraer/>}></Route>
         <Route path="/dashboard/camara" element={<Camara/>}></Route>
         <Route path="/dashboard/horario" element={<Horario/>}></Route>
-      </Routes>
+        <Route path="/dashboard/personales" element={<Personales/>}></Route>
+        <Route path="/dashboard/direccion" element={<Direccion/>}></Route>
+        <Route path="/dashboard/academico" element={<Academico/>}></Route>
+        <Route path="/dashboard/salud" element={<Salud/>}></Route>
+        <Route path="/dashboard/extracurriculares" element={<Extracurriculares/>}></Route>
+        </Routes>
     </BrowserRouter>
   </StrictMode>
 );

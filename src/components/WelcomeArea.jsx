@@ -1,11 +1,10 @@
-import { Link } from "react-router-dom";
 import "../styles/WelcomeArea.css";
 import academicGapImage from "../assets/academic-gap.png";
 
 const WelcomeArea = () => {
   return (
     <>
-      <div class="welcome-area">
+      <div className="welcome-area">
         <div className="academic-gap-image">
           <img src={academicGapImage} alt="Academic Gap" />
         </div>

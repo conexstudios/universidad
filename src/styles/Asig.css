@@ -1,0 +1,17 @@
+.assigned-subjects-component h3 {
+    font-size: 1em; 
+    color: #333;
+    margin: 0 0 5px;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 5px;
+}
+
+.assigned-subjects-list li {
+    margin-bottom: 5px; 
+    font-size: 0.9em; 
+    padding-bottom: 5px; 
+    border-bottom: 1px solid #eee;
+    color: #555;
+}
+
