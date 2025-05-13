@@ -1,7 +1,7 @@
 import React from 'react';
-import '../styles/Asig.css';
+import '../styles/Asignatura.css';
 
-const Asig = () => {
+const Asignatura = () => {
     const asig = [
         { id: 1, subject: 'Inglés', section: 'C2B' },
         { id: 2, subject: 'Física', section: 'K0S' },
@@ -23,4 +23,4 @@ const Asig = () => {
     );
 };
 
-export default Asig;
+export default Asignatura;

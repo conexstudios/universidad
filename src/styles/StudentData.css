@@ -1,0 +1,58 @@
+.student-grades-container {
+    padding: 10px;
+    font-family: sans-serif;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin: 10px auto;
+    max-width: 90%;
+    overflow-x: auto;
+}
+
+.student-grades-title {
+    color: #333;
+    margin-bottom: 10px;
+    font-size: 1.2em;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 5px;
+    text-align: center;
+}
+
+.grades-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9em;
+    margin-top: 5px;
+}
+
+.grades-table th,
+.grades-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+.grades-table thead tr {
+    background-color: #f8f8f8;
+}
+
+.grades-table th {
+    text-align: center;
+    font-weight: bold;
+    color: #555;
+}
+
+.grades-table .subject-column {
+    text-align: left;
+    font-weight: normal;
+}
+
+.grades-table tbody td {
+    text-align: center;
+    color: #333;
+}
+
+.grades-table .final-score {
+    color: #007bff;
+    font-weight: bold;
+}
