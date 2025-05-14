@@ -1,23 +1,53 @@
-.dashboard-content{
+.dashboard-content {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-areas: "mensajes buscador"
-                         "mensajes welcome"
-                         "mensajes homework";
+    grid-template-columns: 20% 30% 50%;
+    grid-gap: 1rem;
+    grid-template-areas: "messages buscador classroom"
+        "messages welcome classroom"
+        "messages homework schedule"
+        "messages homework schedule";
+    max-width: 90%;
 }
 
-.messages-section{
-    grid-area: mensajes;
+.messages-section {
+    grid-area: messages;
 }
 
-.buscador{
-    grid-area:buscador;
+.buscador {
+    grid-area: buscador;
+    grid-column-end: none;
 }
 
-.welcome-area{
+.welcome-area {
     grid-area: welcome;
+    max-height: 150px;
 }
 
-.homework{
+.homework {
     grid-area: homework;
+}
+
+.schedule-component {
+    grid-area: schedule;
+}
+
+.classroom-section {
+    grid-area: classroom;
+}
+
+.dashboard-card {
+    max-width: 300px;
+    background-color: #ffffff;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    border: 1px solid #ADD8E6;
+}
+
+.dashboard-card.md {
+    max-width: 450px;
+}
+
+.dashboard-card.lg {
+    max-width: 600px;
 }
