@@ -21,6 +21,7 @@ import ServiceRequest from "./pages/ServiceRequest.jsx";
 import Load from "./pages/Load.jsx";
 import Date from "./pages/Date.jsx";
 import Bill from "./pages/Bill.jsx";
+import PersonalData from "./pages/PersonalData.jsx";
 
 
 createRoot(document.getElementById("root")).render(
@@ -34,7 +35,8 @@ createRoot(document.getElementById("root")).render(
         <Route path="/dashboard/servicerequest" element={<ServiceRequest/>}></Route>
         <Route path="/dashboard/load" element={<Load/>}></Route>
         <Route path="/dashboard/date" element={<Date/>}></Route>
-        <Route path="/dashboard/bill" element={<Bill />} />
+        <Route path="/dashboard/bill" element={<Bill />}></Route>
+        <Route path="/dashboard/personaldata" element={<PersonalData/>}></Route>
         <Route path="/dashboard/mensajeria" element={<Mensajeria/>}></Route>
         <Route path="/dashboard/notificacion"element={<Notificacion/>}></Route>
         <Route path="/dashboard/asignaturas" element={<Asignaturas/>}></Route>
