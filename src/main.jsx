@@ -8,8 +8,6 @@ import Mensajeria from "./pages/Mensajeria.jsx";
 import Notificacion from "./pages/Notificacion.jsx";
 import Asignaturas from "./pages/Asignaturas.jsx";
 import Lista from "./pages/Lista.jsx";
-import Factura from "./pages/Factura.jsx";
-import Extraer from "./pages/Extraer.jsx";
 import Camara from "./pages/Camara.jsx";
 import Horario from "./pages/Horario.jsx";
 import Personales from "./pages/Personales.jsx";
@@ -20,6 +18,9 @@ import Extracurriculares from "./pages/Extracurriculares.jsx";
 import StudentRating from "./pages/StudentRating.jsx";
 import ChooseSubject from "./pages/ChooseSubject.jsx";
 import ServiceRequest from "./pages/ServiceRequest.jsx";
+import Load from "./pages/Load.jsx";
+import Date from "./pages/Date.jsx";
+import Bill from "./pages/Bill.jsx";
 
 
 createRoot(document.getElementById("root")).render(
@@ -31,12 +32,13 @@ createRoot(document.getElementById("root")).render(
         <Route path="/dashboard/studentrating" element={<StudentRating />}></Route>
         <Route path="/dashboard/ChooseSubject" element={<ChooseSubject/>}></Route>
         <Route path="/dashboard/servicerequest" element={<ServiceRequest/>}></Route>
+        <Route path="/dashboard/load" element={<Load/>}></Route>
+        <Route path="/dashboard/date" element={<Date/>}></Route>
+        <Route path="/dashboard/bill" element={<Bill />} />
         <Route path="/dashboard/mensajeria" element={<Mensajeria/>}></Route>
-        <Route path="/dashboard/notificacion "element={<Notificacion/>}></Route>
+        <Route path="/dashboard/notificacion"element={<Notificacion/>}></Route>
         <Route path="/dashboard/asignaturas" element={<Asignaturas/>}></Route>
         <Route path="/dashboard/lista" element={<Lista/>}></Route>
-        <Route path="/dashboard/factura" element={<Factura/>}></Route>
-        <Route path="/dashboard/extraer" element={<Extraer/>}></Route>
         <Route path="/dashboard/camara" element={<Camara/>}></Route>
         <Route path="/dashboard/horario" element={<Horario/>}></Route>
         <Route path="/dashboard/personales" element={<Personales/>}></Route>
