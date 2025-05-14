@@ -6,7 +6,6 @@ import { BrowserRouter, RouterProvider, Routes, Route } from "react-router-dom";
 import Dashboard from "./pages/Dashboard.jsx";
 import Mensajeria from "./pages/Mensajeria.jsx";
 import Notificacion from "./pages/Notificacion.jsx";
-import Calificacion from "./pages/Calificacion.jsx";
 import Asignaturas from "./pages/Asignaturas.jsx";
 import Lista from "./pages/Lista.jsx";
 import Factura from "./pages/Factura.jsx";
@@ -18,6 +17,10 @@ import Direccion from "./pages/Direccion.jsx";
 import Academico from "./pages/Academico.jsx";
 import Salud from "./pages/Salud.jsx";
 import Extracurriculares from "./pages/Extracurriculares.jsx";
+import StudentRating from "./pages/StudentRating.jsx";
+import ChooseSubject from "./pages/ChooseSubject.jsx";
+import ServiceRequest from "./pages/ServiceRequest.jsx";
+
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -25,9 +28,11 @@ createRoot(document.getElementById("root")).render(
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/dashboard" element={<Dashboard/>}></Route>
+        <Route path="/dashboard/studentrating" element={<StudentRating />}></Route>
+        <Route path="/dashboard/ChooseSubject" element={<ChooseSubject/>}></Route>
+        <Route path="/dashboard/servicerequest" element={<ServiceRequest/>}></Route>
         <Route path="/dashboard/mensajeria" element={<Mensajeria/>}></Route>
         <Route path="/dashboard/notificacion "element={<Notificacion/>}></Route>
-        <Route path="/dashboard/calificacion" element={<Calificacion/>}></Route>
         <Route path="/dashboard/asignaturas" element={<Asignaturas/>}></Route>
         <Route path="/dashboard/lista" element={<Lista/>}></Route>
         <Route path="/dashboard/factura" element={<Factura/>}></Route>
@@ -39,6 +44,7 @@ createRoot(document.getElementById("root")).render(
         <Route path="/dashboard/academico" element={<Academico/>}></Route>
         <Route path="/dashboard/salud" element={<Salud/>}></Route>
         <Route path="/dashboard/extracurriculares" element={<Extracurriculares/>}></Route>
+    
         </Routes>
     </BrowserRouter>
   </StrictMode>
