@@ -7,7 +7,7 @@ const StudentRating = () => {
         <>
             <Menu></Menu>
              <main className="main-content StudentRating-content">
-            <StudentData></StudentData>
+                <StudentData></StudentData>
             </main>
         </>
     )

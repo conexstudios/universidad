@@ -28,26 +28,26 @@ createRoot(document.getElementById("root")).render(
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />} />
-        <Route path="/dashboard" element={<Dashboard/>}></Route>
+        <Route path="/dashboard" element={<Dashboard />}></Route>
         <Route path="/dashboard/studentrating" element={<StudentRating />}></Route>
-        <Route path="/dashboard/ChooseSubject" element={<ChooseSubject/>}></Route>
-        <Route path="/dashboard/servicerequest" element={<ServiceRequest/>}></Route>
-        <Route path="/dashboard/load" element={<Load/>}></Route>
-        <Route path="/dashboard/date" element={<Date/>}></Route>
+        <Route path="/dashboard/ChooseSubject" element={<ChooseSubject />}></Route>
+        <Route path="/dashboard/servicerequest" element={<ServiceRequest />}></Route>
+        <Route path="/dashboard/date" element={<Date />}></Route>
         <Route path="/dashboard/bill" element={<Bill />} />
-        <Route path="/dashboard/mensajeria" element={<Mensajeria/>}></Route>
-        <Route path="/dashboard/notificacion"element={<Notificacion/>}></Route>
-        <Route path="/dashboard/asignaturas" element={<Asignaturas/>}></Route>
-        <Route path="/dashboard/lista" element={<Lista/>}></Route>
-        <Route path="/dashboard/camara" element={<Camara/>}></Route>
-        <Route path="/dashboard/horario" element={<Horario/>}></Route>
-        <Route path="/dashboard/personales" element={<Personales/>}></Route>
-        <Route path="/dashboard/direccion" element={<Direccion/>}></Route>
-        <Route path="/dashboard/academico" element={<Academico/>}></Route>
-        <Route path="/dashboard/salud" element={<Salud/>}></Route>
-        <Route path="/dashboard/extracurriculares" element={<Extracurriculares/>}></Route>
-    
-        </Routes>
+        <Route path="/dashboard/mensajeria" element={<Mensajeria />}></Route>
+        <Route path="/dashboard/notificacion" element={<Notificacion />}></Route>
+        <Route path="/dashboard/asignaturas" element={<Asignaturas />}></Route>
+        <Route path="/dashboard/lista" element={<Lista />}></Route>
+        <Route path="/dashboard/camara" element={<Camara />}></Route>
+        <Route path="/dashboard/horario" element={<Horario />}></Route>
+        
+        
+        <Route path="/dashboard/personales" element={<Personales />}></Route>
+        <Route path="/dashboard/direccion" element={<Direccion />}></Route>
+        <Route path="/dashboard/academico" element={<Academico />}></Route>
+        <Route path="/dashboard/salud" element={<Salud />}></Route>
+        <Route path="/dashboard/extracurriculares" element={<Extracurriculares />}></Route>
+      </Routes>
     </BrowserRouter>
   </StrictMode>
 );
