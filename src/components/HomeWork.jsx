@@ -6,12 +6,12 @@ import "react-calendar/dist/Calendar.css";
 
 const HomeWork = () => {
   return (
-    <div className="homework">
+    <section className="homework">
       <h3 className="homework-title">
         Plan de Evaluación <img width={30} src={calendar} alt="" />
         <Calendar></Calendar>
       </h3>
-    </div>
+    </section>
   );
 };
 

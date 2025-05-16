@@ -6,9 +6,9 @@ const Date = () => {
     return (
         <>
             <Menu></Menu>
-             <main className="main-content Load-content"></main>
-            <DateTime></DateTime>
-
+             <main className="main-content Load-content">
+                <DateTime></DateTime>
+             </main>
         </>
     )
 }
