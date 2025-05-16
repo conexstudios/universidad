@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import '../styles/Service.css';
 
 const serviceRequestsData = [
@@ -33,7 +34,7 @@ const ServiceRequestsList = () => {
                             <td className="request-total">{request.total.toFixed(2)}</td>
                             <td>
                                 {request.estatus === 'Pendiente pago' ? (
-                                     <button className="pay-button">Pagar</button>
+                                    <Link to={`/dashboard/order-payments/${request.id}`} className="pay-button">Pagar</Link>
                                 ) : (
                                     '-'
                                 )}

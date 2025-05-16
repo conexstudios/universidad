@@ -17,6 +17,9 @@ const Menu = () => {
             <img src={dashboard} alt="" />
           </li>
           <li>
+            <img src={dashboard} alt="" />
+          </li>
+          <li>
             <img src={calendar} alt="" />
           </li>
           <li>
@@ -24,6 +27,9 @@ const Menu = () => {
           </li>
           <li>
             <img src={tasklist} alt="" />
+          </li>
+          <li>
+            <img src={homeworks} alt="" />
           </li>
           <li>
             <img src={homeworks} alt="" />
@@ -40,6 +46,9 @@ const Menu = () => {
             <Link to="/dashboard">Dashboard</Link>
           </li>
           <li className="menu-item">
+            <Link to="/dashboard/personal">Personal</Link>
+          </li>
+          <li className="menu-item">
             <Link to="/dashboard/horario">Horario</Link>
           </li>
           <li className="menu-item">
@@ -52,7 +61,10 @@ const Menu = () => {
             <Link to="/dashboard/evaluaciones">Evaluaciones</Link>
           </li>
           <li className="menu-item">
-            <Link to="/dashboard/pagos">Pagos</Link>
+            <Link to="/dashboard/notas">Notas</Link>
+          </li>
+          <li className="menu-item">
+            <Link to="/dashboard/solicitudes-servicio">Pagos</Link>
           </li>
           <li className="menu-item">
             <Link to="/dashboard/configuracion">Configuración</Link>
