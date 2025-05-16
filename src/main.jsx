@@ -10,7 +10,6 @@ import Asignaturas from "./pages/Asignaturas.jsx";
 import Lista from "./pages/Lista.jsx";
 import Camara from "./pages/Camara.jsx";
 import Horario from "./pages/Horario.jsx";
-import Personales from "./pages/Personales.jsx";
 import Direccion from "./pages/Direccion.jsx";
 import Academico from "./pages/Academico.jsx";
 import Salud from "./pages/Salud.jsx";
@@ -43,7 +42,6 @@ createRoot(document.getElementById("root")).render(
         <Route path="/dashboard/lista" element={<Lista/>}></Route>
         <Route path="/dashboard/camara" element={<Camara/>}></Route>
         <Route path="/dashboard/horario" element={<Horario/>}></Route>
-        <Route path="/dashboard/personales" element={<Personales/>}></Route>
         <Route path="/dashboard/direccion" element={<Direccion/>}></Route>
         <Route path="/dashboard/academico" element={<Academico/>}></Route>
         <Route path="/dashboard/salud" element={<Salud/>}></Route>
