@@ -65,7 +65,7 @@ createRoot(document.getElementById("root")).render(
         <Route path="/dashboard/camara" element={<Camara />}></Route>
         <Route path="/dashboard/horario" element={<Horario />}></Route>
         <Route path="/dashboard/direccion" element={<Direccion />}></Route>
-        <Route path="/dashboard/academic" element={<Academic/>}></Route>
+        <Route path="/dashboard/academico" element={<Academic/>}></Route>
         <Route path="/dashboard/health" element={<Health/>}></Route>
         <Route
           path="/dashboard/extracurriculares"

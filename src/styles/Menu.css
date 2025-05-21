@@ -46,3 +46,11 @@
 .menu-item a:hover{
     background-color: #3FA9F3;
 }
+
+.top-icons-container{
+    display: flex;
+    gap: 10px;
+    position: fixed;
+    top: 15px;
+    right: 15px;
+}

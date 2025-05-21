@@ -7,38 +7,45 @@ import homeworks from "../assets/homeworks.svg";
 import tasklist from "../assets/tasklist.svg";
 import settings from "../assets/settings.svg";
 import payments from "../assets/payments.svg";
+import campaign from "../assets/campaign.png";
+import personal from "../assets/personal.png";
 
 const Menu = () => {
   return (
     <>
+      <div className="top-icons-container">
+        <img width={50} src={campaign} alt="Campaign" className="top-icon" />
+        <img width={50} src={personal} alt="Personal" className="top-icon" />
+      </div>
+
       <nav className="navbar">
         <ul className="icons">
           <li>
-            <img src={dashboard} alt="" />
+            <img src={dashboard} alt="Dashboard" />
           </li>
           <li>
-            <img src={dashboard} alt="" />
+            <img src={dashboard} alt="Dashboard" />
           </li>
           <li>
-            <img src={calendar} alt="" />
+            <img src={calendar} alt="Calendar" />
           </li>
           <li>
-            <img src={inbox} alt="" />
+            <img src={inbox} alt="Inbox" />
           </li>
           <li>
-            <img src={tasklist} alt="" />
+            <img src={tasklist} alt="Tasklist" />
           </li>
           <li>
-            <img src={homeworks} alt="" />
+            <img src={homeworks} alt="Homeworks" />
           </li>
           <li>
-            <img src={homeworks} alt="" />
+            <img src={homeworks} alt="Homeworks" />
           </li>
           <li>
-            <img src={payments} alt="" />
+            <img src={payments} alt="Payments" />
           </li>
           <li>
-            <img src={settings} alt="" />
+            <img src={settings} alt="Settings" />
           </li>
         </ul>
         <ul className="menu">
