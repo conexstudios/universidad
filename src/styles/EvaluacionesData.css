@@ -1,4 +1,4 @@
-.pending-tasks-card {
+.pending-evaluations-card {
     background-color: #ffffff;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -8,7 +8,7 @@
     color: #000000;
 }
 
-.pending-tasks-card h3 {
+.pending-evaluations-card h3 {
     color: #000000;
     background: #fff;
     text-align: center;
@@ -16,13 +16,13 @@
     font-size: 2.2rem;
 }
 
-.pending-tasks-list {
+.pending-evaluations-list {
     list-style: none;
     padding: 0;
     margin: 0;
 }
 
-.task-item {
+.evaluation-item {
     background-color: #ffffff;
     border: 1px solid #b3d1ff;
     border-left: 5px solid #007bff;
@@ -35,30 +35,30 @@
     color: #000000;
 }
 
-.task-item:last-child {
+.evaluation-item:last-child {
     margin-bottom: 0;
 }
 
-.task-subject {
+.evaluation-subject {
     font-weight: bold;
     color: #000000;
     margin-right: 5px;
     min-width: 90px;
 }
 
-.task-description {
+.evaluation-type {
     flex-grow: 1;
     color: #000000;
     margin-right: 10px;
 }
 
-.task-due-date {
+.evaluation-due-date {
     font-size: 0.85em;
     color: #000000;
     white-space: nowrap;
 }
 
-.no-tasks-message {
+.no-evaluations-message {
     text-align: center;
     color: #000000;
     font-style: italic;
