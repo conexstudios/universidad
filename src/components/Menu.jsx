@@ -7,7 +7,7 @@ import homeworks from "../assets/homeworks.svg";
 import tasklist from "../assets/tasklist.svg";
 import settings from "../assets/settings.svg";
 import payments from "../assets/payments.svg";
-import salir from "../assets/salir.png";
+import salir from "../assets/Salir.png";
 import campaign from "../assets/campaign.png";
 import personal from "../assets/personal.png";
 
@@ -81,7 +81,7 @@ const Menu = () => {
             <Link to="/dashboard/configuracion">Configuración</Link>
           </li>
           <li className="menu-item">
-            <Link to="/dashboard/salir">Salir</Link>
+            <Link to="/dashboard/salir">Configuración</Link>
           </li>
         </ul>
       </nav>

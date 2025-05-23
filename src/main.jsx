@@ -25,6 +25,7 @@ import PaymentsList from "./components/PaymentsList.jsx";
 import NotFoundPage from "./pages/NotFoundPage.jsx";
 import Tareas from "./pages/Tareas.jsx";
 import Evaluaciones from "./pages/Evaluaciones.jsx";
+import Webcam from "./pages/Webcam.jsx";
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <BrowserRouter>
@@ -68,6 +69,7 @@ createRoot(document.getElementById("root")).render(
         <Route path="/dashboard/health" element={<Health/>}></Route>
         <Route path="/dashboard/tareas" element={<Tareas/>}></Route>
         <Route path="/dashboard/evaluaciones" element={<Evaluaciones/>}></Route>
+        <Route path="/dashboard/webcam" element={<Webcam/>}></Route>
         <Route
           path="/dashboard/extracurriculares"
           element={<Extracurriculares />}
