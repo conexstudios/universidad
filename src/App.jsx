@@ -17,7 +17,7 @@ function App() {
     }
   } 
   
-  checkAuth()
+  // checkAuth()
 
   const [count, setCount] = useState(0)
 

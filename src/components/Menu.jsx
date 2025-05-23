@@ -7,6 +7,7 @@ import homeworks from "../assets/homeworks.svg";
 import tasklist from "../assets/tasklist.svg";
 import settings from "../assets/settings.svg";
 import payments from "../assets/payments.svg";
+import salir from "../assets/salir.png";
 import campaign from "../assets/campaign.png";
 import personal from "../assets/personal.png";
 
@@ -46,6 +47,9 @@ const Menu = () => {
           </li>
           <li>
             <img src={settings} alt="Settings" />
+          </li>
+          <li>
+            <img src={salir} alt="Salir" />
           </li>
         </ul>
         <ul className="menu">
