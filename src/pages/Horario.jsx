@@ -1,10 +1,14 @@
 import { Link } from "react-router-dom";
-import '../styles/Horario.css'
+import '../styles/DateTime.css'
 import Menu from "../components/Menu";
+import DateTime from "../components/DateTime";
 const Horario = () => {
     return (
         <>
-             <Menu></Menu>
+            <Menu></Menu>
+             <main className="main-content Load-content">
+                <DateTime></DateTime>
+             </main>
         </>
     )
 }

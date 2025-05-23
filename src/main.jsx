@@ -16,7 +16,6 @@ import StudentRating from "./pages/StudentRating.jsx";
 import ChooseSubject from "./pages/ChooseSubject.jsx";
 import ServiceRequest from "./pages/ServiceRequest.jsx";
 import Load from "./pages/Load.jsx";
-import Date from "./pages/Date.jsx";
 import Bill from "./pages/Bill.jsx";
 import PersonalData from "./pages/PersonalData.jsx";
 import Address from "./pages/Address.jsx";
@@ -48,7 +47,6 @@ createRoot(document.getElementById("root")).render(
           element={<PaymentsList />}
         ></Route>
         <Route path="/dashboard/load" element={<Load />}></Route>
-        <Route path="/dashboard/date" element={<Date />}></Route>
         <Route path="/dashboard/bill" element={<Bill />}></Route>
         <Route path="/dashboard/address" element={<Address />}></Route>
         <Route
