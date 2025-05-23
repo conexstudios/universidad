@@ -29,12 +29,9 @@ createRoot(document.getElementById("root")).render(
   <StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<App />} />
+        <Route path="/" element={<Dashboard />} />
         <Route path="/dashboard" element={<Dashboard />}></Route>
-        <Route
-          path="/dashboard/notas"
-          element={<StudentRating />}
-        ></Route>
+        <Route path="/dashboard/notas" element={<StudentRating />}></Route>
         <Route
           path="/dashboard/ChooseSubject"
           element={<ChooseSubject />}
@@ -50,10 +47,7 @@ createRoot(document.getElementById("root")).render(
         <Route path="/dashboard/load" element={<Load />}></Route>
         <Route path="/dashboard/bill" element={<Bill />}></Route>
         <Route path="/dashboard/address" element={<Address />}></Route>
-        <Route
-          path="/dashboard/personal"
-          element={<PersonalData />}
-        ></Route>
+        <Route path="/dashboard/personal" element={<PersonalData />}></Route>
         <Route path="/dashboard/mensajeria" element={<Mensajeria />}></Route>
         <Route
           path="/dashboard/notificacion"
@@ -64,10 +58,13 @@ createRoot(document.getElementById("root")).render(
         <Route path="/dashboard/camara" element={<Camara />}></Route>
         <Route path="/dashboard/horario" element={<Horario />}></Route>
         <Route path="/dashboard/direccion" element={<Direccion />}></Route>
-        <Route path="/dashboard/academico" element={<Academic/>}></Route>
-        <Route path="/dashboard/health" element={<Health/>}></Route>
-        <Route path="/dashboard/tareas" element={<Tareas/>}></Route>
-        <Route path="/dashboard/evaluaciones" element={<Evaluaciones/>}></Route>
+        <Route path="/dashboard/academico" element={<Academic />}></Route>
+        <Route path="/dashboard/health" element={<Health />}></Route>
+        <Route path="/dashboard/tareas" element={<Tareas />}></Route>
+        <Route
+          path="/dashboard/evaluaciones"
+          element={<Evaluaciones />}
+        ></Route>
         <Route
           path="/dashboard/extracurriculares"
           element={<Extracurriculares />}
