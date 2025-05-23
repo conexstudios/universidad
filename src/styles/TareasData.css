@@ -1,0 +1,70 @@
+.pending-tasks-card {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+    padding: 32px;
+    margin: 32px auto;
+    max-width: 600px;
+    width: 100%;
+}
+
+.pending-tasks-card h3 {
+    color: #007bff;
+    text-align: center;
+    margin-bottom: 28px;
+    font-size: 2.2rem;
+}
+
+.pending-tasks-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.task-item {
+    background-color: #ffffff;
+    border: 1px solid #b8daff;
+    border-left: 6px solid #007bff;
+    border-radius: 6px;
+    padding: 18px 22px;
+    margin-bottom: 16px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+}
+
+.task-item:last-child {
+    margin-bottom: 0;
+}
+
+.task-subject {
+    font-weight: bold;
+    color: #007bff;
+    margin-right: 10px;
+    min-width: 110px;
+    font-size: 1.15rem;
+}
+
+.task-description {
+    flex-grow: 1;
+    color: #333;
+    margin-right: 16px;
+    font-size: 1.08rem;
+}
+
+.task-due-date {
+    font-size: 1em;
+    color: #0056b3;
+    white-space: nowrap;
+}
+
+.no-tasks-message {
+    text-align: center;
+    color: #007bff;
+    font-style: italic;
+    padding: 18px;
+    background-color: #e9f7fe;
+    border-radius: 6px;
+    border: 1px solid #b8daff;
+    font-size: 1.15rem;
+}

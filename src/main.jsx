@@ -23,6 +23,7 @@ import Academic from "./pages/Academic.jsx";
 import Health from "./pages/Health.jsx";
 import PaymentsList from "./components/PaymentsList.jsx";
 import NotFoundPage from "./pages/NotFoundPage.jsx";
+import Tareas from "./pages/Tareas.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -65,6 +66,8 @@ createRoot(document.getElementById("root")).render(
         <Route path="/dashboard/direccion" element={<Direccion />}></Route>
         <Route path="/dashboard/academico" element={<Academic/>}></Route>
         <Route path="/dashboard/health" element={<Health/>}></Route>
+        <Route path="/dashboard/tareas" element={<Tareas/>}></Route>
+
         <Route
           path="/dashboard/extracurriculares"
           element={<Extracurriculares />}
