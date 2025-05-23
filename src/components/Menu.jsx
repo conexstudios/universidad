@@ -7,7 +7,7 @@ import homeworks from "../assets/homeworks.svg";
 import tasklist from "../assets/tasklist.svg";
 import settings from "../assets/settings.svg";
 import payments from "../assets/payments.svg";
-import salir from "../assets/Salir.png";
+import salir from "../assets/salir.png";
 import campaign from "../assets/campaign.png";
 import personal from "../assets/personal.png";
 
@@ -15,8 +15,8 @@ const Menu = () => {
   return (
     <>
       <div className="top-icons-container">
-        <img width={50} src={campaign} alt="Campaign" className="top-icon" />
-        <img width={50} src={personal} alt="Personal" className="top-icon" />
+        <img width={50} src={campaign} alt="campaign" className="top-icon" />
+        <img width={50} src={personal} alt="personal" className="top-icon" />
       </div>
 
       <nav className="navbar">
