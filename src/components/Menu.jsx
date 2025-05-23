@@ -80,9 +80,6 @@ const Menu = () => {
           <li className="menu-item">
             <Link to="/dashboard/configuracion">Configuración</Link>
           </li>
-          <li className="menu-item">
-            <Link to="/dashboard/salir">Configuración</Link>
-          </li>
         </ul>
       </nav>
     </>
