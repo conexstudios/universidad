@@ -8,7 +8,7 @@ const PaymentsList = () => {
   const [error, setError] = useState(null);
   const [payments, setPayments] = useState([]);
 
-  // Sample data for payments
+ 
   const paymentsData = [
     {
       id: 455481,
@@ -37,7 +37,7 @@ const PaymentsList = () => {
   ];
 
   useEffect(() => {
-    // Simulate an API call
+    // 
     setTimeout(() => {
       setPayments(paymentsData);
       setLoading(false);

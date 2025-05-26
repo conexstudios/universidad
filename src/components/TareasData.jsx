@@ -1,7 +1,4 @@
-import React from "react";
-// It's good practice to have a specific CSS file for this component if its styles are unique.
-// If you want to reuse styles from a different file, adjust the path accordingly.
-import "../styles/TareasData.css"; // This CSS will style the task list.
+import "../styles/TareasData.css";
 
 const TareasData = () => {
     const tareas = [
@@ -15,14 +12,14 @@ const TareasData = () => {
 
     return (
         <article
-            className="pending-tasks-card" // Renamed from "Tareas" to be more descriptive
+            className="pending-tasks-card"
             id="pending-tasks-section-container"
         >
             <h3>Tareas Pendientes</h3>
             {tareas.length > 0 ? (
-                <ul className="pending-tasks-list"> {/* Renamed from "Tareas" */}
+                <ul className="pending-tasks-list">
                     {tareas.map((task) => (
-                        <li key={task.id} className="task-item"> {/* Renamed from "Tareas" */}
+                        <li key={task.id} className="task-item">
                             <span className="task-subject">{task.subject}:</span>{" "}
                             <span className="task-description">{task.task}</span>
                             <span className="task-due-date"> (Entrega: {task.dueDate})</span>
@@ -30,7 +27,7 @@ const TareasData = () => {
                     ))}
                 </ul>
             ) : (
-                <p className="no-tasks-message">¡Felicidades! No tienes tareas pendientes.</p> // Renamed from "Tareas"
+                <p className="no-tasks-message">¡Felicidades! No tienes tareas pendientes.</p>
             )}
         </article>
     );

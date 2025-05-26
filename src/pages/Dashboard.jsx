@@ -7,7 +7,6 @@ import HomeWork from "../components/HomeWork";
 import Salon from "../components/Salon";
 import Horario from "../components/Horario";
 import Asignatura from "../components/Asignatura";
-import Pen from "./Pen";
 
 const Dashboard = () => {
   window.addEventListener('message', function(event) {
@@ -39,7 +38,6 @@ const Dashboard = () => {
         <Horario></Horario>
       </main>
         <Asignatura></Asignatura>
-        <Pen></Pen>
     </>
   );
 };

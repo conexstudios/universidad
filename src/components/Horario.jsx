@@ -1,7 +1,7 @@
 import React from "react";
-import "../styles/Oro.css";
+import "../styles/Horarios.css";
 
-const Oro = () => {
+const Horarios = () => {
   const scheduleData = [
     {
       id: 1,
@@ -99,4 +99,4 @@ const Oro = () => {
   );
 };
 
-export default Oro;
+export default Horarios;
