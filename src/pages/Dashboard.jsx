@@ -25,7 +25,7 @@ const Dashboard = () => {
     } 
   } 
   
-  checkAuth()
+  //checkAuth()
   return (
     <>
       <Menu></Menu>
@@ -35,11 +35,11 @@ const Dashboard = () => {
         <WelcomeArea></WelcomeArea>
         <HomeWork></HomeWork>
         <BarraInformativa></BarraInformativa>
+        <Salon></Salon>
+        <Horario></Horario>
       </main>
-      <Salon></Salon>
-      <Horario></Horario>
-      <Asignatura></Asignatura>
-      <Pen></Pen>
+        <Asignatura></Asignatura>
+        <Pen></Pen>
     </>
   );
 };

@@ -6,7 +6,6 @@
         "messages welcome classroom"
         "messages homework schedule"
         "messages homework schedule";
-    max-width: 90%;
 }
 
 .messages-section {
@@ -54,4 +53,19 @@
 
 .main-content{
     max-width: calc(100vw - 315px);
+}
+
+
+.dashboard-card.pending-assignments-component {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.dashboard-card.assigned-subjects-component {
+  position:fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
