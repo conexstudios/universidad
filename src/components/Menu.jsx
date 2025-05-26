@@ -10,6 +10,7 @@ import payments from "../assets/payments.svg";
 import salir from "../assets/Salir.png";	
 import campaign from "../assets/Campaign.png";
 import personal from "../assets/Personal.png";
+import logo from "../assets/logo.jpg";
 
 const Menu = () => {
   return (
@@ -21,6 +22,9 @@ const Menu = () => {
 
       <nav className="navbar">
         <ul className="icons">
+          <li>
+            <img src={logo} alt="Logo" />
+          </li>
           <li>
             <img src={dashboard} alt="Dashboard" />
           </li>
