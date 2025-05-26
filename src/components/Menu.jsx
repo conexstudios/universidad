@@ -8,8 +8,8 @@ import tasklist from "../assets/tasklist.svg";
 import settings from "../assets/settings.svg";
 import payments from "../assets/payments.svg";
 import salir from "../assets/Salir.png";	
-import campaign from "../assets/campaign.png";
-import personal from "../assets/personal.png";
+import campaign from "../assets/Pampaign.png";
+import personal from "../assets/Personal.png";
 
 const Menu = () => {
   return (
