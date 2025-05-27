@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import "../styles/PaymentsList.css";
 import Menu from "./Menu";
 import { useState, useEffect } from "react";
 
