@@ -1,3 +1,5 @@
+import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import "../styles/Dashboard.css";
 import Menu from "../components/Menu";
 import Buscador from "../components/Buscador";
@@ -9,37 +11,44 @@ import Horario from "../components/Horario";
 import Asignatura from "../components/Asignatura";
 
 const Dashboard = () => {
+  const navigate = useNavigate();
+
   window.addEventListener('message', function(event) {
     if (event.origin === import.meta.env.VITE_LOGIN_URL) {
-      const token = event.data.token;
-      document.cookie = `authToken=${token}; secure; httpOnly; path=/; domain=${document.location.href}; samesite=Lax`;
+      const tokenFromMessage = event.data.token;
+      if (tokenFromMessage) {
+      }
     }
   }, false);
 
-   function checkAuth() {
-    const loginUrl = import.meta.env.VITE_LOGIN_URL
-    const token = localStorage.getItem('token')
+  const checkAuth = () => {
+    const token = localStorage.getItem('token');
     if (!token) {
-      return document.location.href = loginUrl
-    } 
-  } 
-  
-  //checkAuth()
+      console.log("No se encontró token de autenticación. Redirigiendo al login.");
+      navigate('/login');
+    }
+  };
+
+  useEffect(() => {
+    checkAuth();
+  }, [navigate]);
+
   return (
     <>
-      <Menu></Menu>
+      <Menu />
       <main className="main-content dashboard-content">
-        <BarraInformativa></BarraInformativa>
-        <Buscador></Buscador>
-        <WelcomeArea></WelcomeArea>
-        <HomeWork></HomeWork>
-        <BarraInformativa></BarraInformativa>
-        <Salon></Salon>
-        <Horario></Horario>
+        <BarraInformativa />
+        <Buscador />
+        <WelcomeArea />
+        <HomeWork />
+        <BarraInformativa />
+        <Salon />
+        <Horario />
       </main>
-        <Asignatura></Asignatura>
+      <Asignatura />
     </>
   );
 };
 
 export default Dashboard;
+
