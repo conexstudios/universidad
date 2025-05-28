@@ -1,19 +1,25 @@
 .pending-tasks-card {
     background-color: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    margin: 20px auto;
-    max-width: 650px;
-    color: #000000;
+    border-radius: 16px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.09), 0 4px 12px rgba(0, 0, 0, 0.05);
+    padding: 30px;
+    margin: 40px auto;
+    max-width: 700px;
+    font-family: 'Inter', 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+    color: #333;
+    border: 1px solid #eef2f7;
+    box-sizing: border-box;
 }
 
 .pending-tasks-card h3 {
-    color: #000000;
-    background: #fff;
+    color: #2c3e50;
     text-align: center;
-    margin-bottom: 20px;
-    font-size: 2.2rem;
+    margin-bottom: 25px;
+    font-size: 2.4em;
+    font-weight: 700;
+    letter-spacing: -0.8px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #e0e7ee;
 }
 
 .pending-tasks-list {
@@ -23,47 +29,156 @@
 }
 
 .task-item {
-    background-color: #ffffff;
-    border: 1px solid #b3d1ff;
+    background-color: #fcfdfe;
+    border: 1px solid #e0e7ee;
     border-left: 5px solid #007bff;
-    border-radius: 5px;
-    padding: 12px 15px;
-    margin-bottom: 10px;
+    border-radius: 10px;
+    padding: 15px 20px;
+    margin-bottom: 12px;
     display: flex;
     flex-wrap: wrap;
     align-items: baseline;
-    color: #000000;
+    color: #4b5a6c;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
 }
 
 .task-item:last-child {
     margin-bottom: 0;
 }
 
+.task-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+}
+
 .task-subject {
-    font-weight: bold;
-    color: #000000;
-    margin-right: 5px;
-    min-width: 90px;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-right: 10px;
+    min-width: 100px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 1.05em;
 }
 
 .task-description {
     flex-grow: 1;
-    color: #000000;
-    margin-right: 10px;
+    color: #555;
+    margin-right: 15px;
+    line-height: 1.5;
 }
 
 .task-due-date {
-    font-size: 0.85em;
-    color: #000000;
+    font-size: 0.8em;
+    color: #777;
     white-space: nowrap;
+    flex-shrink: 0;
+    padding-left: 10px;
+    border-left: 1px solid #e0e7ee;
+    margin-left: auto;
 }
 
 .no-tasks-message {
     text-align: center;
-    color: #000000;
+    color: #666;
     font-style: italic;
-    padding: 15px;
-    background-color: #e6f0ff;
-    border-radius: 5px;
-    border: 1px solid #b3d1ff;
+    padding: 20px;
+    background-color: #f0f7ff;
+    border-radius: 10px;
+    border: 1px solid #cceeff;
+    font-size: 1.1em;
+    line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+    .pending-tasks-card {
+        padding: 25px;
+        margin: 25px auto;
+        border-radius: 12px;
+        max-width: 90%;
+    }
+
+    .pending-tasks-card h3 {
+        font-size: 2em;
+        margin-bottom: 20px;
+        padding-bottom: 12px;
+        letter-spacing: -0.5px;
+    }
+
+    .task-item {
+        padding: 12px 15px;
+        margin-bottom: 10px;
+        border-radius: 8px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+
+    .task-subject {
+        min-width: unset;
+        white-space: normal;
+        text-overflow: clip;
+        font-size: 1em;
+        margin-right: 0;
+        margin-bottom: 5px;
+    }
+
+    .task-description {
+        flex-grow: 1;
+        margin-right: 0;
+        font-size: 0.95em;
+    }
+
+    .task-due-date {
+        font-size: 0.75em;
+        padding-left: 0;
+        border-left: none;
+        margin-left: 0;
+        width: 100%;
+        text-align: right;
+    }
+
+    .no-tasks-message {
+        padding: 15px;
+        font-size: 1em;
+    }
+}
+
+@media (max-width: 480px) {
+    .pending-tasks-card {
+        padding: 20px;
+        margin: 15px auto;
+        border-radius: 10px;
+    }
+
+    .pending-tasks-card h3 {
+        font-size: 1.8em;
+        margin-bottom: 15px;
+        padding-bottom: 10px;
+    }
+
+    .task-item {
+        padding: 10px 12px;
+        margin-bottom: 8px;
+        border-left-width: 4px;
+    }
+
+    .task-subject {
+        font-size: 0.95em;
+    }
+
+    .task-description {
+        font-size: 0.9em;
+    }
+
+    .task-due-date {
+        font-size: 0.7em;
+    }
+
+    .no-tasks-message {
+        padding: 12px;
+        font-size: 0.95em;
+    }
 }

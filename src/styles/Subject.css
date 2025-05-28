@@ -1,55 +1,175 @@
 .service-requests-container {
-  padding: 20px;
-  font-family: Arial, sans-serif;
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  margin: 20px auto;
-  max-width: 90%;
+  padding: 30px;
+  font-family: 'Inter', 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08), 0 4px 12px rgba(0, 0, 0, 0.05);
+  margin: 40px auto;
+  max-width: 1000px;
+  overflow-x: auto;
+  border: 1px solid #eef2f7;
+  box-sizing: border-box;
 }
 
 .service-requests-container h1 {
   text-align: center;
-  font-size: 1.8em;
-  color: #333;
-  margin-bottom: 20px;
+  font-size: 2.4em;
+  color: #263238;
+  margin-bottom: 35px;
+  font-weight: 700;
+  letter-spacing: -0.8px;
+  border-bottom: 3px solid #eef2f7;
+  padding-bottom: 20px;
 }
 
 .service-requests-table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 0.9em;
-  color: #333;
+  font-size: 0.95em;
+  color: #4b5a6c;
+  min-width: 700px;
+  border: 1px solid #e0e7ee;
+  border-radius: 10px;
+  overflow: hidden;
 }
 
 .service-requests-table th,
 .service-requests-table td {
-  border: 1px solid #ddd;
-  padding: 10px;
+  border: 1px solid #f7f9fc;
+  padding: 14px 10px;
   text-align: center;
+  box-sizing: border-box;
 }
 
 .service-requests-table th {
-  background-color: #f8f8f8;
-  font-weight: bold;
-  color: #555;
+  background-color: #e9f2f9;
+  color: #2c3e50;
+  font-weight: 600;
+  padding: 16px 10px;
+  border: 1px solid #d0dbe6;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.9em;
+}
+
+.service-requests-table tbody tr {
+  background-color: #ffffff;
+}
+
+.service-requests-table tbody tr:nth-child(odd) {
+  background-color: #fdfefe;
+}
+
+.service-requests-table tbody tr:hover {
+  background-color: #f0f7ff;
+  transition: background-color 0.2s ease;
 }
 
 .service-requests-table .link {
   color: #007bff;
-  text-decoration: underline;
+  text-decoration: none;
   cursor: pointer;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.service-requests-table .link:hover {
+  color: #0056b3;
+  text-decoration: underline;
 }
 
 .service-requests-table .pay-button {
-  padding: 5px 10px;
-  background-color: #007bff;
+  padding: 8px 16px;
+  background-color: #28a745;
   color: #fff;
   border: none;
-  border-radius: 4px;
+  border-radius: 8px;
   cursor: pointer;
+  font-weight: 600;
+  font-size: 0.9em;
+  transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+  box-shadow: 0 2px 5px rgba(40, 167, 69, 0.15);
 }
 
 .service-requests-table .pay-button:hover {
-  background-color: #0056b3;
+  background-color: #218838;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(40, 167, 69, 0.25);
+}
+
+.service-requests-table .pay-button:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+@media (max-width: 992px) {
+  .service-requests-container {
+    padding: 25px;
+    margin: 30px auto;
+    max-width: 95%;
+  }
+  .service-requests-container h1 {
+    font-size: 2em;
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+  }
+}
+
+@media (max-width: 768px) {
+  .service-requests-container {
+    padding: 20px;
+    margin: 20px auto;
+    border-radius: 12px;
+  }
+  .service-requests-container h1 {
+    font-size: 1.8em;
+    margin-bottom: 25px;
+    padding-bottom: 12px;
+  }
+  .service-requests-table {
+    font-size: 0.9em;
+    min-width: 600px;
+  }
+  .service-requests-table th,
+  .service-requests-table td {
+    padding: 12px 8px;
+  }
+  .service-requests-table th {
+    font-size: 0.85em;
+    letter-spacing: 0.8px;
+  }
+  .service-requests-table .pay-button {
+    padding: 7px 14px;
+    font-size: 0.85em;
+  }
+}
+
+@media (max-width: 576px) {
+  .service-requests-container {
+    padding: 15px;
+    margin: 15px auto;
+    border-radius: 10px;
+  }
+  .service-requests-container h1 {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+  }
+  .service-requests-table {
+    font-size: 0.8em;
+    min-width: 500px;
+  }
+  .service-requests-table th,
+  .service-requests-table td {
+    padding: 10px 6px;
+  }
+  .service-requests-table th {
+    font-size: 0.75em;
+    letter-spacing: 0.5px;
+  }
+  .service-requests-table .pay-button {
+    padding: 6px 12px;
+    font-size: 0.8em;
+    border-radius: 6px;
+  }
 }

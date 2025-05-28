@@ -1,46 +1,191 @@
+/* Contenedor principal del horario */
+.schedule-component {
+    padding: 30px; /* Más padding para una sensación premium y abierta */
+    background-color: #ffffff; /* Fondo blanco puro */
+    border-radius: 16px; /* Bordes aún más redondeados para una estética suave */
+    /* Sombra más sofisticada y menos intrusiva, dando un efecto de "elevación" */
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.09), 0 4px 12px rgba(0, 0, 0, 0.05);
+    margin: 40px auto; /* Más margen vertical para aislar el componente */
+    max-width: 960px; /* Aumenta el ancho máximo para tablas más grandes */
+    font-family: 'Inter', 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif; /* Fuentes modernas, Inter si está disponible */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid #ebf2f8; /* Un borde muy sutil y casi imperceptible */
+    box-sizing: border-box; /* Asegura que padding y border no aumenten el tamaño */
+}
 
+/* Título del horario */
 .schedule-component h3 {
-    font-size: 1.4em;
-    color: #333;
-    margin-top: 500;
-    margin-bottom: 15px;
-    text-align: center; 
-    border-bottom: 1px solid #eee;
-    padding-bottom: 10px;
+    font-size: 2.4em; /* Título más grande para mayor impacto */
+    color: #263238; /* Un gris oscuro profundo */
+    font-weight: 700; /* Negrita pronunciada para el título */
+    margin-top: 0;
+    margin-bottom: 35px; /* Más espacio debajo del título */
+    text-align: center;
+    border-bottom: 3px solid #eef2f7; /* Borde inferior más grueso y suave */
+    padding-bottom: 20px; /* Más espacio entre el título y el borde */
+    width: 90%; /* Ancho que se ajusta bien */
+    max-width: 800px; /* Limita el ancho del título */
+    letter-spacing: -0.8px; /* Espaciado negativo para un look más compacto en titulares */
 }
 
-
+/* Contenedor para la tabla con scroll horizontal */
 .schedule-table-container {
-    overflow-x: auto; 
-    width: 80%; 
+    overflow-x: auto; /* Permite el scroll horizontal */
+    width: 100%; /* Ocupa todo el ancho disponible */
+    margin-top: 20px; /* Espacio superior */
+    border: 1px solid #e0e7ee; /* Borde sutil alrededor de la tabla */
+    border-radius: 10px; /* Bordes ligeramente más redondeados para el contenedor de la tabla */
+    background-color: #fcfdfe; /* Fondo muy claro para la tabla */
+    box-shadow: inset 0 1px 4px rgba(0,0,0,0.03); /* Sombra interna muy sutil */
 }
 
+/* Tabla de horario */
 .schedule-table {
     width: 100%;
     border-collapse: collapse;
-    font-size: 0.95em; 
-    color: #555; 
-    text-align: center; 
+    font-size: 0.95em; /* Tamaño de fuente ligeramente mayor para mejor legibilidad */
+    color: #4b5a6c; /* Un gris azulado más suave para el texto general */
+    text-align: center;
+    min-width: 850px; /* Aumenta el ancho mínimo, ajusta según el contenido de tu tabla */
 }
 
+/* Celdas de la tabla */
 .schedule-table td {
-    border: 1px solid #ddd;
-    padding: 10px 5px; 
-    white-space: nowrap; 
+    border: 1px solid #f7f9fc; /* Bordes muy finos y casi invisibles entre celdas */
+    padding: 14px 10px; /* Más padding para que el contenido respire */
+    white-space: nowrap; /* Evita que el texto se rompa */
+    box-sizing: border-box;
+    min-width: 120px; /* Ancho mínimo para cada celda de contenido */
+    transition: background-color 0.15s ease-in-out; /* Transición para el hover */
 }
 
+/* Encabezados de la tabla (días de la semana, etc.) */
 .schedule-table th {
-    background-color: #f8f8f8; 
-    color: #333; 
-    font-weight: bold;
+    background-color: #e9f2f9; /* Un color de fondo más fresco y profesional */
+    color: #2c3e50; /* Color de texto oscuro y contrastante */
+    font-weight: 600; /* Seminegrita para los encabezados */
+    padding: 16px 10px; /* Más padding para los encabezados */
+    border: 1px solid #d0dbe6; /* Borde más definido y color pastel */
+    text-transform: uppercase;
+    letter-spacing: 1px; /* Más espaciado entre letras para un look más limpio */
+    font-size: 0.9em; /* Ligeramente más pequeño para que los encabezados se lean como categorías */
 }
 
+/* Celda de la columna de tiempo (primera columna) */
 .schedule-table td.time-slot {
-    text-align: center; 
-    font-weight: bold;
-    color: #333; /
+    background-color: #f5f8fb; /* Un gris azulado muy claro y sutil */
+    font-weight: 600;
+    color: #3f5163; /* Color de texto más oscuro y específico */
+    position: sticky;
+    left: 0;
+    z-index: 15; /* Aumenta el z-index si es necesario */
+    box-shadow: 2px 0 8px rgba(0,0,0,0.07); /* Sombra más pronunciada para la columna sticky */
+    border-right: 1px solid #dde1e5; /* Borde derecho más visible para la columna sticky */
 }
 
+/* Celdas vacías (donde no hay clases/actividades) */
 .schedule-table td:empty {
-    background-color: #fbfbfb; 
+    background-color: #fdfefe; /* Un blanco roto muy sutil para celdas vacías */
+}
+
+/* Estilo para las filas al pasar el ratón */
+.schedule-table tbody tr:hover {
+    background-color: #f0f7ff; /* Un azul muy suave al pasar el ratón para indicar interactividad */
+}
+
+/* Estilo para celdas que contienen una clase/evento (ej. si tuvieran una clase como .event-cell) */
+.schedule-table td.event-cell {
+    background-color: #e6f7ff; /* Fondo azul claro para el evento */
+    color: #0056b3; /* Texto azul oscuro */
+    font-weight: 500;
+    cursor: pointer;
+    border: 1px solid #91d5ff; /* Borde azul para el evento */
+    transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+    border-radius: 4px; /* Ligeros bordes redondeados dentro de la celda si el contenido es un div/span */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05); /* Pequeña sombra para eventos */
+    /* Puedes envolver el contenido del evento en un div con esta clase para que el borde redondeado funcione mejor */
+}
+
+.schedule-table td.event-cell:hover {
+    background-color: #cceeff; /* Azul más oscuro al pasar el ratón */
+    transform: translateY(-1px); /* Pequeño efecto de elevación */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08); /* Sombra más fuerte al pasar el ratón */
+}
+
+/* Media queries para responsividad (ajustes para pantallas más pequeñas) */
+@media (max-width: 992px) {
+    .schedule-component {
+        padding: 25px;
+        margin: 30px auto;
+        max-width: 90%;
+    }
+    .schedule-component h3 {
+        font-size: 2em;
+        margin-bottom: 30px;
+        padding-bottom: 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    .schedule-component {
+        padding: 20px;
+        margin: 20px auto;
+        border-radius: 12px;
+    }
+    .schedule-component h3 {
+        font-size: 1.8em;
+        margin-bottom: 25px;
+        padding-bottom: 12px;
+        width: 100%;
+        max-width: none;
+    }
+    .schedule-table-container {
+        border-radius: 8px;
+    }
+    .schedule-table {
+        font-size: 0.9em;
+        min-width: 700px; /* Ajusta este valor si tu tabla es muy densa */
+    }
+    .schedule-table td,
+    .schedule-table th {
+        padding: 12px 6px;
+        min-width: 90px;
+    }
+    .schedule-table th {
+        font-size: 0.85em;
+    }
+    .schedule-table td.time-slot {
+        min-width: 80px;
+    }
+}
+
+@media (max-width: 576px) {
+    .schedule-component {
+        padding: 15px;
+        margin: 15px auto;
+        border-radius: 8px;
+    }
+    .schedule-component h3 {
+        font-size: 1.5em;
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+    }
+    .schedule-table {
+        font-size: 0.8em;
+        min-width: 580px; /* Para pantallas móviles pequeñas, la tabla aún necesita scroll */
+    }
+    .schedule-table td,
+    .schedule-table th {
+        padding: 10px 4px;
+        min-width: 70px;
+    }
+    .schedule-table th {
+        font-size: 0.75em;
+        letter-spacing: 0.5px;
+    }
+    .schedule-table td.time-slot {
+        min-width: 70px;
+    }
 }

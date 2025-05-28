@@ -41,13 +41,16 @@ createRoot(document.getElementById("root")).render(
         <Route
           path="/dashboard/solicitudes-servicio"
           element={<ServiceRequest />}
-        ></Route>
+        />
         <Route
           path="/dashboard/order-payments/:id"
           element={<PaymentsList />}
-        ></Route>
+        />
+        <Route
+          path="/dashboard/pagos/:id"
+          element={<Bill />}
+        />
         <Route path="/dashboard/load" element={<Load />}></Route>
-        <Route path="/dashboard/bill" element={<Bill />}></Route>
         <Route path="/dashboard/address" element={<Address />}></Route>
         <Route path="/dashboard/personal" element={<PersonalData />}></Route>
         <Route path="/dashboard/mensajeria" element={<Mensajeria />}></Route>
