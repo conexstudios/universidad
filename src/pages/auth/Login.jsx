@@ -46,7 +46,7 @@ const Login = () => {
           body: JSON.stringify({
             USUARIO_ID: userId,
             USU_PASSWORD1: password,
-            recaptchaToken: recaptchaToken,
+            'g-recaptcha-token': recaptchaToken,
           }),
         }
       );
