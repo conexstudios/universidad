@@ -1,3 +1,9 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #f3f4f6;
+}
+
 .login-page-container {
     display: flex;
     min-height: 100vh;
@@ -73,8 +79,6 @@
 .login-form input[type="text"]:focus,
 .login-form input[type="password"]:focus {
     border-color: #3b82f6;
-    ring: 2px;
-    ring-color: rgba(59, 130, 246, 0.2);
     box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
 }
 
