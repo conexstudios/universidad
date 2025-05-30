@@ -3,8 +3,14 @@
   font-family: Arial, sans-serif;
   background-color: #fff;
   border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.03);
   max-width: 90%;
+  border: 1px solid #e5e7eb;
+  transition: all 0.2s ease-in-out;
+}
+
+.mailbox-container:hover {
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1), 0 3px 6px rgba(0, 0, 0, 0.05);
 }
 
 .mailbox-header {
@@ -18,14 +24,19 @@
   padding: 10px 15px;
   font-size: 0.9em;
   color: #fff;
-  background-color: #007bff;
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
   border: none;
-  border-radius: 4px;
+  border-radius: 6px;
   cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  font-weight: 500;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .mail-button:hover {
-  background-color: #0056b3;
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
 }
 
 .mailbox-content {
@@ -35,7 +46,7 @@
 
 .mailbox-sidebar {
   flex: 1;
-  border-right: 1px solid #ddd;
+  border-right: 1px solid #e5e7eb;
   padding-right: 20px;
 }
 
@@ -48,22 +59,35 @@
 
 .filters input {
   padding: 10px;
-  border: 1px solid #ccc;
+  border: 1px solid #d1d5db;
   border-radius: 6px;
+  transition: all 0.2s ease-in-out;
+}
+
+.filters input:focus {
+  border-color: #3b82f6;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
 }
 
 .compose-button {
   padding: 10px;
   font-size: 0.9em;
   color: #fff;
-  background-color: #007bff;;
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
   border: none;
-  border-radius: 4px;
+  border-radius: 6px;
   cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  font-weight: 500;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  width: 100%;
 }
 
 .compose-button:hover {
-  background-color: #007bff;;
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
 }
 
 .message-list {
@@ -76,22 +100,43 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 10px;
-  border-bottom: 1px solid #ddd;
+  padding: 12px;
+  border-bottom: 1px solid #e5e7eb;
   cursor: pointer;
+  transition: all 0.15s ease-in-out;
+  border-radius: 6px;
+}
+
+.message-item:hover {
+  background-color: #f3f4f6;
+  transform: translateX(2px);
+}
+
+.message-item.active {
+  background-color: #dbeafe;
+  border-left: 3px solid #2563eb;
 }
 
 .message-avatar {
   font-size: 1.5em;
+  color: #6b7280;
+  background-color: #f3f4f6;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .message-title {
-  font-weight: bold;
+  font-weight: 600;
+  color: #1f2937;
 }
 
 .message-time {
   font-size: 0.8em;
-  color: #555;
+  color: #6b7280;
 }
 
 .mailbox-details {
@@ -101,31 +146,190 @@
 .mailbox-details h2 {
   font-size: 1.5em;
   margin-bottom: 10px;
+  color: #1f2937;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e5e7eb;
 }
 
 .reply-button {
   padding: 10px 15px;
   font-size: 0.9em;
   color: #fff;
-  background-color: #007bff;
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
   border: none;
-  border-radius: 4px;
+  border-radius: 6px;
   cursor: pointer;
   margin-bottom: 20px;
+  transition: all 0.2s ease-in-out;
+  font-weight: 500;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .reply-button:hover {
-  background-color: #0056b3;
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
 }
 
 .message-content {
-  background-color: #f8f9fa;
+  background-color: #f9fafb;
   padding: 15px;
-  border-radius: 4px;
+  border-radius: 6px;
+  border: 1px solid #e5e7eb;
+  line-height: 1.6;
+  color: #4b5563;
 }
 
 .reply {
   margin-top: 10px;
   font-size: 0.9em;
-  color: #555;
+  color: #6b7280;
+  padding: 10px;
+  border-left: 3px solid #d1d5db;
+  background-color: #f3f4f6;
+  border-radius: 0 6px 6px 0;
+}
+
+/* Estilos adicionales para consistencia */
+.message-preview {
+  font-size: 0.85em;
+  color: #6b7280;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 200px;
+}
+
+.message-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.message-sender {
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.message-date {
+  color: #6b7280;
+  font-size: 0.85em;
+}
+
+.message-attachments {
+  margin-top: 15px;
+  padding-top: 10px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.attachment {
+  display: inline-flex;
+  align-items: center;
+  background-color: #f3f4f6;
+  padding: 6px 12px;
+  border-radius: 4px;
+  margin-right: 8px;
+  margin-bottom: 8px;
+  font-size: 0.85em;
+  color: #4b5563;
+  border: 1px solid #e5e7eb;
+  transition: all 0.15s ease-in-out;
+}
+
+.attachment:hover {
+  background-color: #e5e7eb;
+  border-color: #d1d5db;
+}
+
+/* Para modo oscuro */
+.dark .mailbox-container {
+  background-color: #1f2937;
+  border-color: #374151;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2), 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.dark .mailbox-sidebar {
+  border-right-color: #374151;
+}
+
+.dark .filters input {
+  background-color: #374151;
+  border-color: #4b5563;
+  color: #e5e7eb;
+}
+
+.dark .filters input:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+.dark .message-item {
+  border-bottom-color: #374151;
+}
+
+.dark .message-item:hover {
+  background-color: #374151;
+}
+
+.dark .message-item.active {
+  background-color: #1e40af;
+  border-left-color: #93c5fd;
+}
+
+.dark .message-avatar {
+  background-color: #374151;
+  color: #e5e7eb;
+}
+
+.dark .message-title {
+  color: #f9fafb;
+}
+
+.dark .message-time {
+  color: #9ca3af;
+}
+
+.dark .mailbox-details h2 {
+  color: #f9fafb;
+  border-bottom-color: #374151;
+}
+
+.dark .message-content {
+  background-color: #111827;
+  border-color: #374151;
+  color: #e5e7eb;
+}
+
+.dark .reply {
+  color: #d1d5db;
+  border-left-color: #4b5563;
+  background-color: #1f2937;
+}
+
+.dark .message-preview {
+  color: #9ca3af;
+}
+
+.dark .message-sender {
+  color: #f9fafb;
+}
+
+.dark .message-date {
+  color: #9ca3af;
+}
+
+.dark .message-attachments {
+  border-top-color: #374151;
+}
+
+.dark .attachment {
+  background-color: #374151;
+  color: #e5e7eb;
+  border-color: #4b5563;
+}
+
+.dark .attachment:hover {
+  background-color: #4b5563;
+  border-color: #6b7280;
 }

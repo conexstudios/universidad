@@ -1,25 +1,30 @@
 .pending-evaluations-card {
     background-color: #ffffff;
     border-radius: 16px;
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.09), 0 4px 12px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.06), 0 4px 8px rgba(0, 0, 0, 0.03);
     padding: 30px;
     margin: 40px auto;
     max-width: 700px;
     font-family: 'Inter', 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
-    color: #333;
-    border: 1px solid #eef2f7;
+    color: #4b5563;
+    border: 1px solid #e5e7eb;
     box-sizing: border-box;
+    transition: all 0.2s ease-in-out;
+}
+
+.pending-evaluations-card:hover {
+    box-shadow: 0 16px 30px rgba(0, 0, 0, 0.08), 0 6px 10px rgba(0, 0, 0, 0.04);
 }
 
 .pending-evaluations-card h3 {
-    color: #2c3e50;
+    color: #1f2937;
     text-align: center;
     margin-bottom: 25px;
     font-size: 2.4em;
     font-weight: 700;
     letter-spacing: -0.8px;
     padding-bottom: 15px;
-    border-bottom: 2px solid #e0e7ee;
+    border-bottom: 2px solid #e5e7eb;
 }
 
 .pending-evaluations-list {
@@ -29,17 +34,17 @@
 }
 
 .evaluation-item {
-    background-color: #fcfdfe;
-    border: 1px solid #e0e7ee;
-    border-left: 5px solid #007bff;
+    background-color: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-left: 5px solid #3b82f6;
     border-radius: 10px;
     padding: 15px 20px;
     margin-bottom: 12px;
     display: flex;
     flex-wrap: wrap;
     align-items: baseline;
-    color: #4b5a6c;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    color: #4b5563;
+    transition: all 0.2s ease-in-out;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
 }
 
@@ -49,12 +54,49 @@
 
 .evaluation-item:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 6px 15px rgba(59, 130, 246, 0.15);
+    border-left-color: #2563eb;
+}
+
+.evaluation-item.exam {
+    border-left-color: #ef4444;
+}
+
+.evaluation-item.exam:hover {
+    box-shadow: 0 6px 15px rgba(239, 68, 68, 0.15);
+    border-left-color: #dc2626;
+}
+
+.evaluation-item.quiz {
+    border-left-color: #f59e0b;
+}
+
+.evaluation-item.quiz:hover {
+    box-shadow: 0 6px 15px rgba(245, 158, 11, 0.15);
+    border-left-color: #d97706;
+}
+
+.evaluation-item.project {
+    border-left-color: #8b5cf6;
+}
+
+.evaluation-item.project:hover {
+    box-shadow: 0 6px 15px rgba(139, 92, 246, 0.15);
+    border-left-color: #7c3aed;
+}
+
+.evaluation-item.assignment {
+    border-left-color: #10b981;
+}
+
+.evaluation-item.assignment:hover {
+    box-shadow: 0 6px 15px rgba(16, 185, 129, 0.15);
+    border-left-color: #059669;
 }
 
 .evaluation-subject {
     font-weight: 600;
-    color: #2c3e50;
+    color: #1f2937;
     margin-right: 10px;
     min-width: 100px;
     white-space: nowrap;
@@ -65,31 +107,158 @@
 
 .evaluation-type {
     flex-grow: 1;
-    color: #555;
+    color: #6b7280;
     margin-right: 15px;
     line-height: 1.5;
+    font-weight: 500;
 }
 
 .evaluation-due-date {
     font-size: 0.8em;
-    color: #777;
+    color: #9ca3af;
     white-space: nowrap;
     flex-shrink: 0;
     padding-left: 10px;
-    border-left: 1px solid #e0e7ee;
+    border-left: 1px solid #e5e7eb;
     margin-left: auto;
+}
+
+.evaluation-due-date.overdue {
+    color: #ef4444;
+    font-weight: 600;
+}
+
+.evaluation-due-date.due-soon {
+    color: #f59e0b;
+    font-weight: 500;
+}
+
+.evaluation-due-date.due-today {
+    color: #dc2626;
+    font-weight: 700;
+    background-color: #fef2f2;
+    padding: 2px 6px;
+    border-radius: 4px;
+    border: 1px solid #fecaca;
 }
 
 .no-evaluations-message {
     text-align: center;
-    color: #666;
+    color: #6b7280;
     font-style: italic;
     padding: 20px;
-    background-color: #f0f7ff;
+    background-color: #f0f9ff;
     border-radius: 10px;
-    border: 1px solid #cceeff;
+    border: 1px solid #bae6fd;
     font-size: 1.1em;
     line-height: 1.5;
+}
+
+.evaluation-type-badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 0.7em;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-left: 8px;
+}
+
+.evaluation-type-badge.exam {
+    background-color: #fef2f2;
+    color: #dc2626;
+    border: 1px solid #fecaca;
+}
+
+.evaluation-type-badge.quiz {
+    background-color: #fffbeb;
+    color: #d97706;
+    border: 1px solid #fed7aa;
+}
+
+.evaluation-type-badge.project {
+    background-color: #f3f4f6;
+    color: #7c3aed;
+    border: 1px solid #e5e7eb;
+}
+
+.evaluation-type-badge.assignment {
+    background-color: #f0fdf4;
+    color: #059669;
+    border: 1px solid #bbf7d0;
+}
+
+.evaluation-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 10px;
+    width: 100%;
+}
+
+.evaluation-action-button {
+    padding: 6px 12px;
+    font-size: 0.8em;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    font-weight: 500;
+}
+
+.evaluation-action-button.study {
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+    color: white;
+}
+
+.evaluation-action-button.study:hover {
+    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+}
+
+.evaluation-action-button.details {
+    background-color: #f3f4f6;
+    color: #374151;
+    border: 1px solid #d1d5db;
+}
+
+.evaluation-action-button.details:hover {
+    background-color: #e5e7eb;
+}
+
+.evaluation-action-button.remind {
+    background-color: #f59e0b;
+    color: white;
+}
+
+.evaluation-action-button.remind:hover {
+    background-color: #d97706;
+    transform: translateY(-1px);
+}
+
+.evaluation-progress {
+    width: 100%;
+    height: 4px;
+    background-color: #e5e7eb;
+    border-radius: 2px;
+    margin-top: 8px;
+    overflow: hidden;
+}
+
+.evaluation-progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, #10b981 0%, #059669 100%);
+    border-radius: 2px;
+    transition: width 0.3s ease-in-out;
+}
+
+.evaluation-progress-bar.low {
+    background: linear-gradient(90deg, #ef4444 0%, #dc2626 100%);
+}
+
+.evaluation-progress-bar.medium {
+    background: linear-gradient(90deg, #f59e0b 0%, #d97706 100%);
 }
 
 @media (max-width: 768px) {
@@ -144,6 +313,15 @@
         padding: 15px;
         font-size: 1em;
     }
+
+    .evaluation-actions {
+        margin-top: 8px;
+    }
+
+    .evaluation-action-button {
+        padding: 4px 8px;
+        font-size: 0.75em;
+    }
 }
 
 @media (max-width: 480px) {
@@ -181,4 +359,85 @@
         padding: 12px;
         font-size: 0.95em;
     }
+}
+
+.dark .pending-evaluations-card {
+    background-color: #1f2937;
+    border-color: #374151;
+    color: #e5e7eb;
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2), 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.dark .pending-evaluations-card h3 {
+    color: #f9fafb;
+    border-bottom-color: #374151;
+}
+
+.dark .evaluation-item {
+    background-color: #111827;
+    border-color: #374151;
+    color: #e5e7eb;
+}
+
+.dark .evaluation-subject {
+    color: #f9fafb;
+}
+
+.dark .evaluation-type {
+    color: #d1d5db;
+}
+
+.dark .evaluation-due-date {
+    color: #9ca3af;
+    border-left-color: #374151;
+}
+
+.dark .evaluation-due-date.due-today {
+    background-color: #7f1d1d;
+    border-color: #991b1b;
+    color: #fca5a5;
+}
+
+.dark .no-evaluations-message {
+    background-color: #1e40af;
+    border-color: #3b82f6;
+    color: #bfdbfe;
+}
+
+.dark .evaluation-action-button.details {
+    background-color: #374151;
+    color: #e5e7eb;
+    border-color: #4b5563;
+}
+
+.dark .evaluation-action-button.details:hover {
+    background-color: #4b5563;
+}
+
+.dark .evaluation-progress {
+    background-color: #374151;
+}
+
+.dark .evaluation-type-badge.exam {
+    background-color: #7f1d1d;
+    color: #fca5a5;
+    border-color: #991b1b;
+}
+
+.dark .evaluation-type-badge.quiz {
+    background-color: #78350f;
+    color: #fbbf24;
+    border-color: #92400e;
+}
+
+.dark .evaluation-type-badge.project {
+    background-color: #581c87;
+    color: #c4b5fd;
+    border-color: #6b21a8;
+}
+
+.dark .evaluation-type-badge.assignment {
+    background-color: #064e3b;
+    color: #6ee7b7;
+    border-color: #065f46;
 }

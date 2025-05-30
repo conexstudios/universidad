@@ -1,23 +1,28 @@
 .invoice-details-container {
   padding: 30px;
-  font-family: 'Inter', 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  font-family: "Inter", "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif;
   background-color: #ffffff;
   border-radius: 16px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08), 0 4px 10px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
   margin: 30px auto;
   max-width: 650px;
-  border: 1px solid #f0f0f0;
+  border: 1px solid hsl(214.3, 31.8%, 91.4%);
   overflow: hidden;
+  transition: all 0.2s ease-in-out;
+}
+
+.invoice-details-container:hover {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
 .invoice-details-container h1 {
   text-align: center;
   font-size: 2.2em;
-  color: #2c3e50;
+  color: hsl(222.2, 84%, 4.9%);
   margin-bottom: 30px;
   font-weight: 700;
   letter-spacing: -0.5px;
-  border-bottom: 2px solid #f5f5f5;
+  border-bottom: 2px solid hsl(214.3, 31.8%, 91.4%);
   padding-bottom: 15px;
 }
 
@@ -36,7 +41,7 @@
 
 .form-group label {
   font-size: 0.95em;
-  color: #555;
+  color: hsl(215.4, 16.3%, 46.9%);
   margin-bottom: 8px;
   font-weight: 500;
   text-transform: uppercase;
@@ -46,24 +51,24 @@
 .form-group input {
   padding: 12px 15px;
   font-size: 1.05em;
-  border: 1px solid #dcdcdc;
+  border: 1px solid hsl(214.3, 31.8%, 91.4%);
   border-radius: 8px;
   outline: none;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
-  background-color: #fcfcfc;
-  color: #333;
+  transition: all 0.2s ease-in-out;
+  background-color: hsl(0, 0%, 100%);
+  color: hsl(222.2, 84%, 4.9%);
   width: 100%;
   box-sizing: border-box;
 }
 
 .form-group input:focus {
-  border-color: #3498db;
-  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
-  background-color: #ffffff;
+  border-color: hsl(221.2, 83.2%, 53.3%);
+  box-shadow: 0 0 0 2px hsl(221.2, 83.2%, 53.3%);
+  background-color: hsl(0, 0%, 100%);
 }
 
 .form-group input::placeholder {
-  color: #aaa;
+  color: hsl(215.4, 16.3%, 46.9%);
   font-style: italic;
 }
 
@@ -72,39 +77,228 @@
   padding: 15px 25px;
   font-size: 1.1em;
   font-weight: 600;
-  color: #fff;
-  background-color: #28a745;
+  color: hsl(210, 40%, 98%);
+  background: linear-gradient(135deg, hsl(221.2, 83.2%, 53.3%) 0%, hsl(221.2, 83.2%, 53.3%) 100%);
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  transition: all 0.2s ease-in-out;
   margin-top: 20px;
 }
 
 .invoice-details-container button[type="submit"]:hover {
-  background-color: #218838;
-  transform: translateY(-2px);
+  background: linear-gradient(135deg, hsl(221.2, 83.2%, 53.3%) 0%, hsl(221.2, 83.2%, 53.3%) 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
 }
 
 .invoice-details-container button[type="submit"]:active {
-  background-color: #1e7e34;
+  background: linear-gradient(135deg, hsl(221.2, 83.2%, 53.3%) 0%, hsl(221.2, 83.2%, 53.3%) 100%);
   transform: translateY(0);
 }
 
 .form-error-message {
-  color: #e74c3c;
+  color: hsl(0, 84.2%, 60.2%);
   font-size: 0.85em;
   margin-top: 5px;
 }
 
+/* Estilos adicionales para consistencia con la configuración */
+.receipt-container {
+  background-color: hsl(0, 0%, 100%);
+  border-radius: 16px;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  border: 1px solid hsl(214.3, 31.8%, 91.4%);
+  padding: 30px;
+  transition: all 0.2s ease-in-out;
+}
+
+.receipt-container:hover {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.receipt-container h2 {
+  text-align: center;
+  font-size: 2.2em;
+  color: hsl(222.2, 84%, 4.9%);
+  margin-bottom: 30px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  border-bottom: 2px solid hsl(214.3, 31.8%, 91.4%);
+  padding-bottom: 15px;
+}
+
+.receipt-info-card {
+  background: hsl(210, 40%, 96%);
+  border: 1px solid hsl(214.3, 31.8%, 91.4%);
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 24px;
+}
+
+.receipt-info-label {
+  color: hsl(221.2, 83.2%, 53.3%);
+  font-weight: 500;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.receipt-info-value {
+  color: hsl(222.2, 84%, 4.9%);
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+
+.receipt-status-badge {
+  background-color: hsl(210, 40%, 96%);
+  color: hsl(222.2, 84%, 4.9%);
+  border: 1px solid hsl(214.3, 31.8%, 91.4%);
+  padding: 4px 12px;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.receipt-table {
+  border: 1px solid hsl(214.3, 31.8%, 91.4%);
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 24px;
+}
+
+.receipt-table tr:hover {
+  background-color: hsl(210, 40%, 96%);
+  transition: background-color 0.15s ease;
+}
+
+.receipt-table td {
+  padding: 16px;
+  border-bottom: 1px solid hsl(214.3, 31.8%, 91.4%);
+}
+
+.receipt-table-label {
+  color: hsl(215.4, 16.3%, 46.9%);
+  font-weight: 500;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.receipt-table-value {
+  color: hsl(222.2, 84%, 4.9%);
+  font-weight: 500;
+  font-size: 0.875rem;
+}
+
+.receipt-total-card {
+  background: hsl(210, 40%, 96%);
+  border: 1px solid hsl(214.3, 31.8%, 91.4%);
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 24px;
+}
+
+.receipt-total-label {
+  color: hsl(222.2, 84%, 4.9%);
+  font-weight: 700;
+  font-size: 1.25rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.receipt-total-amount {
+  color: hsl(221.2, 83.2%, 53.3%);
+  font-weight: 700;
+  font-size: 1.875rem;
+}
+
+.receipt-notes-card {
+  background-color: hsl(210, 40%, 96%);
+  border: 1px solid hsl(214.3, 31.8%, 91.4%);
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 24px;
+}
+
+.receipt-notes-title {
+  color: hsl(222.2, 84%, 4.9%);
+  font-weight: 500;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 12px;
+}
+
+.receipt-notes-list {
+  color: hsl(215.4, 16.3%, 46.9%);
+  font-size: 0.75rem;
+  line-height: 1.5;
+}
+
+.receipt-notes-list li {
+  margin-bottom: 8px;
+  display: flex;
+  align-items: flex-start;
+}
+
+.receipt-notes-bullet {
+  color: hsl(221.2, 83.2%, 53.3%);
+  margin-right: 8px;
+  font-weight: bold;
+}
+
+.receipt-download-button {
+  width: 100%;
+  padding: 15px 25px;
+  font-size: 1.1em;
+  font-weight: 600;
+  color: hsl(210, 40%, 98%);
+  background: linear-gradient(135deg, hsl(221.2, 83.2%, 53.3%) 0%, hsl(221.2, 83.2%, 53.3%) 100%);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.receipt-download-button:hover {
+  background: linear-gradient(135deg, hsl(221.2, 83.2%, 53.3%) 0%, hsl(221.2, 83.2%, 53.3%) 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+}
+
+.receipt-download-button:active {
+  background: linear-gradient(135deg, hsl(221.2, 83.2%, 53.3%) 0%, hsl(221.2, 83.2%, 53.3%) 100%);
+  transform: translateY(0);
+}
+
+.icon-container {
+  background-color: hsl(210, 40%, 96%);
+  border-radius: 50%;
+  padding: 16px;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+}
+
+.icon-container.green {
+  background-color: hsl(210, 40%, 96%);
+}
+
+.transfer-arrow {
+  color: hsl(215.4, 16.3%, 46.9%);
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
 @media (max-width: 768px) {
-  .invoice-details-container {
+  .invoice-details-container,
+  .receipt-container {
     padding: 20px;
     margin: 20px auto;
     border-radius: 10px;
   }
 
-  .invoice-details-container h1 {
+  .invoice-details-container h1,
+  .receipt-container h2 {
     font-size: 1.8em;
     margin-bottom: 20px;
   }
@@ -119,8 +313,73 @@
     font-size: 0.95em;
   }
 
-  .invoice-details-container button[type="submit"] {
+  .invoice-details-container button[type="submit"],
+  .receipt-download-button {
     padding: 12px 20px;
     font-size: 1em;
   }
+
+  .receipt-total-label {
+    font-size: 1.125rem;
+  }
+
+  .receipt-total-amount {
+    font-size: 1.5rem;
+  }
+}
+
+/* Modo oscuro usando las variables de configuración */
+.dark .invoice-details-container,
+.dark .receipt-container {
+  background-color: hsl(222.2, 84%, 4.9%);
+  border-color: hsl(217.2, 32.6%, 17.5%);
+}
+
+.dark .invoice-details-container h1,
+.dark .receipt-container h2 {
+  color: hsl(210, 40%, 98%);
+  border-bottom-color: hsl(217.2, 32.6%, 17.5%);
+}
+
+.dark .form-group label,
+.dark .receipt-table-label,
+.dark .receipt-notes-title {
+  color: hsl(215, 20.2%, 65.1%);
+}
+
+.dark .form-group input {
+  background-color: hsl(217.2, 32.6%, 17.5%);
+  border-color: hsl(217.2, 32.6%, 17.5%);
+  color: hsl(210, 40%, 98%);
+}
+
+.dark .form-group input:focus {
+  border-color: hsl(217.2, 91.2%, 59.8%);
+  box-shadow: 0 0 0 2px hsl(224.3, 76.3%, 94.1%);
+  background-color: hsl(222.2, 84%, 4.9%);
+}
+
+.dark .receipt-table-value,
+.dark .receipt-total-label {
+  color: hsl(210, 40%, 98%);
+}
+
+.dark .receipt-info-card,
+.dark .receipt-total-card,
+.dark .receipt-notes-card {
+  background-color: hsl(217.2, 32.6%, 17.5%);
+  border-color: hsl(217.2, 32.6%, 17.5%);
+}
+
+.dark .receipt-notes-list {
+  color: hsl(215, 20.2%, 65.1%);
+}
+
+.dark .icon-container,
+.dark .icon-container.green {
+  background-color: hsl(217.2, 32.6%, 17.5%);
+}
+
+.dark .transfer-arrow {
+  color: hsl(215, 20.2%, 65.1%);
 }

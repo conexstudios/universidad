@@ -3,22 +3,27 @@
   font-family: 'Inter', 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
   background-color: #ffffff;
   border-radius: 16px;
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08), 0 4px 12px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.06), 0 4px 8px rgba(0, 0, 0, 0.03);
   margin: 40px auto;
   max-width: 1000px;
   overflow-x: auto;
-  border: 1px solid #eef2f7;
+  border: 1px solid #e5e7eb;
   box-sizing: border-box;
+  transition: all 0.2s ease-in-out;
+}
+
+.service-requests-container:hover {
+  box-shadow: 0 16px 30px rgba(0, 0, 0, 0.08), 0 6px 10px rgba(0, 0, 0, 0.04);
 }
 
 .service-requests-container h1 {
   text-align: center;
   font-size: 2.4em;
-  color: #263238;
+  color: #1f2937;
   margin-bottom: 35px;
   font-weight: 700;
   letter-spacing: -0.8px;
-  border-bottom: 3px solid #eef2f7;
+  border-bottom: 3px solid #e5e7eb;
   padding-bottom: 20px;
 }
 
@@ -26,27 +31,27 @@
   width: 100%;
   border-collapse: collapse;
   font-size: 0.95em;
-  color: #4b5a6c;
+  color: #4b5563;
   min-width: 700px;
-  border: 1px solid #e0e7ee;
+  border: 1px solid #e5e7eb;
   border-radius: 10px;
   overflow: hidden;
 }
 
 .service-requests-table th,
 .service-requests-table td {
-  border: 1px solid #f7f9fc;
+  border: 1px solid #f3f4f6;
   padding: 14px 10px;
   text-align: center;
   box-sizing: border-box;
 }
 
 .service-requests-table th {
-  background-color: #e9f2f9;
-  color: #2c3e50;
+  background-color: #f3f4f6;
+  color: #1f2937;
   font-weight: 600;
   padding: 16px 10px;
-  border: 1px solid #d0dbe6;
+  border: 1px solid #e5e7eb;
   text-transform: uppercase;
   letter-spacing: 1px;
   font-size: 0.9em;
@@ -57,16 +62,16 @@
 }
 
 .service-requests-table tbody tr:nth-child(odd) {
-  background-color: #fdfefe;
+  background-color: #f9fafb;
 }
 
 .service-requests-table tbody tr:hover {
-  background-color: #f0f7ff;
+  background-color: #f3f4f6;
   transition: background-color 0.2s ease;
 }
 
 .service-requests-table .link {
-  color: #007bff;
+  color: #3b82f6;
   text-decoration: none;
   cursor: pointer;
   font-weight: 500;
@@ -74,32 +79,166 @@
 }
 
 .service-requests-table .link:hover {
-  color: #0056b3;
+  color: #2563eb;
   text-decoration: underline;
 }
 
 .service-requests-table .pay-button {
   padding: 8px 16px;
-  background-color: #28a745;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
   color: #fff;
   border: none;
   border-radius: 8px;
   cursor: pointer;
   font-weight: 600;
   font-size: 0.9em;
-  transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
-  box-shadow: 0 2px 5px rgba(40, 167, 69, 0.15);
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0 2px 5px rgba(16, 185, 129, 0.15);
 }
 
 .service-requests-table .pay-button:hover {
-  background-color: #218838;
+  background: linear-gradient(135deg, #059669 0%, #047857 100%);
   transform: translateY(-1px);
-  box-shadow: 0 4px 10px rgba(40, 167, 69, 0.25);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
 }
 
 .service-requests-table .pay-button:active {
   transform: translateY(0);
-  box-shadow: none;
+  box-shadow: 0 2px 5px rgba(16, 185, 129, 0.15);
+}
+
+.service-requests-table .status-badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 0.8em;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.service-requests-table .status-badge.pending {
+  background-color: #fef3c7;
+  color: #d97706;
+  border: 1px solid #fed7aa;
+}
+
+.service-requests-table .status-badge.approved {
+  background-color: #d1fae5;
+  color: #059669;
+  border: 1px solid #a7f3d0;
+}
+
+.service-requests-table .status-badge.rejected {
+  background-color: #fee2e2;
+  color: #dc2626;
+  border: 1px solid #fecaca;
+}
+
+.service-requests-table .status-badge.completed {
+  background-color: #dbeafe;
+  color: #2563eb;
+  border: 1px solid #93c5fd;
+}
+
+.service-requests-table .priority-indicator {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+
+.service-requests-table .priority-indicator.high {
+  background-color: #ef4444;
+}
+
+.service-requests-table .priority-indicator.medium {
+  background-color: #f59e0b;
+}
+
+.service-requests-table .priority-indicator.low {
+  background-color: #10b981;
+}
+
+.service-requests-table .amount-cell {
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.service-requests-table .amount-cell.paid {
+  color: #10b981;
+}
+
+.service-requests-table .amount-cell.pending {
+  color: #f59e0b;
+}
+
+.service-requests-table .amount-cell.overdue {
+  color: #ef4444;
+}
+
+.service-requests-table .action-buttons {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
+}
+
+.service-requests-table .action-button {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 0.8em;
+  transition: all 0.2s ease-in-out;
+}
+
+.service-requests-table .action-button.view {
+  background-color: #f3f4f6;
+  color: #374151;
+  border: 1px solid #d1d5db;
+}
+
+.service-requests-table .action-button.view:hover {
+  background-color: #e5e7eb;
+}
+
+.service-requests-table .action-button.edit {
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  color: white;
+}
+
+.service-requests-table .action-button.edit:hover {
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+}
+
+.service-requests-table .action-button.delete {
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  color: white;
+}
+
+.service-requests-table .action-button.delete:hover {
+  background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.4);
+}
+
+.service-requests-table .date-cell {
+  color: #6b7280;
+  font-size: 0.9em;
+}
+
+.service-requests-table .date-cell.recent {
+  color: #10b981;
+  font-weight: 500;
+}
+
+.service-requests-table .date-cell.old {
+  color: #9ca3af;
 }
 
 @media (max-width: 992px) {
@@ -142,6 +281,14 @@
     padding: 7px 14px;
     font-size: 0.85em;
   }
+  .service-requests-table .action-buttons {
+    flex-direction: column;
+    gap: 4px;
+  }
+  .service-requests-table .action-button {
+    padding: 4px 8px;
+    font-size: 0.75em;
+  }
 }
 
 @media (max-width: 576px) {
@@ -172,4 +319,113 @@
     font-size: 0.8em;
     border-radius: 6px;
   }
+}
+
+.dark .service-requests-container {
+  background-color: #1f2937;
+  border-color: #374151;
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2), 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.dark .service-requests-container h1 {
+  color: #f9fafb;
+  border-bottom-color: #374151;
+}
+
+.dark .service-requests-table {
+  border-color: #374151;
+  color: #e5e7eb;
+}
+
+.dark .service-requests-table th,
+.dark .service-requests-table td {
+  border-color: #374151;
+}
+
+.dark .service-requests-table th {
+  background-color: #111827;
+  color: #f9fafb;
+  border-color: #374151;
+}
+
+.dark .service-requests-table tbody tr {
+  background-color: #1f2937;
+}
+
+.dark .service-requests-table tbody tr:nth-child(odd) {
+  background-color: #111827;
+}
+
+.dark .service-requests-table tbody tr:hover {
+  background-color: #374151;
+}
+
+.dark .service-requests-table .link {
+  color: #60a5fa;
+}
+
+.dark .service-requests-table .link:hover {
+  color: #93c5fd;
+}
+
+.dark .service-requests-table .status-badge.pending {
+  background-color: #78350f;
+  color: #fbbf24;
+  border-color: #92400e;
+}
+
+.dark .service-requests-table .status-badge.approved {
+  background-color: #064e3b;
+  color: #6ee7b7;
+  border-color: #065f46;
+}
+
+.dark .service-requests-table .status-badge.rejected {
+  background-color: #7f1d1d;
+  color: #fca5a5;
+  border-color: #991b1b;
+}
+
+.dark .service-requests-table .status-badge.completed {
+  background-color: #1e40af;
+  color: #bfdbfe;
+  border-color: #3b82f6;
+}
+
+.dark .service-requests-table .amount-cell {
+  color: #f9fafb;
+}
+
+.dark .service-requests-table .amount-cell.paid {
+  color: #6ee7b7;
+}
+
+.dark .service-requests-table .amount-cell.pending {
+  color: #fbbf24;
+}
+
+.dark .service-requests-table .amount-cell.overdue {
+  color: #fca5a5;
+}
+
+.dark .service-requests-table .action-button.view {
+  background-color: #374151;
+  color: #e5e7eb;
+  border-color: #4b5563;
+}
+
+.dark .service-requests-table .action-button.view:hover {
+  background-color: #4b5563;
+}
+
+.dark .service-requests-table .date-cell {
+  color: #9ca3af;
+}
+
+.dark .service-requests-table .date-cell.recent {
+  color: #6ee7b7;
+}
+
+.dark .service-requests-table .date-cell.old {
+  color: #6b7280;
 }

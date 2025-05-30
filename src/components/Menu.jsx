@@ -10,7 +10,7 @@ import payments from "../assets/payments.svg";
 import salir from "../assets/Salir.png";	
 import campaign from "../assets/Campaign.png";
 import personal from "../assets/Personal.png";
-import logo from "../assets/logo.jpg";
+import logo from "../assets/logo.png";
 
 const Menu = () => {
   return (

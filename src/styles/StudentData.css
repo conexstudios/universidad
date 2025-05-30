@@ -3,20 +3,25 @@
     font-family: 'Inter', 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
     background-color: #ffffff;
     border-radius: 12px;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08), 0 3px 10px rgba(0, 0, 0, 0.04);
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.06), 0 4px 8px rgba(0, 0, 0, 0.03);
     margin: 30px auto;
     max-width: 95%;
     overflow-x: auto;
-    border: 1px solid #f0f0f0;
+    border: 1px solid #e5e7eb;
     box-sizing: border-box;
+    transition: all 0.2s ease-in-out;
+}
+
+.student-grades-container:hover {
+    box-shadow: 0 16px 30px rgba(0, 0, 0, 0.08), 0 6px 10px rgba(0, 0, 0, 0.04);
 }
 
 .student-grades-title {
-    color: #2c3e50;
+    color: #1f2937;
     margin-bottom: 25px;
     font-size: 1.8em;
     font-weight: 700;
-    border-bottom: 2px solid #e0e0e0;
+    border-bottom: 2px solid #e5e7eb;
     padding-bottom: 15px;
     text-align: center;
     letter-spacing: -0.5px;
@@ -27,30 +32,30 @@
     border-collapse: collapse;
     font-size: 0.95em;
     margin-top: 15px;
-    color: #444;
+    color: #4b5563;
     min-width: 600px;
-    border: 1px solid #e9ecef;
+    border: 1px solid #e5e7eb;
     border-radius: 8px;
     overflow: hidden;
 }
 
 .grades-table th,
 .grades-table td {
-    border: 1px solid #f5f5f5;
+    border: 1px solid #f3f4f6;
     padding: 12px 10px;
     text-align: center;
     box-sizing: border-box;
 }
 
 .grades-table thead tr {
-    background-color: #eef2f7;
-    border-bottom: 2px solid #d9e2ec;
+    background-color: #f3f4f6;
+    border-bottom: 2px solid #e5e7eb;
 }
 
 .grades-table th {
     text-align: center;
     font-weight: 600;
-    color: #2c3e50;
+    color: #1f2937;
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
@@ -58,38 +63,172 @@
 .grades-table .subject-column {
     text-align: left;
     font-weight: 500;
-    color: #34495e;
+    color: #1f2937;
     min-width: 150px;
-    background-color: #fcfcfc;
+    background-color: #f9fafb;
     position: sticky;
     left: 0;
     z-index: 2;
-    box-shadow: 2px 0 5px rgba(0,0,0,0.03);
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.03);
 }
 
 .grades-table tbody td {
     text-align: center;
-    color: #333;
+    color: #4b5563;
 }
 
 .grades-table .final-score {
-    color: #28a745;
+    color: #10b981;
     font-weight: 700;
     font-size: 1.05em;
-    background-color: #e6ffed;
+    background-color: #f0fdf4;
     position: sticky;
     right: 0;
     z-index: 2;
-    box-shadow: -2px 0 5px rgba(0,0,0,0.03);
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.03);
+}
+
+.grades-table .final-score.excellent {
+    color: #059669;
+    background-color: #ecfdf5;
+}
+
+.grades-table .final-score.good {
+    color: #0284c7;
+    background-color: #f0f9ff;
+}
+
+.grades-table .final-score.average {
+    color: #f59e0b;
+    background-color: #fffbeb;
+}
+
+.grades-table .final-score.poor {
+    color: #ef4444;
+    background-color: #fef2f2;
 }
 
 .grades-table tbody tr:hover {
-    background-color: #f9f9f9;
+    background-color: #f9fafb;
     transition: background-color 0.2s ease;
 }
 
 .grades-table tbody tr:nth-child(odd) {
-    background-color: #fdfdfd;
+    background-color: #f9fafb;
+}
+
+.grade-cell {
+    position: relative;
+    transition: all 0.2s ease-in-out;
+}
+
+.grade-cell:hover {
+    transform: scale(1.05);
+    z-index: 5;
+    box-shadow: 0 0 10px rgba(59, 130, 246, 0.2);
+    border-radius: 4px;
+}
+
+.grade-cell.high {
+    color: #10b981;
+    font-weight: 600;
+}
+
+.grade-cell.medium {
+    color: #0284c7;
+}
+
+.grade-cell.low {
+    color: #ef4444;
+    font-weight: 600;
+}
+
+.grade-cell.absent {
+    color: #9ca3af;
+    font-style: italic;
+}
+
+.grade-tooltip {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #1f2937;
+    color: #f9fafb;
+    padding: 6px 10px;
+    border-radius: 4px;
+    font-size: 0.8em;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s ease-in-out;
+    z-index: 10;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.grade-cell:hover .grade-tooltip {
+    opacity: 1;
+    visibility: visible;
+    bottom: calc(100% + 5px);
+}
+
+.grade-tooltip::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #1f2937 transparent transparent transparent;
+}
+
+.semester-header {
+    background-color: #dbeafe !important;
+    color: #2563eb !important;
+    font-weight: 600;
+}
+
+.grades-summary {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #f9fafb;
+    border-radius: 8px;
+    border: 1px solid #e5e7eb;
+}
+
+.summary-item {
+    text-align: center;
+}
+
+.summary-label {
+    font-size: 0.85em;
+    color: #6b7280;
+    margin-bottom: 5px;
+}
+
+.summary-value {
+    font-size: 1.2em;
+    font-weight: 700;
+    color: #1f2937;
+}
+
+.summary-value.excellent {
+    color: #059669;
+}
+
+.summary-value.good {
+    color: #0284c7;
+}
+
+.summary-value.average {
+    color: #f59e0b;
+}
+
+.summary-value.poor {
+    color: #ef4444;
 }
 
 @media (max-width: 768px) {
@@ -118,6 +257,15 @@
     .grades-table .subject-column {
         min-width: 120px;
     }
+
+    .grades-summary {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .summary-item {
+        flex: 1 0 40%;
+    }
 }
 
 @media (max-width: 480px) {
@@ -138,4 +286,130 @@
     .grades-table .subject-column {
         min-width: 100px;
     }
+    .summary-item {
+        flex: 1 0 100%;
+    }
+}
+
+.dark .student-grades-container {
+    background-color: #1f2937;
+    border-color: #374151;
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2), 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.dark .student-grades-title {
+    color: #f9fafb;
+    border-bottom-color: #374151;
+}
+
+.dark .grades-table {
+    border-color: #374151;
+    color: #e5e7eb;
+}
+
+.dark .grades-table th,
+.dark .grades-table td {
+    border-color: #374151;
+}
+
+.dark .grades-table thead tr {
+    background-color: #111827;
+    border-bottom-color: #374151;
+}
+
+.dark .grades-table th {
+    color: #f9fafb;
+}
+
+.dark .grades-table .subject-column {
+    color: #f9fafb;
+    background-color: #111827;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.dark .grades-table tbody td {
+    color: #d1d5db;
+}
+
+.dark .grades-table .final-score {
+    background-color: #064e3b;
+    color: #6ee7b7;
+}
+
+.dark .grades-table .final-score.excellent {
+    background-color: #065f46;
+    color: #a7f3d0;
+}
+
+.dark .grades-table .final-score.good {
+    background-color: #0c4a6e;
+    color: #7dd3fc;
+}
+
+.dark .grades-table .final-score.average {
+    background-color: #78350f;
+    color: #fbbf24;
+}
+
+.dark .grades-table .final-score.poor {
+    background-color: #7f1d1d;
+    color: #fca5a5;
+}
+
+.dark .grades-table tbody tr:hover {
+    background-color: #1e293b;
+}
+
+.dark .grades-table tbody tr:nth-child(odd) {
+    background-color: #111827;
+}
+
+.dark .grade-cell.high {
+    color: #6ee7b7;
+}
+
+.dark .grade-cell.medium {
+    color: #7dd3fc;
+}
+
+.dark .grade-cell.low {
+    color: #fca5a5;
+}
+
+.dark .grade-cell.absent {
+    color: #6b7280;
+}
+
+.dark .semester-header {
+    background-color: #1e40af !important;
+    color: #bfdbfe !important;
+}
+
+.dark .grades-summary {
+    background-color: #111827;
+    border-color: #374151;
+}
+
+.dark .summary-label {
+    color: #9ca3af;
+}
+
+.dark .summary-value {
+    color: #f9fafb;
+}
+
+.dark .summary-value.excellent {
+    color: #6ee7b7;
+}
+
+.dark .summary-value.good {
+    color: #7dd3fc;
+}
+
+.dark .summary-value.average {
+    color: #fbbf24;
+}
+
+.dark .summary-value.poor {
+    color: #fca5a5;
 }

@@ -1,120 +1,112 @@
-/* Contenedor principal del horario */
 .schedule-component {
-    padding: 30px; /* Más padding para una sensación premium y abierta */
-    background-color: #ffffff; /* Fondo blanco puro */
-    border-radius: 16px; /* Bordes aún más redondeados para una estética suave */
-    /* Sombra más sofisticada y menos intrusiva, dando un efecto de "elevación" */
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.09), 0 4px 12px rgba(0, 0, 0, 0.05);
-    margin: 40px auto; /* Más margen vertical para aislar el componente */
-    max-width: 960px; /* Aumenta el ancho máximo para tablas más grandes */
-    font-family: 'Inter', 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif; /* Fuentes modernas, Inter si está disponible */
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.06), 0 4px 8px rgba(0, 0, 0, 0.03);
+    margin: 40px auto;
+    max-width: 960px;
+    font-family: 'Inter', 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
     display: flex;
     flex-direction: column;
     align-items: center;
-    border: 1px solid #ebf2f8; /* Un borde muy sutil y casi imperceptible */
-    box-sizing: border-box; /* Asegura que padding y border no aumenten el tamaño */
+    border: 1px solid #e5e7eb;
+    box-sizing: border-box;
+    transition: all 0.2s ease-in-out;
 }
 
-/* Título del horario */
+.schedule-component:hover {
+    box-shadow: 0 16px 30px rgba(0, 0, 0, 0.08), 0 6px 10px rgba(0, 0, 0, 0.04);
+}
+
 .schedule-component h3 {
-    font-size: 2.4em; /* Título más grande para mayor impacto */
-    color: #263238; /* Un gris oscuro profundo */
-    font-weight: 700; /* Negrita pronunciada para el título */
+    font-size: 2.4em;
+    color: #1f2937;
+    font-weight: 700;
     margin-top: 0;
-    margin-bottom: 35px; /* Más espacio debajo del título */
+    margin-bottom: 35px;
     text-align: center;
-    border-bottom: 3px solid #eef2f7; /* Borde inferior más grueso y suave */
-    padding-bottom: 20px; /* Más espacio entre el título y el borde */
-    width: 90%; /* Ancho que se ajusta bien */
-    max-width: 800px; /* Limita el ancho del título */
-    letter-spacing: -0.8px; /* Espaciado negativo para un look más compacto en titulares */
+    border-bottom: 3px solid #e5e7eb;
+    padding-bottom: 20px;
+    width: 90%;
+    max-width: 800px;
+    letter-spacing: -0.8px;
 }
 
-/* Contenedor para la tabla con scroll horizontal */
 .schedule-table-container {
-    overflow-x: auto; /* Permite el scroll horizontal */
-    width: 100%; /* Ocupa todo el ancho disponible */
-    margin-top: 20px; /* Espacio superior */
-    border: 1px solid #e0e7ee; /* Borde sutil alrededor de la tabla */
-    border-radius: 10px; /* Bordes ligeramente más redondeados para el contenedor de la tabla */
-    background-color: #fcfdfe; /* Fondo muy claro para la tabla */
-    box-shadow: inset 0 1px 4px rgba(0,0,0,0.03); /* Sombra interna muy sutil */
+    overflow-x: auto;
+    width: 100%;
+    margin-top: 20px;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    background-color: #f9fafb;
+    box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.03);
 }
 
-/* Tabla de horario */
 .schedule-table {
     width: 100%;
     border-collapse: collapse;
-    font-size: 0.95em; /* Tamaño de fuente ligeramente mayor para mejor legibilidad */
-    color: #4b5a6c; /* Un gris azulado más suave para el texto general */
+    font-size: 0.95em;
+    color: #4b5563;
     text-align: center;
-    min-width: 850px; /* Aumenta el ancho mínimo, ajusta según el contenido de tu tabla */
+    min-width: 850px;
 }
 
-/* Celdas de la tabla */
 .schedule-table td {
-    border: 1px solid #f7f9fc; /* Bordes muy finos y casi invisibles entre celdas */
-    padding: 14px 10px; /* Más padding para que el contenido respire */
-    white-space: nowrap; /* Evita que el texto se rompa */
+    border: 1px solid #f3f4f6;
+    padding: 14px 10px;
+    white-space: nowrap;
     box-sizing: border-box;
-    min-width: 120px; /* Ancho mínimo para cada celda de contenido */
-    transition: background-color 0.15s ease-in-out; /* Transición para el hover */
+    min-width: 120px;
+    transition: background-color 0.15s ease-in-out;
 }
 
-/* Encabezados de la tabla (días de la semana, etc.) */
 .schedule-table th {
-    background-color: #e9f2f9; /* Un color de fondo más fresco y profesional */
-    color: #2c3e50; /* Color de texto oscuro y contrastante */
-    font-weight: 600; /* Seminegrita para los encabezados */
-    padding: 16px 10px; /* Más padding para los encabezados */
-    border: 1px solid #d0dbe6; /* Borde más definido y color pastel */
+    background-color: #e5e7eb;
+    color: #1f2937;
+    font-weight: 600;
+    padding: 16px 10px;
+    border: 1px solid #d1d5db;
     text-transform: uppercase;
-    letter-spacing: 1px; /* Más espaciado entre letras para un look más limpio */
-    font-size: 0.9em; /* Ligeramente más pequeño para que los encabezados se lean como categorías */
+    letter-spacing: 1px;
+    font-size: 0.9em;
 }
 
-/* Celda de la columna de tiempo (primera columna) */
 .schedule-table td.time-slot {
-    background-color: #f5f8fb; /* Un gris azulado muy claro y sutil */
+    background-color: #f3f4f6;
     font-weight: 600;
-    color: #3f5163; /* Color de texto más oscuro y específico */
+    color: #374151;
     position: sticky;
     left: 0;
-    z-index: 15; /* Aumenta el z-index si es necesario */
-    box-shadow: 2px 0 8px rgba(0,0,0,0.07); /* Sombra más pronunciada para la columna sticky */
-    border-right: 1px solid #dde1e5; /* Borde derecho más visible para la columna sticky */
+    z-index: 15;
+    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.07);
+    border-right: 1px solid #d1d5db;
 }
 
-/* Celdas vacías (donde no hay clases/actividades) */
 .schedule-table td:empty {
-    background-color: #fdfefe; /* Un blanco roto muy sutil para celdas vacías */
+    background-color: #ffffff;
 }
 
-/* Estilo para las filas al pasar el ratón */
 .schedule-table tbody tr:hover {
-    background-color: #f0f7ff; /* Un azul muy suave al pasar el ratón para indicar interactividad */
+    background-color: #f3f4f6;
 }
 
-/* Estilo para celdas que contienen una clase/evento (ej. si tuvieran una clase como .event-cell) */
 .schedule-table td.event-cell {
-    background-color: #e6f7ff; /* Fondo azul claro para el evento */
-    color: #0056b3; /* Texto azul oscuro */
+    background-color: #dbeafe;
+    color: #2563eb;
     font-weight: 500;
     cursor: pointer;
-    border: 1px solid #91d5ff; /* Borde azul para el evento */
-    transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
-    border-radius: 4px; /* Ligeros bordes redondeados dentro de la celda si el contenido es un div/span */
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05); /* Pequeña sombra para eventos */
-    /* Puedes envolver el contenido del evento en un div con esta clase para que el borde redondeado funcione mejor */
+    border: 1px solid #93c5fd;
+    transition: all 0.2s ease-in-out;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
 }
 
 .schedule-table td.event-cell:hover {
-    background-color: #cceeff; /* Azul más oscuro al pasar el ratón */
-    transform: translateY(-1px); /* Pequeño efecto de elevación */
-    box-shadow: 0 4px 10px rgba(0,0,0,0.08); /* Sombra más fuerte al pasar el ratón */
+    background-color: #bfdbfe;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(59, 130, 246, 0.2);
 }
 
-/* Media queries para responsividad (ajustes para pantallas más pequeñas) */
 @media (max-width: 992px) {
     .schedule-component {
         padding: 25px;
@@ -146,7 +138,7 @@
     }
     .schedule-table {
         font-size: 0.9em;
-        min-width: 700px; /* Ajusta este valor si tu tabla es muy densa */
+        min-width: 700px;
     }
     .schedule-table td,
     .schedule-table th {
@@ -174,7 +166,7 @@
     }
     .schedule-table {
         font-size: 0.8em;
-        min-width: 580px; /* Para pantallas móviles pequeñas, la tabla aún necesita scroll */
+        min-width: 580px;
     }
     .schedule-table td,
     .schedule-table th {
@@ -188,4 +180,100 @@
     .schedule-table td.time-slot {
         min-width: 70px;
     }
+}
+
+.schedule-component .action-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.schedule-component .action-button {
+    padding: 10px 16px;
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.schedule-component .action-button:hover {
+    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+}
+
+.schedule-component .action-button.secondary {
+    background: #f3f4f6;
+    color: #374151;
+    border: 1px solid #d1d5db;
+}
+
+.schedule-component .action-button.secondary:hover {
+    background: #e5e7eb;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.dark .schedule-component {
+    background-color: #1f2937;
+    border-color: #374151;
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2), 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.dark .schedule-component h3 {
+    color: #f9fafb;
+    border-bottom-color: #374151;
+}
+
+.dark .schedule-table-container {
+    border-color: #374151;
+    background-color: #111827;
+}
+
+.dark .schedule-table td {
+    border-color: #1f2937;
+    color: #d1d5db;
+}
+
+.dark .schedule-table th {
+    background-color: #374151;
+    color: #f9fafb;
+    border-color: #4b5563;
+}
+
+.dark .schedule-table td.time-slot {
+    background-color: #1f2937;
+    color: #e5e7eb;
+    border-right-color: #4b5563;
+}
+
+.dark .schedule-table td:empty {
+    background-color: #111827;
+}
+
+.dark .schedule-table tbody tr:hover {
+    background-color: #1f2937;
+}
+
+.dark .schedule-table td.event-cell {
+    background-color: #1e40af;
+    color: #bfdbfe;
+    border-color: #3b82f6;
+}
+
+.dark .schedule-table td.event-cell:hover {
+    background-color: #1d4ed8;
+}
+
+.dark .schedule-component .action-button.secondary {
+    background: #374151;
+    color: #e5e7eb;
+    border-color: #4b5563;
+}
+
+.dark .schedule-component .action-button.secondary:hover {
+    background: #4b5563;
 }
