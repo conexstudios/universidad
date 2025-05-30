@@ -20,17 +20,16 @@ const Dashboard = () => {
       }
     }
   }, false);
-
-  //const checkAuth = () => {
-   //const token = localStorage.getItem('token');
-    //if (!token) {
-    //  console.log("No se encontró token de autenticación. Redirigiendo al login.");
-    //  navigate('/login');
-   // }
-// };
+  // const checkAuth = () => {
+  //   const token = localStorage.getItem('token');
+  //   if (!token) {
+  //     console.log("No se encontró token de autenticación. Redirigiendo al login.");
+  //     navigate('/login');
+  //   }
+  // };
 
   useEffect(() => {
-    checkAuth();
+    //checkAuth();
   }, [navigate]);
 
   return (
@@ -49,5 +48,4 @@ const Dashboard = () => {
     </>
   );
 };
-
-export default Dashboard;
+ export default Dashboard;
