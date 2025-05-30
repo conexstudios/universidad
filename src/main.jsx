@@ -6,7 +6,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Dashboard from "./pages/Dashboard.jsx";
 import Mensajeria from "./pages/Mensajeria.jsx";
 import Notificacion from "./pages/Notificacion.jsx";
-import Asignaturas from "./pages/Asignaturas.jsx";
 import Lista from "./pages/Lista.jsx";
 import Camara from "./pages/Camara.jsx";
 import Horario from "./pages/Horario.jsx";
@@ -58,7 +57,6 @@ createRoot(document.getElementById("root")).render(
           path="/dashboard/notificacion"
           element={<Notificacion />}
         ></Route>
-        <Route path="/dashboard/asignaturas" element={<Asignaturas />}></Route>
         <Route path="/dashboard/lista" element={<Lista />}></Route>
         <Route path="/dashboard/camara" element={<Camara />}></Route>
         <Route path="/dashboard/horario" element={<Horario />}></Route>

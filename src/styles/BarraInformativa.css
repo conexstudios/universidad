@@ -1,36 +1,176 @@
-.messages-bar {
-    border: 1px solid var(--primary-color);
-    width: 100%;
-    max-width: 300px;
-    border-radius: 20px;
-    padding: 20px;
-    box-shadow: var(--box-shadow);
-    margin: 1rem;
+/* Main container for the messages bar/section */
+.messages-bar.messages-section {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    height: 700px;
+    margin-top: 100px;
+    max-width: 320px;
+    margin-left: 0;
+    margin-right: auto;
+    border: 1px solid #e0e0e0;
+    box-sizing: border-box;
 }
 
 .messages-bar .title {
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: var(--text-color);
-    text-align: center;
-}
-
-.search-bar {
-    margin: 1rem;
+    font-size: 1.7em;
+    color: #212529;
+    margin-bottom: 20px;
+    font-weight: 700;
+    text-align: left;
+    flex-shrink: 0;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #f0f0f0;
 }
 
 .message-list {
-    background-color: #fafafa;
-    border-radius: 20px;
-    padding: 1em 0;
-    max-height: 1000px;
+    flex-grow: 1;
     overflow-y: auto;
+    padding-right: 10px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: #aebacd #f1f3f5;
 }
 
-.message-list .message {
-    padding: 1em;
+.message-list::-webkit-scrollbar {
+    width: 8px;
+}
+.message-list::-webkit-scrollbar-track {
+    background: #f1f3f5;
+    border-radius: 10px;
+}
+.message-list::-webkit-scrollbar-thumb {
+    background-color: #ced4da;
+    border-radius: 10px;
+    border: 2px solid #f1f3f5;
 }
 
-.message-list .message:not(:last-child) {
-    border-bottom: 1px solid var(--primary-color);
+.search-bar {
+    margin-bottom: 20px;
+    position: sticky;
+    top: 0;
+    background-color: #ffffff;
+    z-index: 10;
+    padding-bottom: 10px;
+    flex-shrink: 0;
+    padding-top: 5px;
+    margin-top: -15px;
+}
+
+.search-bar .form-control {
+    width: 100%;
+    padding: 12px 18px;
+    border: 1px solid #ced4da;
+    border-radius: 25px;
+    font-size: 1em;
+    transition: all 0.3s ease;
+    background-color: #f8f9fa;
+    color: #343a40;
+}
+
+.search-bar .form-control::placeholder {
+    color: #888;
+}
+
+.search-bar .form-control:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    outline: none;
+    background-color: #ffffff;
+}
+
+.message {
+    background-color: #fefefe;
+    border-radius: 10px;
+    padding: 15px 20px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer;
+    border: 1px solid #f0f0f0;
+}
+
+.message:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+
+.message p {
+    color: #343a40;
+    font-size: 1.05em;
+    line-height: 1.5;
+    margin-bottom: 5px;
+}
+
+.message p:last-child {
+    margin-bottom: 0;
+}
+
+.message small {
+    color: #6c757d;
+    font-size: 0.85em;
+    display: block;
+    margin-top: 8px;
+}
+
+@media (max-width: 992px) {
+    .messages-bar.messages-section {
+        max-width: 100%;
+        height: auto;
+        margin-top: 20px;
+        padding: 20px;
+        margin-left: 0;
+    }
+
+    .messages-bar .title {
+        font-size: 1.6em;
+        text-align: center;
+        padding-bottom: 10px;
+    }
+
+    .search-bar {
+        padding-top: 0;
+        margin-top: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .messages-bar.messages-section {
+        padding: 15px;
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.07);
+    }
+    .messages-bar .title {
+        font-size: 1.4em;
+    }
+    .search-bar .form-control {
+        padding: 10px 15px;
+    }
+    .message {
+        padding: 12px 15px;
+        margin-bottom: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .messages-bar.messages-section {
+        padding: 10px;
+        margin-top: 10px;
+    }
+    .messages-bar .title {
+        font-size: 1.3em;
+        margin-bottom: 15px;
+    }
+    .search-bar .form-control {
+        font-size: 0.9em;
+    }
+    .message p {
+        font-size: 0.95em;
+    }
+    .message small {
+        font-size: 0.8em;
+    }
 }

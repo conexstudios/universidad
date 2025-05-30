@@ -1,17 +1,53 @@
-.assigned-subjects-component h3 {
-    font-size: 1em; 
+.dashboard-card.combined-component {
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    margin-left: 180px;
+    margin-bottom: 1000px;
+}
+
+.assigned-subjects-component,
+.classroom-component {
+    padding: 0;
+}
+
+.assigned-subjects-component h3,
+.classroom-component h3 {
     color: #333;
-    margin: 0 0 5px;
-    text-align: center;
-    border-bottom: 1px solid #eee;
-    padding-bottom: 5px;
+    font-size: 1.4em;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #f0f0f0;
+    padding-bottom: 10px;
 }
 
-.assigned-subjects-list li {
-    margin-bottom: 5px; 
-    font-size: 0.9em; 
-    padding-bottom: 5px; 
-    border-bottom: 1px solid #eee;
+.asig-subjects-list,
+.classroom-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.asig-subjects-list li,
+.classroom-list li {
+    font-size: 1.1em;
+    padding: 8px 0;
     color: #555;
+    border-bottom: 1px dashed #f5f5f5;
 }
 
+.asig-subjects-list li:last-child,
+.classroom-list li:last-child {
+    border-bottom: none;
+}
+
+.asig-subjects-list li strong,
+.classroom-list li strong {
+    color: #007bff;
+    font-weight: 600;
+}

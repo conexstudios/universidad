@@ -6,8 +6,7 @@ import Buscador from "../components/Buscador";
 import BarraInformativa from "../components/BarraInformativa";
 import WelcomeArea from "../components/WelcomeArea";
 import HomeWork from "../components/HomeWork";
-import Salon from "../components/Salon";
-import Horario from "../components/Horario";
+import Horarios from "../components/Horarios";
 import Asignatura from "../components/Asignatura";
 
 const Dashboard = () => {
@@ -39,12 +38,10 @@ const Dashboard = () => {
         <BarraInformativa />
         <Buscador />
         <WelcomeArea />
+        <Asignatura />
         <HomeWork />
-        <BarraInformativa />
-        <Salon />
-        <Horario />
       </main>
-      <Asignatura />
+       <Horarios />
     </>
   );
 };

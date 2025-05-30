@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/Horarios.css";
+import "../styles/Horario.css";
 
 const Horarios = () => {
   const scheduleData = [
