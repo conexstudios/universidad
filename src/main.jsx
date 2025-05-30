@@ -11,7 +11,7 @@ import Camara from "./pages/Camara.jsx";
 import Horario from "./pages/Horario.jsx";
 import Direccion from "./pages/Direccion.jsx";
 import Extracurriculares from "./pages/Extracurriculares.jsx";
-import StudentRating from "./pages/StudentRating.jsx";
+import CalificacionesPorCorte from "./pages/CalificacionesPorCorte.jsx";
 import ChooseSubject from "./pages/ChooseSubject.jsx";
 import ServiceRequest from "./pages/ServiceRequest.jsx";
 import Load from "./pages/Load.jsx";
@@ -32,7 +32,7 @@ createRoot(document.getElementById("root")).render(
       <Routes>
         <Route path="/" element={<Dashboard />} />
         <Route path="/dashboard" element={<Dashboard />}></Route>
-        <Route path="/dashboard/notas" element={<StudentRating />}></Route>
+        <Route path="/dashboard/calificacionesporcorte" element={<CalificacionesPorCorte />}></Route>
         <Route
           path="/dashboard/ChooseSubject"
           element={<ChooseSubject />}
@@ -59,7 +59,7 @@ createRoot(document.getElementById("root")).render(
         ></Route>
         <Route path="/dashboard/lista" element={<Lista />}></Route>
         <Route path="/dashboard/camara" element={<Camara />}></Route>
-        <Route path="/dashboard/horario" element={<Horario />}></Route>
+        <Route path="/dashboard/Inscripcion" element={<Horario />}></Route>
         <Route path="/dashboard/direccion" element={<Direccion />}></Route>
         <Route path="/dashboard/academico" element={<Academic />}></Route>
         <Route path="/dashboard/health" element={<Health />}></Route>

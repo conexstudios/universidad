@@ -61,8 +61,8 @@ const Personal = () => {
           <input type="text" id="codigo-discapacidad" name="codigo-discapacidad" />
         </div>
         <div className="form-group">
-          <label htmlFor="militar-activo">¿Militar Activo?</label>
-          <input type="checkbox" id="militar-activo" name="militar-activo" />
+          <label htmlFor="militar-activo">Notificar a</label>
+          <input type="text" id="notificar" name="notificar" /> 
         </div>
         <div className="form-group">
           <label htmlFor="componente-militar">Componente Militar</label>
@@ -71,8 +71,8 @@ const Personal = () => {
           </select>
         </div>
         <div className="form-group">
-          <label htmlFor="notificar">Notificar a</label>
-          <input type="text" id="notificar" name="notificar" />
+          <label htmlFor="notificar">¿Militar Activo?</label>
+          <input type="checkbox" id="militar-activo" name="militar-activo" />
         </div>
         <div className="form-group">
           <label htmlFor="telefono-contacto">Teléfono de su persona de Contacto</label>

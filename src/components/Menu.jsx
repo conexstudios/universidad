@@ -64,7 +64,7 @@ const Menu = () => {
             <Link to="/dashboard/personal">Personal</Link>
           </li>
           <li className="menu-item">
-            <Link to="/dashboard/horario">Horario</Link>
+            <Link to="/dashboard/Inscripcion">Inscripcion</Link>
           </li>
           <li className="menu-item">
             <Link to="/dashboard/mensajeria">Mensajeria</Link>
@@ -76,7 +76,7 @@ const Menu = () => {
             <Link to="/dashboard/evaluaciones">Evaluaciones</Link>
           </li>
           <li className="menu-item">
-            <Link to="/dashboard/notas">Notas</Link>
+            <Link to="/dashboard/calificacionesporcorte">Calificaciones por Corte</Link>
           </li>
           <li className="menu-item">
             <Link to="/dashboard/solicitudes-servicio">Pagos</Link>
