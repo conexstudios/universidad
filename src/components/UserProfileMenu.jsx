@@ -1,0 +1,51 @@
+import '../styles/UserProfileMenu.css';
+
+const UserProfileMenu = ({ style }) => {
+  return (
+    <div className="user-profile-menu-container" style={style}>
+      <div className="user-header">
+        <div className="user-avatar"></div>
+        <div className="user-info">
+          <h3>Yotman Reyes</h3>
+          <p>Ingeniería en Sistemas</p>
+          <div className="user-status">
+            <span>8vo Semestre</span>
+            <span className="active-badge">Activo</span>
+          </div>
+          <p className="user-email">yotman.reyes@universidad.edu</p>
+        </div>
+      </div>
+
+      <nav className="menu-navigation">
+        <ul>
+          <li>
+            <span className="menu-icon">👤</span> Mi Perfil
+          </li>
+          <li>
+            <span className="menu-icon">📚</span> Biblioteca Virtual
+          </li>
+          <li>
+            <span className="menu-icon">👥</span> Grupos de Estudio
+          </li>
+          <li>
+            <span className="menu-icon">💬</span> Mensajes <span className="notification-count">3</span>
+          </li>
+          <li>
+            <span className="menu-icon">⚙️</span> Configuración <span className="arrow">›</span>
+          </li>
+          <li>
+            <span className="menu-icon">🔒</span> Seguridad <span className="arrow">›</span>
+          </li>
+          <li>
+            <span className="menu-icon">⬇️</span> Descargar Datos
+          </li>
+          <li>
+            <span className="menu-icon">❓</span> Centro de Ayuda
+          </li>
+        </ul>
+      </nav>
+    </div>
+  );
+};
+
+export default UserProfileMenu;

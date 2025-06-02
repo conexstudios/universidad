@@ -1,5 +1,6 @@
+import React, { useState, useRef, useEffect } from 'react'; 
 import { Link } from "react-router-dom";
-import "../styles/Menu.css";
+import "../styles/Menu.css"; 
 import dashboard from "../assets/dashboard.svg";
 import calendar from "../assets/calendar.svg";
 import inbox from "../assets/inbox.svg";
@@ -7,17 +8,57 @@ import homeworks from "../assets/homeworks.svg";
 import tasklist from "../assets/tasklist.svg";
 import settings from "../assets/settings.svg";
 import payments from "../assets/payments.svg";
-import salir from "../assets/Salir.png";	
+import salir from "../assets/Salir.png";
 import campaign from "../assets/Campaign.png";
 import personal from "../assets/Personal.png";
 import logo from "../assets/logo.png";
+import UserProfileMenu from './UserProfileMenu'; 
 
 const Menu = () => {
+  const [showUserProfileMenu, setShowUserProfileMenu] = useState(false);
+  const [menuPosition, setMenuPosition] = useState({ top: 0, left: 0 });
+  const personalIconRef = useRef(null); 
+
+  const toggleUserProfileMenu = () => {
+    setShowUserProfileMenu(prev => !prev);
+  };
+
+  
+  useEffect(() => {
+    if (showUserProfileMenu && personalIconRef.current) {
+      const iconRect = personalIconRef.current.getBoundingClientRect();
+
+      
+      const top = iconRect.bottom + 10;
+      const left = iconRect.right - 300;
+
+      setMenuPosition({ top, left });
+    }
+  }, [showUserProfileMenu]); 
+
   return (
     <>
       <div className="top-icons-container">
         <img width={50} src={campaign} alt="campaign" className="top-icon" />
-        <img width={50} src={personal} alt="personal" className="top-icon" />
+        <img
+          width={50}
+          src={personal}
+          alt="personal"
+          className="top-icon personal-icon"
+          onClick={toggleUserProfileMenu}
+          style={{ cursor: 'pointer' }}
+          ref={personalIconRef} 
+        />
+        {showUserProfileMenu && (
+          <UserProfileMenu
+            style={{
+              position: 'fixed',
+              top: menuPosition.top,
+              left: menuPosition.left,
+              zIndex: 1001 
+            }}
+          />
+        )}
       </div>
 
       <nav className="navbar">
@@ -82,7 +123,7 @@ const Menu = () => {
             <Link to="/dashboard/solicitudes-servicio">Pagos</Link>
           </li>
           <li className="menu-item">
-            <Link to="/dashboard/configuracion">Configuración</Link>
+            <Link to="/dashboard/configuracion">Configuracion</Link>
           </li>
            <li className="menu-item">
             <Link to="/dashboard/salir">Salir</Link>

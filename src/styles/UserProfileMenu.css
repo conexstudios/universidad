@@ -1,0 +1,119 @@
+.user-profile-menu-container {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    padding: 15px;
+    font-family: sans-serif;
+    position: absolute;
+    z-index: 1000;
+}
+
+.user-header {
+    display: flex;
+    align-items: center;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 15px;
+}
+
+.user-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #e0e0e0;
+    margin-right: 15px;
+}
+
+.user-info h3 {
+    margin: 0;
+    font-size: 1.1em;
+    color: #333;
+}
+
+.user-info p {
+    margin: 2px 0;
+    font-size: 0.9em;
+    color: #666;
+}
+
+.user-status {
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+    font-size: 0.85em;
+}
+
+.user-status span {
+    background-color: #f0f0f0;
+    padding: 3px 8px;
+    border-radius: 4px;
+    margin-right: 8px;
+    color: #555;
+}
+
+.user-status .active-badge {
+    background-color: #d4edda;
+    color: #155724;
+    font-weight: bold;
+}
+
+.user-email {
+    font-size: 0.8em;
+    color: #999;
+}
+
+.menu-navigation ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu-navigation li {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    color: #333;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    font-size: 0.95em;
+}
+
+.menu-navigation li:hover {
+    background-color: #f8f8f8;
+}
+
+.menu-icon {
+    margin-right: 15px;
+    font-size: 1.2em;
+    color: #777;
+    width: 25px;
+    text-align: center;
+}
+
+.menu-navigation .grade {
+    margin-left: auto;
+    background-color: #007bff;
+    color: white;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 0.85em;
+}
+
+.menu-navigation .notification-count {
+    margin-left: auto;
+    background-color: #dc3545;
+    color: white;
+    padding: 2px 8px;
+    border-radius: 50%;
+    font-size: 0.85em;
+    min-width: 20px;
+    text-align: center;
+}
+
+.menu-navigation .arrow {
+    margin-left: auto;
+    font-weight: bold;
+    color: #999;
+}

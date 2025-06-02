@@ -26,6 +26,10 @@ import Tareas from "./pages/Tareas.jsx";
 import Evaluaciones from "./pages/Evaluaciones.jsx";
 import Webcam from "./pages/Webcam.jsx";
 import Login from "./pages/auth/Login.jsx";
+import Configuracion from "./pages/Configuracion.jsx";
+import AccountData from "./pages/AccountData.jsx";
+import AcademicPre from "./pages/AcademicPre.jsx";
+
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <BrowserRouter>
@@ -40,7 +44,8 @@ createRoot(document.getElementById("root")).render(
         <Route
           path="/dashboard/solicitudes-servicio"
           element={<ServiceRequest />}
-        />
+        /> 
+        
         <Route
           path="/dashboard/order-payments/:id"
           element={<PaymentsList />}
@@ -53,6 +58,10 @@ createRoot(document.getElementById("root")).render(
         <Route path="/dashboard/address" element={<Address />}></Route>
         <Route path="/dashboard/personal" element={<PersonalData />}></Route>
         <Route path="/dashboard/mensajeria" element={<Mensajeria />}></Route>
+        <Route path="/dashboard/accountdata" element={<AccountData />}></Route>
+        <Route path="/dashboard/academicpre" element={<AcademicPre />}></Route>
+        <Route path="/dashboard/configuracion" element={<Configuracion
+         />}></Route>
         <Route
           path="/dashboard/notificacion"
           element={<Notificacion />}

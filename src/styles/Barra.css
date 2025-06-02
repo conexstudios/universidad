@@ -1,0 +1,326 @@
+.horizontal-navbar {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 24px;
+  margin-left: 10px;
+}
+
+.horizontal-menu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding: 0;
+  margin: 20px;
+  list-style: none;
+}
+
+.horizontal-menu-item {
+  margin: 0;
+}
+
+.horizontal-menu-item a {
+  display: block;
+  padding: 8px 18px;
+  background: hsl(210, 40%, 96%);
+  border: 1px solid hsl(214.3, 31.8%, 91.4%);
+  border-radius: 6px 6px 0 0;
+  color: hsl(222.2, 84%, 4.9%);
+  text-decoration: none;
+  font-size: 1em;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  transition: all 0.2s ease-in-out;
+  font-weight: 500;
+}
+
+.horizontal-menu-item.active a,
+.horizontal-menu-item a:hover {
+  background: linear-gradient(135deg, hsl(221.2, 83.2%, 53.3%) 0%, hsl(221.2, 83.2%, 53.3%) 100%);
+  color: hsl(210, 40%, 98%);
+  border-bottom: 2px solid hsl(221.2, 83.2%, 53.3%);
+  border-color: hsl(221.2, 83.2%, 53.3%);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  transform: translateY(-1px);
+}
+
+.horizontal-menu-item a:focus {
+  outline: none;
+  border-color: hsl(221.2, 83.2%, 53.3%);
+  box-shadow: 0 0 0 2px hsl(221.2, 83.2%, 53.3%);
+}
+
+.top-icons-container {
+  margin-left: 100px;
+}
+
+.navbar-container {
+  background-color: hsl(0, 0%, 100%);
+  border-bottom: 1px solid hsl(214.3, 31.8%, 91.4%);
+  padding: 12px 0;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+}
+
+.navbar-brand {
+  color: hsl(222.2, 84%, 4.9%);
+  font-weight: 700;
+  font-size: 1.25rem;
+  text-decoration: none;
+  margin-right: 2rem;
+}
+
+.navbar-brand:hover {
+  color: hsl(221.2, 83.2%, 53.3%);
+}
+
+.navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-left: auto;
+}
+
+.navbar-button {
+  padding: 6px 12px;
+  background: hsl(210, 40%, 96%);
+  border: 1px solid hsl(214.3, 31.8%, 91.4%);
+  border-radius: 6px;
+  color: hsl(222.2, 84%, 4.9%);
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.navbar-button:hover {
+  background: hsl(221.2, 83.2%, 53.3%);
+  color: hsl(210, 40%, 98%);
+  border-color: hsl(221.2, 83.2%, 53.3%);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.navbar-button.primary {
+  background: linear-gradient(135deg, hsl(221.2, 83.2%, 53.3%) 0%, hsl(221.2, 83.2%, 53.3%) 100%);
+  color: hsl(210, 40%, 98%);
+  border-color: hsl(221.2, 83.2%, 53.3%);
+}
+
+.navbar-button.primary:hover {
+  background: linear-gradient(135deg, hsl(221.2, 83.2%, 53.3%) 0%, hsl(221.2, 83.2%, 53.3%) 100%);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+}
+
+.navbar-icon {
+  width: 20px;
+  height: 20px;
+  color: hsl(215.4, 16.3%, 46.9%);
+  transition: color 0.2s ease-in-out;
+}
+
+.navbar-icon:hover {
+  color: hsl(221.2, 83.2%, 53.3%);
+}
+
+.navbar-divider {
+  width: 1px;
+  height: 24px;
+  background-color: hsl(214.3, 31.8%, 91.4%);
+  margin: 0 8px;
+}
+
+.navbar-user-menu {
+  position: relative;
+  display: inline-block;
+}
+
+.navbar-user-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid hsl(214.3, 31.8%, 91.4%);
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.navbar-user-avatar:hover {
+  border-color: hsl(221.2, 83.2%, 53.3%);
+  transform: scale(1.05);
+}
+
+.navbar-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 8px;
+  background: hsl(0, 0%, 100%);
+  border: 1px solid hsl(214.3, 31.8%, 91.4%);
+  border-radius: 8px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  min-width: 180px;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all 0.2s ease-in-out;
+}
+
+.navbar-dropdown.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.navbar-dropdown-item {
+  display: block;
+  padding: 8px 16px;
+  color: hsl(222.2, 84%, 4.9%);
+  text-decoration: none;
+  font-size: 0.875rem;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.navbar-dropdown-item:hover {
+  background-color: hsl(210, 40%, 96%);
+  color: hsl(221.2, 83.2%, 53.3%);
+}
+
+.navbar-dropdown-divider {
+  height: 1px;
+  background-color: hsl(214.3, 31.8%, 91.4%);
+  margin: 4px 0;
+}
+
+@media (max-width: 768px) {
+  .horizontal-navbar {
+    margin-left: 0;
+    margin-top: 10px;
+    margin-bottom: 16px;
+  }
+
+  .horizontal-menu {
+    gap: 4px;
+    margin: 10px;
+    flex-wrap: wrap;
+  }
+
+  .horizontal-menu-item a {
+    padding: 6px 12px;
+    font-size: 0.875rem;
+  }
+
+  .top-icons-container {
+    margin-left: 0;
+  }
+
+  .navbar-actions {
+    gap: 8px;
+  }
+
+  .navbar-button {
+    padding: 4px 8px;
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .horizontal-menu {
+    justify-content: flex-start;
+    overflow-x: auto;
+    padding-bottom: 8px;
+  }
+
+  .horizontal-menu-item {
+    flex-shrink: 0;
+  }
+
+  .navbar-actions {
+    flex-direction: column;
+    gap: 4px;
+  }
+}
+
+.dark .navbar-container {
+  background-color: hsl(222.2, 84%, 4.9%);
+  border-bottom-color: hsl(217.2, 32.6%, 17.5%);
+}
+
+.dark .horizontal-menu-item a {
+  background: hsl(217.2, 32.6%, 17.5%);
+  border-color: hsl(217.2, 32.6%, 17.5%);
+  color: hsl(210, 40%, 98%);
+}
+
+.dark .horizontal-menu-item.active a,
+.dark .horizontal-menu-item a:hover {
+  background: linear-gradient(135deg, hsl(217.2, 91.2%, 59.8%) 0%, hsl(217.2, 91.2%, 59.8%) 100%);
+  color: hsl(222.2, 84%, 4.9%);
+  border-color: hsl(217.2, 91.2%, 59.8%);
+  border-bottom-color: hsl(217.2, 91.2%, 59.8%);
+}
+
+.dark .navbar-brand {
+  color: hsl(210, 40%, 98%);
+}
+
+.dark .navbar-brand:hover {
+  color: hsl(217.2, 91.2%, 59.8%);
+}
+
+.dark .navbar-button {
+  background: hsl(217.2, 32.6%, 17.5%);
+  border-color: hsl(217.2, 32.6%, 17.5%);
+  color: hsl(210, 40%, 98%);
+}
+
+.dark .navbar-button:hover {
+  background: hsl(217.2, 91.2%, 59.8%);
+  color: hsl(222.2, 84%, 4.9%);
+  border-color: hsl(217.2, 91.2%, 59.8%);
+}
+
+.dark .navbar-button.primary {
+  background: linear-gradient(135deg, hsl(217.2, 91.2%, 59.8%) 0%, hsl(217.2, 91.2%, 59.8%) 100%);
+  color: hsl(222.2, 84%, 4.9%);
+  border-color: hsl(217.2, 91.2%, 59.8%);
+}
+
+.dark .navbar-icon {
+  color: hsl(215, 20.2%, 65.1%);
+}
+
+.dark .navbar-icon:hover {
+  color: hsl(217.2, 91.2%, 59.8%);
+}
+
+.dark .navbar-divider {
+  background-color: hsl(217.2, 32.6%, 17.5%);
+}
+
+.dark .navbar-user-avatar {
+  border-color: hsl(217.2, 32.6%, 17.5%);
+}
+
+.dark .navbar-user-avatar:hover {
+  border-color: hsl(217.2, 91.2%, 59.8%);
+}
+
+.dark .navbar-dropdown {
+  background: hsl(222.2, 84%, 4.9%);
+  border-color: hsl(217.2, 32.6%, 17.5%);
+}
+
+.dark .navbar-dropdown-item {
+  color: hsl(210, 40%, 98%);
+}
+
+.dark .navbar-dropdown-item:hover {
+  background-color: hsl(217.2, 32.6%, 17.5%);
+  color: hsl(217.2, 91.2%, 59.8%);
+}
+
+.dark .navbar-dropdown-divider {
+  background-color: hsl(217.2, 32.6%, 17.5%);
+}
