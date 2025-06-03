@@ -28,16 +28,16 @@ const Barra = () => {
             <Link to="/dashboard/academicpre">Académico</Link>
           </li>
           <li className={`horizontal-menu-item ${isActive("notificaciones")}`}>
-            <Link to="/dashboard/">Notificaciones</Link>
+            <Link to="/dashboard/notificacion">Notificaciones</Link>
           </li>
           <li className={`horizontal-menu-item ${isActive("privacidad")}`}>
-            <Link to="/dashboard/">Privacidad</Link>
+            <Link to="/dashboard/privacidad">Privacidad</Link>
           </li>
           <li className={`horizontal-menu-item ${isActive("apariencia")}`}>
-            <Link to="/dashboard/">Apariencia</Link>
+            <Link to="/dashboard/apariencia">Apariencia</Link>
           </li>
           <li className={`horizontal-menu-item ${isActive("accesibilidad")}`}>
-            <Link to="/dashboard/">Accesibilidad</Link>
+            <Link to="/dashboard/accesibilidad">Accesibilidad</Link>
           </li>
           <li className={`horizontal-menu-item ${isActive("Avanzado")}`}>
             <Link to="/dashboard/">Avanzado</Link>

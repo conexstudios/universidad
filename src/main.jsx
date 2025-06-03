@@ -29,7 +29,9 @@ import Login from "./pages/auth/Login.jsx";
 import Configuracion from "./pages/Configuracion.jsx";
 import AccountData from "./pages/AccountData.jsx";
 import AcademicPre from "./pages/AcademicPre.jsx";
-
+import Privacidad from "./pages/Privacidad.jsx";
+import Apariencia from "./pages/Apariencia.jsx";
+import Accesibilidad from "./pages/Accesibilidad.jsx";
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <BrowserRouter>
@@ -60,6 +62,11 @@ createRoot(document.getElementById("root")).render(
         <Route path="/dashboard/mensajeria" element={<Mensajeria />}></Route>
         <Route path="/dashboard/accountdata" element={<AccountData />}></Route>
         <Route path="/dashboard/academicpre" element={<AcademicPre />}></Route>
+        <Route path="/dashboard/apariencia" element={<Apariencia />}></Route>
+        <Route path="/dashboard/accesibilidad" element={<Accesibilidad />}></Route>
+        <Route path="/dashboard/privacidad" element={<Privacidad
+        
+        />}></Route>
         <Route path="/dashboard/configuracion" element={<Configuracion
          />}></Route>
         <Route

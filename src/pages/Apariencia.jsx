@@ -1,18 +1,18 @@
-import '../styles/NotificacionData.css';
+import '../styles/AparienciaData.css';
 import Menu from "../components/Menu";
 import Barra from "../components/Barra";
-import NotificacionData from "../components/NotificacionData";
+import AparienciaData from "../components/AparienciaData";
 
-const Notificacion = () => {
+const Apariencia = () => {
     return (
         <>
             <Menu />
             <Barra />
             <main className="main-content Barra-content">
-            <NotificacionData></NotificacionData>
+            <AparienciaData></AparienciaData>
             </main>
         </>
     );
 };
 
-export default Notificacion;
+export default Apariencia;

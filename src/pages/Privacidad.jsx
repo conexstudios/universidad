@@ -1,18 +1,18 @@
-import '../styles/NotificacionData.css';
+import '../styles/PrivacidadData.css';
 import Menu from "../components/Menu";
 import Barra from "../components/Barra";
-import NotificacionData from "../components/NotificacionData";
+import PrivacidadData from "../components/PrivacidadData";
 
-const Notificacion = () => {
+const Privacidad = () => {
     return (
         <>
             <Menu />
             <Barra />
             <main className="main-content Barra-content">
-            <NotificacionData></NotificacionData>
+            <PrivacidadData></PrivacidadData>
             </main>
         </>
     );
 };
 
-export default Notificacion;
+export default Privacidad;
