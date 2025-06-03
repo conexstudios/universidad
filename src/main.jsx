@@ -32,6 +32,7 @@ import AcademicPre from "./pages/AcademicPre.jsx";
 import Privacidad from "./pages/Privacidad.jsx";
 import Apariencia from "./pages/Apariencia.jsx";
 import Accesibilidad from "./pages/Accesibilidad.jsx";
+import Avanzado from "./pages/Avanzado.jsx";
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <BrowserRouter>
@@ -64,6 +65,7 @@ createRoot(document.getElementById("root")).render(
         <Route path="/dashboard/academicpre" element={<AcademicPre />}></Route>
         <Route path="/dashboard/apariencia" element={<Apariencia />}></Route>
         <Route path="/dashboard/accesibilidad" element={<Accesibilidad />}></Route>
+        <Route path="/dashboard/avanzado" element={<Avanzado />}></Route>
         <Route path="/dashboard/privacidad" element={<Privacidad
         
         />}></Route>

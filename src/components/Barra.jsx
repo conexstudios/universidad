@@ -40,7 +40,7 @@ const Barra = () => {
             <Link to="/dashboard/accesibilidad">Accesibilidad</Link>
           </li>
           <li className={`horizontal-menu-item ${isActive("Avanzado")}`}>
-            <Link to="/dashboard/">Avanzado</Link>
+            <Link to="/dashboard/avanzado">Avanzado</Link>
           </li>
         </ul>
       </nav>
