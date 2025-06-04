@@ -22,7 +22,7 @@ const Barra = () => {
             <img width={20} src={camera} alt="" />
           </div>
           <li className={`horizontal-menu-item ${isActive("cuenta")}`}>
-            <Link to="/dashboard/accountdata">Cuenta</Link>
+            <Link to="/dashboard/configuracion">Cuenta</Link>
           </li>
           <li className={`horizontal-menu-item ${isActive("académico")}`}>
             <Link to="/dashboard/academicpre">Académico</Link>

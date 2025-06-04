@@ -39,7 +39,10 @@ createRoot(document.getElementById("root")).render(
       <Routes>
         <Route path="/" element={<Dashboard />} />
         <Route path="/dashboard" element={<Dashboard />}></Route>
-        <Route path="/dashboard/calificacionesporcorte" element={<CalificacionesPorCorte />}></Route>
+        <Route
+          path="/dashboard/calificacionesporcorte"
+          element={<CalificacionesPorCorte />}
+        ></Route>
         <Route
           path="/dashboard/ChooseSubject"
           element={<ChooseSubject />}
@@ -47,30 +50,29 @@ createRoot(document.getElementById("root")).render(
         <Route
           path="/dashboard/solicitudes-servicio"
           element={<ServiceRequest />}
-        /> 
-        
+        />
+
         <Route
           path="/dashboard/order-payments/:id"
           element={<PaymentsList />}
         />
-        <Route
-          path="/dashboard/pagos/:id"
-          element={<Bill />}
-        />
+        <Route path="/dashboard/pagos/:id" element={<Bill />} />
         <Route path="/dashboard/load" element={<Load />}></Route>
         <Route path="/dashboard/address" element={<Address />}></Route>
         <Route path="/dashboard/personal" element={<PersonalData />}></Route>
         <Route path="/dashboard/mensajeria" element={<Mensajeria />}></Route>
-        <Route path="/dashboard/accountdata" element={<AccountData />}></Route>
         <Route path="/dashboard/academicpre" element={<AcademicPre />}></Route>
         <Route path="/dashboard/apariencia" element={<Apariencia />}></Route>
-        <Route path="/dashboard/accesibilidad" element={<Accesibilidad />}></Route>
+        <Route
+          path="/dashboard/accesibilidad"
+          element={<Accesibilidad />}
+        ></Route>
         <Route path="/dashboard/avanzado" element={<Avanzado />}></Route>
-        <Route path="/dashboard/privacidad" element={<Privacidad
-        
-        />}></Route>
-        <Route path="/dashboard/configuracion" element={<Configuracion
-         />}></Route>
+        <Route path="/dashboard/privacidad" element={<Privacidad />}></Route>
+        <Route
+          path="/dashboard/configuracion"
+          element={<AccountData />}
+        ></Route>
         <Route
           path="/dashboard/notificacion"
           element={<Notificacion />}
