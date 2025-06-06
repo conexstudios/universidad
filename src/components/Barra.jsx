@@ -19,7 +19,10 @@ const Barra = () => {
         <ul className="horizontal-menu">
           <div className="avatar">
             <img width={50} src={avatar} alt="Personal" className="top-icon" />
-            <img width={20} src={camera} alt="" />
+            <Link to="/webcam">
+            <img width={20} src={camera} alt="Cámara" />
+            </Link>
+                                
           </div>
           <li className={`horizontal-menu-item ${isActive("cuenta")}`}>
             <Link to="/dashboard/configuracion">Cuenta</Link>

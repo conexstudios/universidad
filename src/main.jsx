@@ -26,7 +26,6 @@ import Tareas from "./pages/Tareas.jsx";
 import Evaluaciones from "./pages/Evaluaciones.jsx";
 import Webcam from "./pages/Webcam.jsx";
 import Login from "./pages/auth/Login.jsx";
-import Configuracion from "./pages/Configuracion.jsx";
 import AccountData from "./pages/AccountData.jsx";
 import AcademicPre from "./pages/AcademicPre.jsx";
 import Privacidad from "./pages/Privacidad.jsx";
@@ -84,7 +83,7 @@ createRoot(document.getElementById("root")).render(
         <Route path="/dashboard/academico" element={<Academic />}></Route>
         <Route path="/dashboard/health" element={<Health />}></Route>
         <Route path="/dashboard/tareas" element={<Tareas />}></Route>
-        <Route path="/dashboard/webcam" element={<Webcam />}></Route>
+        <Route path="/webcam" element={<Webcam />}></Route>
         <Route path="/login" element={<Login />}></Route>
         <Route
           path="/dashboard/evaluaciones"
