@@ -40,7 +40,12 @@
     justify-content: center;
     padding: 7px 0;
 }
-
+.icons img {
+width: 40px;
+height: 40px;
+transition: all 0.2s ease-in-out;
+filter: brightness(0) invert(1); 
+}
 .icons li:hover {
     background-color: rgba(255, 255, 255, 0.1);
     transform: scale(1.05);

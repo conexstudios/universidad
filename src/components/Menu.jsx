@@ -10,12 +10,13 @@ import settings from "../assets/settings.svg";
 import payments from "../assets/payments.svg";
 import salir from "../assets/Salir.png";
 import campaign from "../assets/Campaign.png";
-import personal from "../assets/Personal.png";
+import personal from "../assets/personal.png";
+import user from "../assets/user.png";
 import logo from "../assets/logo.png";
-
 import UserProfileMenu from './UserProfileMenu';
 import CampaignData from './CampaignData';
-
+import Inscripcion from "../assets/inscripcion.png";
+import Evaluacion from "../assets/evaluacion.png";
 const Menu = () => {
     const [showUserProfileMenu, setShowUserProfileMenu] = useState(false);
     const [userMenuPosition, setUserMenuPosition] = useState({ top: 0, left: 0 });
@@ -124,10 +125,10 @@ const Menu = () => {
                         <img src={dashboard} alt="Dashboard" />
                     </li>
                     <li onClick={toggleMenuExpansion} style={{ cursor: 'pointer' }}>
-                        <img src={personal} alt="Personal" />
+                        <img src={user} alt="user" />
                     </li>
                     <li onClick={toggleMenuExpansion} style={{ cursor: 'pointer' }}>
-                        <img src={dashboard} alt="Inscripcion" />
+                        <img src={Inscripcion} alt="Inscripcion" />
                     </li>
                     <li onClick={toggleMenuExpansion} style={{ cursor: 'pointer' }}>
                         <img src={inbox} alt="Inbox" />
@@ -136,7 +137,7 @@ const Menu = () => {
                         <img src={tasklist} alt="Tasklist" />
                     </li>
                     <li onClick={toggleMenuExpansion} style={{ cursor: 'pointer' }}>
-                        <img src={homeworks} alt="Homeworks" />
+                        <img src={Evaluacion} alt="Homeworks" />
                     </li>
                     <li onClick={toggleMenuExpansion} style={{ cursor: 'pointer' }}>
                         <img src={homeworks} alt="Evaluaciones" />
