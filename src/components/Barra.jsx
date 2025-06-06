@@ -21,8 +21,7 @@ const Barra = () => {
             <img width={50} src={avatar} alt="Personal" className="top-icon" />
             <Link to="/webcam">
             <img width={20} src={camera} alt="Cámara" />
-            </Link>
-                                
+            </Link>           
           </div>
           <li className={`horizontal-menu-item ${isActive("cuenta")}`}>
             <Link to="/dashboard/configuracion">Cuenta</Link>
