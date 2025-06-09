@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import "../styles/Menu.css";
 
@@ -10,7 +10,7 @@ import settings from "../assets/settings.svg";
 import payments from "../assets/payments.svg";
 import salir from "../assets/Salir.png";
 import campaign from "../assets/Campaign.png";
-import personal from "../assets/personal.png";
+import Personal from "../assets/Personal.png";
 import user from "../assets/user.png";
 import logo from "../assets/logo.png";
 import UserProfileMenu from './UserProfileMenu';
@@ -97,9 +97,9 @@ const Menu = () => {
 
                 <img
                     width={50}
-                    src={personal}
-                    alt="personal"
-                    className="top-icon personal-icon"
+                    src={Personal}
+                    alt="Personal"
+                    className="top-icon Personal-icon"
                     onClick={toggleUserProfileMenu}
                     style={{ cursor: 'pointer' }}
                     ref={personalIconRef}
