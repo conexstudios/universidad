@@ -1,10 +1,19 @@
+import React from 'react';
 import '../styles/UserProfileMenu.css';
 
-const UserProfileMenu = ({ style }) => {
+const UserProfileMenu = ({ style, userName, userAvatar }) => {
+const defaultAvatarUrl = `https://ui-avatars.com/api/?name=${encodeURIComponent(userName)}&background=random&color=fff`;
+
   return (
     <div className="user-profile-menu-container" style={style}>
       <div className="user-header">
-        <div className="user-avatar"></div>
+        <div className="user-avatar">
+          <img
+            src={userAvatar || defaultAvatarUrl}
+            alt={userName ? `${userName}'s avatar` : 'User avatar'}
+            className="avatar-img"
+          />
+        </div>
         <div className="user-info">
           <h3>Yotman Reyes</h3>
           <p>Ingeniería en Sistemas</p>
