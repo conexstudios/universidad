@@ -1,11 +1,11 @@
 import React from 'react';
 import '../styles/UserProfileMenu.css';
 
-const UserProfileMenu = ({ style, userName, userAvatar }) => {
-const defaultAvatarUrl = `https://ui-avatars.com/api/?name=${encodeURIComponent(userName)}&background=random&color=fff`;
+const UserProfileMenu = ({ style, userName, userAvatar, className }) => {
+  const defaultAvatarUrl = `https://ui-avatars.com/api/?name=${encodeURIComponent(userName || 'YR')}&background=random&color=fff`;
 
   return (
-    <div className="user-profile-menu-container" style={style}>
+    <div className={`user-profile-menu-container ${className || ''}`} style={style}>
       <div className="user-header">
         <div className="user-avatar">
           <img
@@ -15,7 +15,7 @@ const defaultAvatarUrl = `https://ui-avatars.com/api/?name=${encodeURIComponent(
           />
         </div>
         <div className="user-info">
-          <h3>Yotman Reyes</h3>
+          <h3>{userName || 'Yotman Reyes'}</h3>
           <p>Ingeniería en Sistemas</p>
           <div className="user-status">
             <span>8vo Semestre</span>
