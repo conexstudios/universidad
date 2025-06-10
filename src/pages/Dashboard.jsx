@@ -19,17 +19,6 @@ const Dashboard = () => {
       }
     }
   }, false);
-  
-  const checkAuth = () => {
-     const token = localStorage.getItem('token');
-   if (!token) {
-     console.log("No se encontró token de autenticación. Redirigiendo al login.");
-    }
-  };
-
-  useEffect(() => {
-    checkAuth();
-  }, [navigate]);
 
   return (
     <>
@@ -38,9 +27,9 @@ const Dashboard = () => {
         <Buscador />
         <WelcomeArea />
         <Horarios />
-        <BarraInformativa />
-        <Asignatura />
         <HomeWork />
+        <Asignatura />
+        <BarraInformativa />
       </main>
     </>
   );
