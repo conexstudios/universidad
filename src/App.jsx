@@ -1,27 +1,15 @@
-import './App.css'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Login from "./pages/auth/Login.jsx";
 
-function App() {
 
-  // function checkAuth() {
-  //   const loginUrl = import.meta.env.VITE_LOGIN_URL
-  //   const token = localStorage.getItem('token')
-  //   if (token) {
-  //     document.location.href = '/dashboard'
-  //     return true
-  //   } else {
-  //     document.location.href = loginUrl
-  //     return false
-  //   }
-  // }
-
-  // Uncomment the next line if you want to check authentication on render
-  // checkAuth()
-
+const App = () => {
   return (
-    <>
-      
-    </>
-  )
-}
+    <Router>
+      <Routes>
+        <Route path="/login" element={<Login />} />
+      </Routes>
+    </Router>
+  );
+};
 
-export default App
+export default App;

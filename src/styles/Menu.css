@@ -7,7 +7,7 @@
     height: 100vh;
     box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
     transition: width 0.3s ease-in-out;
-    overflow: hidden; /* Keep this to prevent scrollbars on the navbar itself */
+    overflow: hidden;
     z-index: 1000;
     border-radius: 0 10px 10px 0;
 }
@@ -29,9 +29,9 @@
     flex-shrink: 0;
     width: 80px;
     padding: 20px 0;
-    overflow: hidden; /* Ensure no scrollbar on icons if content overflows */
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none; /* IE and Edge */
+    overflow: hidden;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }
 
 .icons::-webkit-scrollbar {
@@ -82,12 +82,11 @@
     flex-grow: 1;
     white-space: nowrap;
     padding-left: 0;
-    overflow-y: hidden; /* MODIFICATION: Hide vertical scrollbar within the menu */
-    scrollbar-width: none; /* MODIFICATION: Firefox scrollbar hiding */
-    -ms-overflow-style: none; /* MODIFICATION: IE and Edge scrollbar hiding */
+    overflow-y: hidden;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }
 
-/* MODIFICATION: For Webkit browsers (Chrome, Safari) - Hide scrollbar for .navbar .menu */
 .navbar .menu::-webkit-scrollbar {
     display: none;
     width: 0;
@@ -278,7 +277,7 @@ body.menu-expanded .main-content {
     }
     .icons img {
         width: 50px;
-        height: 50px;
+        height: 45px;
     }
     body.menu-expanded {
         margin-left: 300px;

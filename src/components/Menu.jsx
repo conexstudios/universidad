@@ -13,11 +13,13 @@ import campaign from "../assets/Campaign.png";
 import Personal from "../assets/Personal.png";
 import user from "../assets/user.png";
 import logo from "../assets/logo.png";
-import UserProfileMenu from './UserProfileMenu';
-import CampaignData from './CampaignData';
 import Inscripcion from "../assets/inscripcion.png";
 import Evaluacion from "../assets/evaluacion.png";
 import tresPuntos from "../assets/tres-puntos.png";
+
+import UserProfileMenu from './UserProfileMenu';
+import CampaignData from './CampaignData';
+
 const Menu = () => {
     const [showUserProfileMenu, setShowUserProfileMenu] = useState(false);
     const [userMenuPosition, setUserMenuPosition] = useState({ top: 0, left: 0 });
@@ -28,6 +30,14 @@ const Menu = () => {
     const campaignIconRef = useRef(null);
 
     const [isMenuExpanded, setIsMenuExpanded] = useState(false);
+
+    useEffect(() => {
+        if (isMenuExpanded) {
+            document.body.classList.add('menu-expanded');
+        } else {
+            document.body.classList.remove('menu-expanded');
+        }
+    }, [isMenuExpanded]);
 
     const toggleUserProfileMenu = () => {
         if (showCampaignDataMenu) {
@@ -43,7 +53,7 @@ const Menu = () => {
         setShowCampaignDataMenu(prev => !prev);
     };
 
-    const toggleMenuExpansion = () => {
+    const toggleMainMenuExpansion = () => {
         setIsMenuExpanded(prev => !prev);
     };
 
@@ -79,10 +89,9 @@ const Menu = () => {
                     width={50}
                     src={tresPuntos}
                     alt="tres-puntos"
-                    className="top-icon campaign-icon"
-                    onClick={toggleCampaignDataMenu}
+                    className="top-icon menu-toggle-icon"
+                    onClick={toggleMainMenuExpansion}
                     style={{ cursor: 'pointer' }}
-                    ref={campaignIconRef}
                 />
                 <img
                     width={50}
@@ -104,7 +113,6 @@ const Menu = () => {
                         notifications={sampleNotifications}
                     />
                 )}
-
                 <img
                     width={50}
                     src={Personal}
@@ -125,65 +133,30 @@ const Menu = () => {
                     />
                 )}
             </div>
-
             <nav className={`navbar ${isMenuExpanded ? 'expanded' : 'collapsed'}`}>
                 <ul className="icons">
-                    <li onClick={toggleMenuExpansion} style={{ cursor: 'pointer' }}>
+                    <li>
                         <img src={logo} alt="Logo" />
                     </li>
-                    <li onClick={toggleMenuExpansion} style={{ cursor: 'pointer' }}>
-                        <img src={dashboard} alt="Dashboard" />
-                    </li>
-                    <li onClick={toggleMenuExpansion} style={{ cursor: 'pointer' }}>
-                        <img src={user} alt="user" />
-                    </li>
-                    <li onClick={toggleMenuExpansion} style={{ cursor: 'pointer' }}>
-                        <img src={Inscripcion} alt="Inscripcion" />
-                    </li>
-                    <li onClick={toggleMenuExpansion} style={{ cursor: 'pointer' }}>
-                        <img src={inbox} alt="Inbox" />
-                    </li>
-                    <li onClick={toggleMenuExpansion} style={{ cursor: 'pointer' }}>
-                        <img src={tasklist} alt="Tasklist" />
-                    </li>
-                    <li onClick={toggleMenuExpansion} style={{ cursor: 'pointer' }}>
-                        <img src={Evaluacion} alt="Homeworks" />
-                    </li>
-                    <li onClick={toggleMenuExpansion} style={{ cursor: 'pointer' }}>
-                        <img src={homeworks} alt="Evaluaciones" />
-                    </li>
-                    <li onClick={toggleMenuExpansion} style={{ cursor: 'pointer' }}>
-                        <img src={payments} alt="Payments" />
-                    </li>
-                    <li onClick={toggleMenuExpansion} style={{ cursor: 'pointer' }}>
-                        <img src={settings} alt="Settings" />
-                    </li>
-                    <li onClick={toggleMenuExpansion} style={{ cursor: 'pointer' }}>
-                        <img src={salir} alt="Salir" />
-                    </li>
+                    <li><Link to="/dashboard"><img src={dashboard} alt="Dashboard" /></Link></li>
+                    <li><Link to="/dashboard/personal"><img src={user} alt="user" /></Link></li>
+                    <li><Link to="/dashboard/Inscripcion"><img src={Inscripcion} alt="Inscripcion" /></Link></li>
+                    <li><Link to="/dashboard/mensajeria"><img src={inbox} alt="Inbox" /></Link></li>
+                    <li><Link to="/dashboard/tareas"><img src={tasklist} alt="Tasklist" /></Link></li>
+                    <li><Link to="/dashboard/evaluaciones"><img src={Evaluacion} alt="Evaluaciones" /></Link></li>
+                    <li><Link to="/dashboard/calificacionesporcorte"><img src={homeworks} alt="Calificaciones" /></Link></li>
+                    <li><Link to="/dashboard/solicitudes-servicio"><img src={payments} alt="Pagos" /></Link></li>
+                    <li><Link to="/dashboard/configuracion"><img src={settings} alt="Settings" /></Link></li>
+                    <li><Link to="/dashboard/salir"><img src={salir} alt="Salir" /></Link></li>
                 </ul>
-                <ul className={`menu ${isMenuExpanded ? 'visible' : 'hidden'}`}>
-                    <li className="menu-item">
-                        <Link to="/dashboard">Dashboard</Link>
-                    </li>
-                    <li className="menu-item">
-                        <Link to="/dashboard/personal">Personal</Link>
-                    </li>
-                    <li className="menu-item">
-                        <Link to="/dashboard/Inscripcion">Inscripcion</Link>
-                    </li>
-                    <li className="menu-item">
-                        <Link to="/dashboard/mensajeria">Mensajeria</Link>
-                    </li>
-                    <li className="menu-item">
-                        <Link to="/dashboard/tareas">Tareas</Link>
-                    </li>
-                    <li className="menu-item">
-                        <Link to="/dashboard/evaluaciones">Evaluaciones</Link>
-                    </li>
-                    <li className="menu-item">
-                        <Link to="/dashboard/calificacionesporcorte">Calificaciones por Corte</Link>
-                    </li>
+                <ul className="menu">
+                    <li className="menu-item"><Link to="/dashboard">Dashboard</Link></li>
+                    <li className="menu-item"><Link to="/dashboard/personal">Personal</Link></li>
+                    <li className="menu-item"><Link to="/dashboard/Inscripcion">Inscripcion</Link></li>
+                    <li className="menu-item"><Link to="/dashboard/mensajeria">Mensajeria</Link></li>
+                    <li className="menu-item"><Link to="/dashboard/tareas">Tareas</Link></li>
+                    <li className="menu-item"><Link to="/dashboard/evaluaciones">Evaluaciones</Link></li>
+                    <li className="menu-item"><Link to="/dashboard/calificacionesporcorte">Calificaciones por Corte</Link></li>
                     <li className="menu-item">
                         <Link to="/dashboard/solicitudes-servicio">Pagos</Link>
                     </li>

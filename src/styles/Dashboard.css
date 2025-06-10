@@ -1,11 +1,5 @@
 .dashboard-content {
-    display: grid;
-    grid-template-columns: 20% 30% 50%;
     grid-gap: 1rem;
-    grid-template-areas: "messages buscador classroom"
-        "messages welcome classroom"
-        "messages homework schedule"
-        "messages homework schedule";
 }
 
 .messages-section {

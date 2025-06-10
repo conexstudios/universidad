@@ -36,11 +36,11 @@ const Login = () => {
     }
 
     try {
-
-        const formData = new FormData();
-        formData.append("USUARIO_ID", userId);
-        formData.append("USU_PASSWORD1", password);
-        formData.append("g-recaptcha-token", recaptchaToken);
+      const payload = {
+        USUARIO_ID: userId,
+        USU_PASSWORD1: password,
+        "g-recaptcha-token": recaptchaToken,
+      };
 
       const response = await fetch(
         `${import.meta.env.VITE_LOGIN_URL}?ccsForm=usuarios_contrasena`,
@@ -49,7 +49,7 @@ const Login = () => {
           headers: {
             "Content-Type": "application/json",
           },
-          body: formData,
+          body: JSON.stringify(payload),
         }
       );
 

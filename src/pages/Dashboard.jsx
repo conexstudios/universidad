@@ -19,29 +19,29 @@ const Dashboard = () => {
       }
     }
   }, false);
-  // const checkAuth = () => {
-  //   const token = localStorage.getItem('token');
-  //   if (!token) {
-  //     console.log("No se encontró token de autenticación. Redirigiendo al login.");
-  //     navigate('/login');
-  //   }
-  // };
+  
+  const checkAuth = () => {
+     const token = localStorage.getItem('token');
+   if (!token) {
+     console.log("No se encontró token de autenticación. Redirigiendo al login.");
+    }
+  };
 
   useEffect(() => {
-    //checkAuth();
+    checkAuth();
   }, [navigate]);
 
   return (
     <>
       <Menu />
       <main className="main-content dashboard-content">
-        <BarraInformativa />
         <Buscador />
         <WelcomeArea />
+        <Horarios />
+        <BarraInformativa />
         <Asignatura />
         <HomeWork />
       </main>
-       <Horarios />
     </>
   );
 };

@@ -32,6 +32,7 @@ import Privacidad from "./pages/Privacidad.jsx";
 import Apariencia from "./pages/Apariencia.jsx";
 import Accesibilidad from "./pages/Accesibilidad.jsx";
 import Avanzado from "./pages/Avanzado.jsx";
+
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <BrowserRouter>
