@@ -22,7 +22,7 @@ const StudentData = () => {
 
     return (
         <div className="student-grades-container">
-            <h1 className="student-grades-title">Calificación del Estudiante</h1> {/* Updated title to match image */}
+            <h1 className="student-grades-title">Calificación del Estudiante</h1> 
 
             <div className="academic-period-selector">
                 <label htmlFor="academic-period-select" className="period-label">Lapso Académico:</label>

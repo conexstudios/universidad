@@ -5,9 +5,10 @@
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.03);
   max-width: 90%;
+  margin-top: 60px;
   border: 1px solid #e5e7eb;
   transition: all 0.2s ease-in-out;
-  margin-left: 75px;
+  margin-right: 50px;
 }
 
 .mailbox-container:hover {

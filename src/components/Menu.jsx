@@ -17,6 +17,7 @@ import UserProfileMenu from './UserProfileMenu';
 import CampaignData from './CampaignData';
 import Inscripcion from "../assets/inscripcion.png";
 import Evaluacion from "../assets/evaluacion.png";
+import tresPuntos from "../assets/tres-puntos.png";
 const Menu = () => {
     const [showUserProfileMenu, setShowUserProfileMenu] = useState(false);
     const [userMenuPosition, setUserMenuPosition] = useState({ top: 0, left: 0 });
@@ -72,8 +73,17 @@ const Menu = () => {
     ];
 
     return (
-        <>
+        <div>
             <div className="top-icons-container">
+                <img
+                    width={50}
+                    src={tresPuntos}
+                    alt="tres-puntos"
+                    className="top-icon campaign-icon"
+                    onClick={toggleCampaignDataMenu}
+                    style={{ cursor: 'pointer' }}
+                    ref={campaignIconRef}
+                />
                 <img
                     width={50}
                     src={campaign}
@@ -185,7 +195,7 @@ const Menu = () => {
                     </li>
                 </ul>
             </nav>
-        </>
+        </div>
     );
 };
 
