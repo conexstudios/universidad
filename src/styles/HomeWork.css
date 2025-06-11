@@ -1,9 +1,183 @@
 .homework {
-    background-color: #ffffff;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.07);
+  display: flex;
+  align-items: center;
+  width: 95%;
+  max-width: 340px;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.homework .calendar-header {
+  font-size: 1.3em;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 15px;
+  text-align: center;
+  width: 100%;
+}
+
+.homework .calendar-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.homework .calendar-nav span {
+  font-size: 1.1em;
+  font-weight: 600;
+  color: #333;
+  white-space: nowrap;
+}
+
+.homework .calendar-nav button {
+  background: none;
+  border: none;
+  font-size: 1.5em;
+  color: #555;
+  cursor: pointer;
+  padding: 5px 8px;
+  border-radius: 50%;
+  transition: background-color 0.2s;
+}
+
+.homework .calendar-nav button:hover {
+  background-color: #f0f0f0;
+}
+
+.homework .calendar-grid-container {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.homework .calendar-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 280px;
+  text-align: center;
+}
+
+.homework .calendar-table th {
+  font-size: 0.8em;
+  font-weight: 700;
+  color: #666;
+  padding: 8px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.homework .calendar-table td {
+  font-size: 1em;
+  padding: 8px 0;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background-color 0.2s, border-color 0.2s;
+  min-width: 35px;
+  height: 35px;
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.homework .calendar-table td.outside-month {
+  color: #b0b0b0;
+  cursor: default;
+}
+
+.homework .calendar-table td.weekend {
+  color: #dc3545;
+}
+
+.homework .calendar-table td.selected-date {
+  background-color: #ffc107;
+  border-radius: 50%;
+  color: #333;
+  font-weight: 700;
+}
+
+.homework .calendar-table td:hover:not(.outside-month) {
+  background-color: #e9ecef;
+  border-radius: 50%;
+}
+
+@media (min-width: 577px) {
+  .homework {
     border-radius: 12px;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    max-width: 550px;
+    max-width: 450px;
+    margin: 20px auto;
+    padding: 15px;
   }
+
+  .homework .calendar-header {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+  }
+
+  .homework .calendar-nav span {
+    font-size: 1.2em;
+  }
+
+  .homework .calendar-nav button {
+    font-size: 1.7em;
+    padding: 7px 10px;
+  }
+
+  .homework .calendar-table {
+    min-width: 350px;
+  }
+
+  .homework .calendar-table th {
+    font-size: 0.9em;
+    padding: 10px 0;
+  }
+
+  .homework .calendar-table td {
+    font-size: 1.1em;
+    padding: 10px 0;
+    min-width: 40px;
+    height: 40px;
+  }
+}
+
+@media (min-width: 769px) {
+  .homework {
+    max-width: 550px;
+    margin: 30px auto;
+    padding: 20px;
+  }
+
+  .homework .calendar-header {
+    font-size: 1.8em;
+    margin-bottom: 25px;
+  }
+
+  .homework .calendar-nav span {
+    font-size: 1.3em;
+  }
+
+  .homework .calendar-nav button {
+    font-size: 1.8em;
+    padding: 8px 12px;
+  }
+
+  .homework .calendar-table {
+    min-width: auto;
+  }
+
+  .homework .calendar-table th {
+    font-size: 1em;
+    padding: 12px 0;
+  }
+
+  .homework .calendar-table td {
+    font-size: 1.2em;
+    padding: 12px 0;
+    min-width: 45px;
+    height: 45px;
+  }
+}
