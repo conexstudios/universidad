@@ -11,7 +11,8 @@
     transition: all 0.3s ease-in-out;
     margin: 15px auto;
     padding: 15px;
-    max-width: 95%;
+    width: 95%;
+    max-width: 450px;
 }
 
 .schedule-component h3 {
@@ -25,6 +26,9 @@
     padding-bottom: 10px;
     width: 100%;
     letter-spacing: 0;
+    white-space: normal;
+    word-break: normal;
+    line-height: 1.3;
 }
 
 .schedule-table-container {
@@ -101,7 +105,6 @@
 
 .schedule-table td.event-cell:hover {
     background-color: #cceeff;
-    transform: none;
     box-shadow: 0 2px 8px rgba(0, 123, 255, 0.15);
 }
 
@@ -134,7 +137,6 @@
 
 .schedule-component .action-button:hover {
     background: linear-gradient(135deg, #0056b3 0%, #003f88 100%);
-    transform: none;
     box-shadow: 0 4px 10px rgba(0, 123, 255, 0.2);
 }
 
@@ -158,7 +160,6 @@
 
 .dark .schedule-component:hover {
     box-shadow: 0 12px 25px rgba(0, 0, 0, 0.4), 0 5px 10px rgba(0, 0, 0, 0.25);
-    transform: none;
 }
 
 .dark .schedule-component h3 {
@@ -224,7 +225,7 @@
         box-shadow: 0 8px 15px rgba(0, 0, 0, 0.07), 0 3px 6px rgba(0, 0, 0, 0.03);
         padding: 20px;
         margin: 20px auto;
-        max-width: 90%;
+        max-width: 700px;
     }
     .schedule-component h3 {
         font-size: 1.8em;

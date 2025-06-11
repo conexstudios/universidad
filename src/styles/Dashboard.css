@@ -45,11 +45,6 @@
     max-width: 600px;
 }
 
-.main-content{
-    max-width: calc(100vw - 315px);
-}
-
-
 .dashboard-card.pending-assignments-component {
     position: fixed;
     top: 70%;

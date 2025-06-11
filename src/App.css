@@ -26,7 +26,6 @@ body {
 
 .main-content{
   padding: 2em;
-  transform: translateX(315px);
 }
 
 .form-control{

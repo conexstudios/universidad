@@ -4,7 +4,7 @@
     align-items: center;
     padding: 15px;
     box-sizing: border-box;
-    width: 110%;
+    width: 100%;
 }
 
 .buscador-input {
@@ -14,8 +14,7 @@
 }
 
 .buscador-input .form-control.search {
-    width: 100%;
-    padding: 12px 20px;
+    padding: 15px 20px;
     border: 1px solid #e0e0e0;
     border-radius: 25px;
     font-size: 1em;

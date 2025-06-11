@@ -179,8 +179,6 @@ body {
 }
 
 .main-content {
-    width: calc(100% - 80px);
-    margin-left: 80px;
     padding: 20px;
     box-sizing: border-box;
     transition: margin-left 0.3s ease-in-out, width 0.3s ease-in-out;
@@ -188,11 +186,9 @@ body {
 }
 
 body.menu-expanded .main-content {
-    margin-left: 250px;
-    width: calc(100% - 250px);
 }
 
-@media (max-width: 768px) {
+@media (min-width: 768px) {
     .navbar {
         width: 60px;
         min-width: 60px;
@@ -249,7 +245,7 @@ body.menu-expanded .main-content {
     }
 }
 
-@media (min-width: 769px) and (max-width: 1199px) {
+@media (max-width: 1120px) {
     .navbar.expanded {
         width: 220px;
     }
