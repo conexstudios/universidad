@@ -61,32 +61,28 @@ body {
   text-align: center;
 }
 
-/* Tailwind CSS Imports */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* Tailwind CSS Imports removed for plain CSS compatibility */
 
-@layer base {
-  :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-    --border: 214.3 31.8% 91.4%;
-  }
-
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-    --border: 217.2 32.6% 17.5%;
-  }
+/* Custom base styles */
+:root {
+  --background: #fff;
+  --foreground: #222;
+  --border: #e5e7eb;
 }
 
-@layer base {
-  * {
-    @apply border-border;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
+.dark {
+  --background: #22223e;
+  --foreground: #f1f5f9;
+  --border: #23272f;
+}
+
+* {
+  border-color: var(--border);
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
 }
 
 @layer utilities {
