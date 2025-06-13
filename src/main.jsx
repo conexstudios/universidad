@@ -2,6 +2,7 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
 import App from "./App.jsx";
+import './App.css'; 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Dashboard from "./pages/Dashboard.jsx";
 import Mensajeria from "./pages/Mensajeria.jsx";
@@ -51,7 +52,6 @@ createRoot(document.getElementById("root")).render(
           path="/dashboard/solicitudes-servicio"
           element={<ServiceRequest />}
         />
-
         <Route
           path="/dashboard/order-payments/:id"
           element={<PaymentsList />}

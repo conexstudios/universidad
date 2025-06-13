@@ -1,7 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import "../styles/Menu.css";
-
 import dashboard from "../assets/dashboard.svg";
 import inbox from "../assets/inbox.svg";
 import homeworks from "../assets/homeworks.svg";
@@ -136,7 +135,9 @@ const Menu = () => {
             <nav className={`navbar ${isMenuExpanded ? 'expanded' : 'collapsed'}`}>
                 <ul className="icons">
                     <li>
-                        <img src={logo} alt="Logo" />
+                        <a href="/"> 
+                            <img src={logo} alt="Logo" />
+                        </a>
                     </li>
                     <li><Link to="/dashboard"><img src={dashboard} alt="Dashboard" /></Link></li>
                     <li><Link to="/dashboard/personal"><img src={user} alt="user" /></Link></li>
