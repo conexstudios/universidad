@@ -1,159 +1,75 @@
 :root {
-  --primary-color: #3FA9F9;
-  --secondary-color: #fff;
-  --accent-color: #2F87C5;
-  --background-color: #fff;    
-  --text-color: #2c3e50;
-  --font-family: 'Poppins', sans-serif;
-  --font-size: 16px;
-  --font-weight: 400;
-  --box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
-}
-
-*, *::before, *::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  overflow-x: hidden;
-}
-
-body {
-  font-family: 'Poppins', sans-serif;
-  background-color: var(--background-color);
-  color: #333;
-  line-height: 1.6;
-}
-
-.main-content{
-  padding: 2em;
-}
-
-.form-control{
-  display: block;
-  width: 100%;
-  height: 40px;
-  max-width: 370px;
-  font-size: var(--font-size);
-  padding: 10px 15px; 
-  border: 1px solid var(--primary-color);
-  border-radius: 20px;
-  box-shadow: var(--box-shadow);
-}
-
-.form-control.search{
-  position: relative;
-  margin: 1rem;
-}
-
-.form-control.search::after{
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 10px;
-  transform: translateY(-50%);
-  width: 20px;
-  height: 20px;
-  background-image: url('./search.svg');
-  background-size: cover;
-}
-
-.text-center{
-  text-align: center;
-}
-
-/* Tailwind CSS Imports removed for plain CSS compatibility */
-
-/* Custom base styles */
-:root {
-  --background: #fff;
-  --foreground: #222;
-  --border: #e5e7eb;
+  --background: hsl(0, 0%, 100%);
+  --foreground: hsl(222.2, 84%, 4.9%);
+  --border: hsl(214.3, 31.8%, 91.4%);
 }
 
 .dark {
-  --background: #22223e;
-  --foreground: #f1f5f9;
-  --border: #23272f;
+  --background: hsl(222.2, 84%, 4.9%);
+  --foreground: hsl(210, 40%, 98%);
+  --border: hsl(217.2, 32.6%, 17.5%);
 }
 
 * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
   border-color: var(--border);
 }
 
 body {
-  background-color: var(--background);
+  background: var(--background);
+  color: var(--foreground);
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+  min-height: 100vh;
+  line-height: 1.6;
+  transition: background 0.3s, color 0.3s;
+}
+
+.card {
+  background: var(--background);
+  color: var(--foreground);
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  padding: 2rem;
+  margin: 1rem 0;
+}
+
+.button {
+  background: var(--foreground);
+  color: var(--background);
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.button:hover {
+  background: var(--border);
   color: var(--foreground);
 }
 
-@layer utilities {
-  .scrollbar-thin::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
-  }
-
-  .scrollbar-thin::-webkit-scrollbar-track {
-    background: transparent;
-  }
-
-  .scrollbar-thin::-webkit-scrollbar-thumb {
-    background: rgba(59, 130, 246, 0.3);
-    border-radius: 9999px;
-  }
-
-  .scrollbar-thin::-webkit-scrollbar-thumb:hover {
-    background: rgba(59, 130, 246, 0.5);
-  }
+input, textarea, select {
+  background: var(--background);
+  color: var(--foreground);
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  margin-bottom: 1rem;
+  outline: none;
+  transition: border 0.2s;
+}
+input:focus, textarea:focus, select:focus {
+  border-color: var(--foreground);
 }
 
-/* Animaciones personalizadas */
-@keyframes float {
-  0% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-  100% {
-    transform: translateY(0px);
-  }
+::-webkit-scrollbar {
+  width: 8px;
+  background: transparent;
 }
-
-.animate-float {
-  animation: float 3s ease-in-out infinite;
-}
-
-@keyframes pulse {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.05);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-
-.animate-pulse-slow {
-  animation: pulse 2s ease-in-out infinite;
-}
-
-@keyframes shimmer {
-  0% {
-    background-position: -200% 0;
-  }
-  100% {
-    background-position: 200% 0;
-  }
-}
-
-.animate-shimmer {
-  background: linear-gradient(
-    90deg,
-    rgba(255, 255, 255, 0) 0%,
-    rgba(255, 255, 255, 0.2) 50%,
-    rgba(255, 255, 255, 0) 100%
-  );
-  background-size: 200% 100%;
-  animation: shimmer 2s infinite;
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 8px;
 }
