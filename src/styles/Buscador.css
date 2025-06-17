@@ -15,6 +15,7 @@
 
 .buscador-input .form-control.search {
     padding: 15px 20px;
+    padding-right: 50px;
     border: 1px solid #e0e0e0;
     border-radius: 25px;
     font-size: 1em;
@@ -27,6 +28,7 @@
     appearance: none;
     line-height: 1.5;
     box-sizing: border-box;
+    width: 100%;
 }
 
 .buscador-input .form-control.search::placeholder {
@@ -42,6 +44,17 @@
     background-color: #fff;
 }
 
+.search-icon {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    z-index: 2;
+}
+
 @media (min-width: 577px) {
     .buscador {
         padding: 20px;
@@ -53,6 +66,7 @@
 
     .buscador-input .form-control.search {
         padding: 14px 25px;
+        padding-right: 60px;
         border-radius: 30px;
         font-size: 1.1em;
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
@@ -65,5 +79,10 @@
     .buscador-input .form-control.search:focus {
         box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.25);
     }
-}
 
+    .search-icon {
+        right: 20px;
+        width: 22px;
+        height: 22px;
+    }
+}
