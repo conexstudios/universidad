@@ -3,10 +3,14 @@ import '../styles/Personal.css';
 
 const Personal = () => {
   const [militarActivo, setMilitarActivo] = useState(false);
+  const [discapacidad, setDiscapacidad] = useState(false);
 
-  
   const handleMilitarActivoChange = (e) => {
     setMilitarActivo(e.target.checked);
+  };
+
+  const handleDiscapacidadChange = (e) => {
+    setDiscapacidad(e.target.checked);
   };
 
   return (
@@ -57,22 +61,33 @@ const Personal = () => {
         </div>
         <div className="form-group">
           <label htmlFor="discapacidad">¿Discapacidad?</label>
-          <input type="checkbox" id="discapacidad" name="discapacidad" />
+          <input
+            type="checkbox"
+            id="discapacidad"
+            name="discapacidad"
+            checked={discapacidad}
+            onChange={handleDiscapacidadChange}
+          />
         </div>
-        <div className="form-group">
-          <label htmlFor="tipo-discapacidad">Tipo de discapacidad</label>
-          <select id="tipo-discapacidad" name="tipo-discapacidad">
-            <option value="">Seleccione</option>
-            <option value="motriz">Motriz</option>
-            <option value="visual">Visual</option>
-            <option value="auditiva">Auditiva</option>
-            <option value="intelectual">Intelectual</option>
-          </select>
-        </div>
-        <div className="form-group">
-          <label htmlFor="codigo-discapacidad">Código de discapacidad</label>
-          <input type="text" id="codigo-discapacidad" name="codigo-discapacidad" />
-        </div>
+
+        {discapacidad && (
+          <>
+            <div className="form-group">
+              <label htmlFor="tipo-discapacidad">Tipo de discapacidad</label>
+              <select id="tipo-discapacidad" name="tipo-discapacidad">
+                <option value="">Seleccione</option>
+                <option value="motriz">Motriz</option>
+                <option value="visual">Visual</option>
+                <option value="auditiva">Auditiva</option>
+                <option value="intelectual">Intelectual</option>
+              </select>
+            </div>
+            <div className="form-group">
+              <label htmlFor="codigo-discapacidad">Código de discapacidad</label>
+              <input type="text" id="codigo-discapacidad" name="codigo-discapacidad" />
+            </div>
+          </>
+        )}
 
         <div className="form-group">
           <label htmlFor="relacion-contacto">Parentesco con Contacto</label>
@@ -88,19 +103,13 @@ const Personal = () => {
         </div>
 
         <div className="form-group">
-          <label htmlFor="notificar">Notificar a</label>
-          <input type="text" id="notificar" name="notificar" /> 
-        </div>
-        
-        
-        <div className="form-group">
           <label htmlFor="militar-activo">¿Militar Activo?</label>
           <input
             type="checkbox"
             id="militar-activo"
             name="militar-activo"
             checked={militarActivo}
-            onChange={handleMilitarActivoChange} 
+            onChange={handleMilitarActivoChange}
           />
         </div>
 
@@ -118,6 +127,11 @@ const Personal = () => {
           </div>
         )}
 
+        <div className="form-group">
+          <label htmlFor="notificar">Notificar a</label>
+          <input type="text" id="notificar" name="notificar" />
+        </div>
+        
         <div className="form-group">
           <label htmlFor="telefono-contacto">Teléfono de su persona de Contacto</label>
           <input type="text" id="telefono-contacto" name="telefono-contacto" />
