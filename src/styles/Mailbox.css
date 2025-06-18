@@ -424,3 +424,325 @@
     max-width: 80px;
   }
 }
+/* ... (Tus estilos existentes) ... */
+
+/* -------------------------------------- */
+/* ESTILOS PARA EL FORMULARIO DE REDACCIÓN - AZUL CON FONDO BLANCO */
+/* -------------------------------------- */
+
+.compose-message-window {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 600px;
+    height: 400px;
+    background-color: #fff; /* <-- ¡Cambiado a blanco! */
+    border: 1px solid #a7d9f8; /* Borde azul claro */
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: column;
+    z-index: 1000;
+    overflow: hidden;
+}
+
+/* Estilos para el encabezado de la ventana de redacción */
+.compose-header {
+    background-color: #1a73e8; /* Azul primario fuerte para el encabezado */
+    color: white;
+    padding: 10px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.compose-controls {
+    display: flex;
+    align-items: center;
+}
+
+.compose-controls button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.2em;
+    cursor: pointer;
+    margin-left: 10px;
+    padding: 2px 5px;
+    transition: background-color 0.2s ease;
+}
+
+.compose-controls button:hover {
+    background-color: rgba(255, 255, 255, 0.2); /* Sigue siendo blanco semi-transparente para el hover */
+    border-radius: 3px;
+}
+
+/* Estilos para el cuerpo del formulario de redacción */
+.compose-body {
+    flex-grow: 1;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    background-color: transparent; /* <-- Asegura que el fondo blanco del padre se vea */
+}
+
+.compose-recipient,
+.compose-subject {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #e0f2ff; /* Azul muy claro para las líneas separadoras, sutil */
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+}
+
+.compose-recipient label,
+.compose-subject label {
+    font-weight: bold;
+    color: #0056b3; /* Azul oscuro para las etiquetas */
+    margin-right: 10px;
+    width: 50px;
+    flex-shrink: 0;
+}
+
+.compose-recipient input,
+.compose-subject input {
+    flex-grow: 1;
+    border: none;
+    padding: 5px 0;
+    font-size: 1em;
+    outline: none;
+    background-color: transparent; /* Fondo transparente para que se vea el blanco */
+    color: #333; /* Color de texto estándar */
+}
+
+.cc-bcc {
+    margin-left: 15px;
+    display: flex;
+    gap: 8px;
+}
+
+.cc-bcc span {
+    color: #007bff; /* Azul de enlace */
+    cursor: pointer;
+    font-size: 0.9em;
+}
+
+.compose-content {
+    flex-grow: 1;
+    border: none;
+    resize: none;
+    padding: 10px 0;
+    font-size: 1em;
+    line-height: 1.5;
+    outline: none;
+    background-color: transparent; /* Fondo transparente para que se vea el blanco */
+    color: #333; /* Color de texto estándar */
+}
+
+/* Estilos para el pie de la ventana de redacción */
+.compose-footer {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    border-top: 1px solid #e0f2ff; /* Azul muy claro para la línea superior, sutil */
+    background-color: #e0f2ff; /* Azul claro para el fondo del pie */
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+.send-button {
+    background-color: #007bff; /* Azul primario para el botón de enviar */
+    color: white;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: bold;
+    transition: background-color 0.2s ease;
+    margin-right: 15px;
+}
+
+.send-button:hover {
+    background-color: #0056b3; /* Azul más oscuro al pasar el ratón */
+}
+
+.footer-icon {
+    font-size: 1.5em;
+    cursor: pointer;
+    margin-right: 15px;
+    color: #007bff; /* Iconos en azul */
+    transition: color 0.2s ease;
+}
+
+.footer-icon:hover {
+    color: #0056b3;
+}
+
+/* Estilos para el estado seleccionado del mensaje (sin cambios, ya eran azules) */
+.message-item.selected {
+    background-color: #e0f2f7;
+    border-left: 4px solid #1a73e8;
+}
+
+.no-message-selected {
+    text-align: center;
+    padding: 50px;
+    color: #888;
+    font-style: italic;
+}
+
+/* -------------------------------------- */
+/* Adaptación Responsive para el formulario de redacción - Con Fondo Blanco */
+/* -------------------------------------- */
+@media (max-width: 768px) {
+    .compose-message-window {
+        width: 95%;
+        height: 80%;
+        bottom: 10px;
+        right: 2.5%;
+        left: 2.5%;
+        max-height: calc(100vh - 20px);
+    }
+
+    .compose-header {
+        padding: 8px 10px;
+        font-size: 0.9em;
+    }
+
+    .compose-controls button {
+        font-size: 1em;
+        padding: 0 4px;
+    }
+
+    .compose-body {
+        padding: 10px;
+    }
+
+    .compose-recipient,
+    .compose-subject {
+        flex-wrap: wrap;
+        padding-bottom: 8px;
+        margin-bottom: 8px;
+    }
+
+    .compose-recipient label,
+    .compose-subject label {
+        width: auto;
+        margin-right: 5px;
+        margin-bottom: 5px;
+    }
+
+    .compose-recipient input,
+    .compose-subject input {
+        font-size: 0.9em;
+    }
+
+    .cc-bcc {
+        width: 100%;
+        margin-left: 0;
+        justify-content: flex-end;
+    }
+
+    .compose-content {
+        font-size: 0.9em;
+        padding: 8px 0;
+    }
+
+    .compose-footer {
+        padding: 8px 10px;
+        justify-content: space-between;
+    }
+
+    .send-button {
+        padding: 6px 15px;
+        font-size: 0.9em;
+    }
+
+    .footer-icon {
+        font-size: 1.2em;
+        margin-right: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .compose-message-window {
+        width: 100%;
+        height: 100%;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        border-radius: 0;
+        box-shadow: none;
+    }
+    .compose-header {
+        border-radius: 0;
+    }
+    .compose-footer {
+        border-radius: 0;
+    }
+}
+
+
+.dark .compose-message-window {
+    background-color: #1f2937; 
+    border-color: #374151;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3), 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+.dark .compose-header {
+    background-color: #1a202c; 
+}
+
+.dark .compose-controls button {
+    color: #a7d9f8; 
+}
+
+.dark .compose-controls button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.dark .compose-recipient,
+.dark .compose-subject {
+    border-bottom-color: #374151; 
+}
+
+.dark .compose-recipient label,
+.dark .compose-subject label {
+    color: #9ca3af; 
+}
+
+.dark .compose-recipient input,
+.dark .compose-subject input,
+.dark .compose-content {
+    background-color: transparent;
+    color: #e5e7eb; 
+}
+
+.dark .cc-bcc span {
+    color: #4299e1;
+}
+
+.dark .compose-footer {
+    background-color: #1a202c; 
+    border-top-color: #374151;
+}
+
+.dark .send-button {
+    background-color: #2563eb; 
+}
+
+.dark .send-button:hover {
+    background-color: #1e4baf;
+}
+
+.dark .footer-icon {
+    color: #63a4ff;
+}
+
+.dark .footer-icon:hover {
+    color: #4299e1;
+}

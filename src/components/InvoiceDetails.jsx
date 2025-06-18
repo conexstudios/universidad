@@ -4,7 +4,7 @@ import '../styles/InvoiceDetails.css';
 const InvoiceDetails = () => {
   return (
     <div className="invoice-details-container">
-      <h1>Detalles de Facturación</h1>
+      <h1>Detalles de Pago</h1>
       <form className="invoice-form">
         <div className="form-group">
           <label htmlFor="nombre">Nombre</label>
@@ -33,6 +33,10 @@ const InvoiceDetails = () => {
         <div className="form-group">
           <label htmlFor="banco">Banco</label>
           <input type="text" id="banco" name="banco" />
+        </div>
+        <div className="form-group">
+          <label htmlFor="monto">Monto</label>
+          <input type="number" id="monto" name="monto" placeholder="0.00" step="0.01" />
         </div>
         <div className="form-group">
           <label htmlFor="referencia">Referencia</label>

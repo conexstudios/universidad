@@ -28,7 +28,7 @@ const Receipt = () => {
           </tr>
           <tr>
             <td>Cuenta de Origen:</td>
-            <td>Merantil</td>
+            <td>Mercantil</td>
           </tr>
           <tr>
             <td colSpan="2" className="icons">
@@ -42,6 +42,9 @@ const Receipt = () => {
           </tr>
         </tbody>
       </table>
+      <div className="receipt-actions">
+        <button type="button" className="send-payment-button">Enviar Pago</button>
+      </div>
     </div>
   );
 };

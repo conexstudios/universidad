@@ -27,8 +27,8 @@ const Dashboard = () => {
         <Buscador />
         <WelcomeArea />
         <Horarios />
-        <HomeWork />
         <Asignatura />
+        <HomeWork />
         <BarraInformativa />
       </main>
     </>

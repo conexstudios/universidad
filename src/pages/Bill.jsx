@@ -9,8 +9,8 @@ const Bill = () => {
     <>
       <Menu></Menu>
       <main className="main-content bill-content">
-          <InvoiceDetails></InvoiceDetails>
           <Receipt></Receipt>
+          <InvoiceDetails></InvoiceDetails>
       </main>
     </>
   );
