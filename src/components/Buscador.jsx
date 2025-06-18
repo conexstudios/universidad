@@ -19,4 +19,5 @@ const Buscador = () => {
   );
 };
 
-export default Buscador;
+export default Buscador;0
+
