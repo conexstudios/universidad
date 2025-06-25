@@ -37,6 +37,7 @@ import Posts from "./pages/Posts.jsx";
 import Orders from './pages/Orders.jsx';
 import Fee from './pages/Fee.jsx';
 import Authors from './pages/Authors.jsx';
+import Reviews from './pages/Reviews.jsx';
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -103,6 +104,7 @@ createRoot(document.getElementById("root")).render(
         <Route path="/dashboard/ordenes" element={<Orders />}></Route>
         <Route path="/dashboard/pagos" element={<Fee />}></Route>
         <Route path="/dashboard/autores" element={<Authors />}></Route>
+        <Route path="/dashboard/revisiones" element={<Reviews />}></Route>
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>
