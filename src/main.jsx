@@ -33,6 +33,10 @@ import Privacidad from "./pages/Privacidad.jsx";
 import Apariencia from "./pages/Apariencia.jsx";
 import Accesibilidad from "./pages/Accesibilidad.jsx";
 import Avanzado from "./pages/Avanzado.jsx";
+import Posts from "./pages/Posts.jsx";
+import Orders from './pages/Orders.jsx';
+import Fee from './pages/Fee.jsx';
+import Authors from './pages/Authors.jsx';
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -94,6 +98,11 @@ createRoot(document.getElementById("root")).render(
           path="/dashboard/extracurriculares"
           element={<Extracurriculares />}
         ></Route>
+
+        <Route path="/dashboard/publicaciones" element={<Posts />}></Route>
+        <Route path="/dashboard/ordenes" element={<Orders />}></Route>
+        <Route path="/dashboard/pagos" element={<Fee />}></Route>
+        <Route path="/dashboard/autores" element={<Authors />}></Route>
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>

@@ -1,0 +1,119 @@
+.authors-container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.authors-container h1 {
+    color: #333;
+    font-size: 2.5em;
+    margin-bottom: 30px;
+    font-weight: 700;
+}
+
+.loading-message,
+.no-authors-message,
+.error-message {
+    padding: 20px;
+    margin: 20px auto;
+    border-radius: 8px;
+    font-size: 1.1em;
+    font-weight: 500;
+}
+
+.loading-message {
+    background-color: #e0f7fa;
+    color: #00796b;
+}
+
+.no-authors-message {
+    background-color: #fff3e0;
+    color: #e65100;
+}
+
+.error-message {
+    background-color: #ffebee;
+    color: #c62828;
+    border: 1px solid #ef9a9a;
+    text-align: left;
+}
+
+.error-message ul {
+    margin-top: 10px;
+    list-style-type: disc;
+    padding-left: 25px;
+}
+
+.error-message ul li {
+    margin-bottom: 5px;
+}
+
+.authors-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    margin-top: 30px;
+}
+
+.author-item {
+    background-color: #f8f9fa;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    text-align: left;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.author-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.author-item h2 {
+    color: #007bff;
+    font-size: 1.6em;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.author-item p {
+    color: #555;
+    font-size: 1em;
+    line-height: 1.5;
+    margin-bottom: 8px;
+}
+
+.author-item a {
+    display: inline-block;
+    margin-top: 15px;
+    color: #007bff;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s ease-in-out;
+}
+
+.author-item a:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+    .authors-container {
+        margin: 20px auto;
+        padding: 20px;
+    }
+
+    .authors-container h1 {
+        font-size: 2em;
+        margin-bottom: 20px;
+    }
+
+    .authors-list {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+}
