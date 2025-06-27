@@ -1,0 +1,170 @@
+/* General container for the Reviewers page */
+.reviewers-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    font-family: 'Arial', sans-serif;
+    color: #333;
+}
+
+.reviewers-container h1 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 30px;
+    font-size: 2.5em;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 10px;
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
+}
+
+.loading-message,
+.no-reviewers-message {
+    text-align: center;
+    padding: 20px;
+    background-color: #ecf0f1;
+    border-radius: 5px;
+    margin-top: 20px;
+    color: #34495e;
+    font-style: italic;
+    font-size: 1.1em;
+}
+
+.error-message {
+    background-color: #ffebee;
+    color: #c0392b;
+    border: 1px solid #e74c3c;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 8px;
+    font-size: 1.1em;
+    line-height: 1.6;
+}
+
+.error-message p {
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.error-message ul {
+    list-style-type: disc;
+    margin-left: 25px;
+    margin-bottom: 15px;
+}
+
+.error-message li {
+    margin-bottom: 8px;
+}
+
+.reviewers-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    margin-top: 30px;
+}
+
+.reviewer-item {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 25px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.reviewer-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+.reviewer-item h2 {
+    color: #3498db;
+    font-size: 1.8em;
+    margin-top: 0;
+    margin-bottom: 15px;
+    border-bottom: 1px dashed #eee;
+    padding-bottom: 10px;
+}
+
+.reviewer-item p {
+    margin-bottom: 8px;
+    font-size: 1.05em;
+    line-height: 1.4;
+    color: #555;
+}
+
+.reviewer-item p:last-of-type {
+    margin-bottom: 20px;
+}
+
+.reviewer-item strong {
+    color: #2c3e50;
+}
+
+.reviewer-item a {
+    display: inline-block;
+    background-color: #3498db;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    text-align: center;
+    transition: background-color 0.3s ease;
+    margin-top: auto;
+    align-self: flex-start;
+}
+
+.reviewer-item a:hover {
+    background-color: #2980b9;
+}
+
+@media (max-width: 768px) {
+    .reviewers-container {
+        margin: 20px auto;
+        padding: 15px;
+    }
+
+    .reviewers-container h1 {
+        font-size: 2em;
+        margin-bottom: 25px;
+    }
+
+    .reviewers-list {
+        grid-template-columns: 1fr;
+    }
+
+    .reviewer-item {
+        padding: 20px;
+    }
+
+    .reviewer-item h2 {
+        font-size: 1.6em;
+    }
+}
+
+@media (max-width: 480px) {
+    .reviewers-container h1 {
+        font-size: 1.8em;
+    }
+
+    .error-message,
+    .loading-message,
+    .no-reviewers-message {
+        font-size: 1em;
+        padding: 15px;
+    }
+
+    .reviewer-item a {
+        padding: 8px 12px;
+        font-size: 0.9em;
+    }
+}
