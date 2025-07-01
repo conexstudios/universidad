@@ -40,7 +40,11 @@ import Authors from './pages/Authors.jsx';
 import Reviews from './pages/Reviews.jsx';
 import Reviewers from './pages/Reviewers.jsx';
 import Magazines from './pages/Magazines.jsx';
-
+import Pensums  from './pages/Pensums.jsx';
+import Messaging  from './pages/Messaging.jsx';
+import Payrolls  from './pages/Payrolls.jsx';
+import FinalNotes  from './pages/FinalNotes.jsx';
+import Customer  from './pages/Customer.jsx';
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <BrowserRouter>
@@ -109,6 +113,11 @@ createRoot(document.getElementById("root")).render(
         <Route path="/dashboard/revisiones" element={<Reviews />}></Route>
         <Route path="/dashboard/revisores" element={<Reviewers />}></Route>
         <Route path="/dashboard/revistas" element={<Magazines />}></Route>
+        <Route path="/dashboard/pensum" element={<Pensums  />}></Route>
+        <Route path="/dashboard/mensaje" element={<Messaging  />}></Route>
+        <Route path="/dashboard/nominas" element={<Payrolls  />}></Route>
+        <Route path="/dashboard/notasfinales" element={<FinalNotes  />}></Route>
+        <Route path="/dashboard/ordenes" element={<Customer  />}></Route>
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>
