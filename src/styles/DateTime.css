@@ -1,72 +1,112 @@
-/* src/styles/DateTime.css */
-
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
 body {
     font-family: 'Inter', 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
-    background-color: #f8f9fa; /* Color de fondo general para que el contenedor principal "flote" */
+    background-color: #f8f9fa;
 }
 
 .courses-schedule-container {
-    padding: 30px;
-    background-color: #ffffff; /* Fondo blanco para el contenedor principal */
-    border-radius: 16px; /* Bordes redondeados pronunciados */
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08), 0 4px 12px rgba(0, 0, 0, 0.05); /* Doble sombra para profundidad */
-    margin: 40px auto; /* Centra el contenedor horizontalmente con margen superior/inferior */
-    max-width: 1000px; /* Ancho máximo */
-    border: 1px solid #eef2f7; /* Borde sutil */
-    box-sizing: border-box; /* Asegura que padding no afecte el tamaño total */
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08), 0 4px 12px rgba(0, 0, 0, 0.05);
+    margin: 30px auto;
+    max-width: 1000px;
+    border: 1px solid #eef2f7;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .courses-schedule-container h1 {
     text-align: center;
-    font-size: 2.4em;
-    color: #263238; /* Color de texto oscuro para el título */
-    margin-bottom: 35px;
+    font-size: 2.2em;
+    color: #263238;
+    margin-bottom: 20px;
     font-weight: 700;
     letter-spacing: -0.8px;
-    border-bottom: 3px solid #eef2f7; /* Línea separadora */
-    padding-bottom: 20px;
+    border-bottom: 2px solid #eef2f7;
+    padding-bottom: 15px;
+    width: 100%;
 }
 
-/* MODIFICACIONES PARA header-controls */
-.header-controls {
+.top-info-wrapper {
     display: flex;
-    justify-content: center; /* Centra horizontalmente los elementos */
-    align-items: center; /* Alinea verticalmente los elementos */
-    gap: 20px; /* Espacio entre el selector y la info */
-    margin-bottom: 25px; /* Margen inferior para separar de la tabla */
-    flex-wrap: wrap; /* Permite que los elementos se envuelvan en pantallas pequeñas */
-    padding: 0 15px; /* Pequeño padding para evitar que toquen los bordes del contenedor principal */
+    width: 100%;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding: 0 10px;
+    box-sizing: border-box;
 }
 
-.career-selector-group {
+.left-info {
+    background-color: #ffffff;
+    padding: 15px 20px;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e0e7ee;
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 10px;
+    box-sizing: border-box;
+    flex-grow: 1;
+    max-width: 50%;
 }
 
-.career-selector-group label {
+.right-info {
+    background-color: #ffffff;
+    padding: 15px 20px;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e0e7ee;
+    box-sizing: border-box;
+    flex-grow: 1;
+    max-width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.career-label {
     font-weight: 600;
     color: #4b5a6c;
+    font-size: 1em;
 }
 
-.career-selector-group select {
+.career-select,
+.quarter-select {
     padding: 0.5rem;
     border: 1px solid #d1d5db;
     border-radius: 0.375rem;
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
     outline: none;
+    font-size: 1em;
+    color: #4b5a6c;
+    appearance: none;
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%20viewBox%3D%220%200%20292.4%20292.4%22%3E%3Cpath%20fill%3D%22%236b7280%22%20d%3D%22M287%20198.8H5.4c-7.5%200-13.5-6-13.5-13.5s6-13.5%2013.5-13.5h281.5c7.5%200%2013.5%206%2013.5%2013.5S294.5%20198.8%20287%20198.8z%22%2F%3E%3C%2Fsvg%3E');
+    background-repeat: no-repeat;
+    background-position: right 0.7em top 50%, 0 0;
+    background-size: 0.65em auto, 100%;
+    padding-right: 2.5em;
+    cursor: pointer;
 }
 
-.career-selector-group select:focus {
+.career-select:focus,
+.quarter-select:focus {
     border-color: #3b82f6;
     box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5);
 }
 
 .header-info {
-    font-size: 1.125rem;
+    font-size: 1em;
     color: #4b5a6c;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    width: 100%;
 }
 
 .header-info .font-semibold {
@@ -92,6 +132,7 @@ body {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
     border: 1px solid #e0e7ee;
     background-color: #ffffff;
+    width: 100%;
 }
 
 .courses-schedule-table {
@@ -251,7 +292,6 @@ body {
     box-shadow: 0 6px 15px rgba(220, 53, 69, 0.25);
 }
 
-/* Media Queries para Responsividad */
 @media (max-width: 992px) {
     .courses-schedule-container {
         padding: 25px;
@@ -263,15 +303,28 @@ body {
         margin-bottom: 30px;
         padding-bottom: 15px;
     }
-    .header-controls {
-        flex-direction: column; /* Apila el selector y la info en pantallas más pequeñas */
+    .top-info-wrapper {
+        flex-direction: column;
         gap: 15px;
+        align-items: center;
     }
-    .career-selector-group,
-    .header-info {
-        /* Asegura que ocupen su propio espacio y no se estiren demasiado */
+    .left-info,
+    .right-info {
+        width: 100%;
+        max-width: 400px;
+        justify-content: center;
+        text-align: center;
+    }
+    .career-label {
+        font-size: 1em;
+    }
+    .career-select,
+    .quarter-select {
         width: auto;
-        max-width: 100%;
+    }
+    .header-info {
+        text-align: center;
+        justify-content: center;
     }
     .courses-table-wrapper {
         min-width: 768px;
@@ -321,9 +374,9 @@ body {
         padding: 12px 10px;
         font-size: 0.95em;
     }
-    .courses-schedule-table th:nth-child(4), /* Código */
+    .courses-schedule-table th:nth-child(4),
     .courses-schedule-table td:nth-child(4),
-    .courses-schedule-table th:nth-child(6), /* Aula */
+    .courses-schedule-table th:nth-child(6),
     .courses-schedule-table td:nth-child(6) {
         display: none;
     }
@@ -368,7 +421,7 @@ body {
         padding: 10px 8px;
         font-size: 0.9em;
     }
-    .courses-schedule-table th:nth-child(7), /* Cupo Disponible */
+    .courses-schedule-table th:nth-child(7),
     .courses-schedule-table td:nth-child(7) {
         display: none;
     }
@@ -376,5 +429,13 @@ body {
         padding: 8px 12px;
         font-size: 0.85em;
         border-radius: 8px;
+    }
+    .left-info {
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+    }
+    .header-info {
+        text-align: center;
     }
 }

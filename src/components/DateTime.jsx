@@ -2,122 +2,66 @@ import { useState, useEffect } from 'react';
 import "../styles/DateTime.css";
 
 const DateTime = () => {
-  const careersData = [
-    {
-      id: 'ingenieria-programacion',
-      name: 'Ingeniería en Programación',
-      trimestres: ['T1', 'T2', 'T3'],
-      courses: [
-        {
-          id: 1,
-          cuatrimestre: "T1",
-          grupo: "TP01",
-          estado: "Aprobada",
-          codigo: "AI001",
-          asignatura: "Aplicaciones en Internet",
-          aula: "Presencial",
-          cupo: 100,
-          dia: "Viernes",
-          horario: "7:45-9:15AM",
-        },
-        {
-          id: 2,
-          cuatrimestre: "T1",
-          grupo: "TP02",
-          estado: "Pendiente",
-          codigo: "DB002",
-          asignatura: "Bases de Datos I",
-          aula: "Virtual",
-          cupo: 80,
-          dia: "Lunes",
-          horario: "10:00-11:30AM",
-        },
-        {
-          id: 3,
-          cuatrimestre: "T1",
-          grupo: "TP03",
-          estado: "Aprobada",
-          codigo: "ALG003",
-          asignatura: "Algoritmos y Estructuras de Datos",
-          aula: "Presencial",
-          cupo: 90,
-          dia: "Martes",
-          horario: "1:00-2:30PM",
-        },
-        {
-          id: 4,
-          cuatrimestre: "T2",
-          grupo: "TP01",
-          estado: "Aprobada",
-          codigo: "WEB004",
-          asignatura: "Desarrollo Web Avanzado",
-          aula: "Presencial",
-          cupo: 75,
-          dia: "Miércoles",
-          horario: "3:00-4:30PM",
-        },
-        {
-          id: 5,
-          cuatrimestre: "T2",
-          grupo: "TP02",
-          estado: "Pendiente",
-          codigo: "RED005",
-          asignatura: "Redes de Computadoras",
-          aula: "Virtual",
-          cupo: 60,
-          dia: "Jueves",
-          horario: "9:00-10:30AM",
-        },
-      ],
-    },
-    {
-      id: 'diseno-grafico',
-      name: 'Diseño Gráfico Digital',
-      trimestres: ['T1', 'T2'],
-      courses: [
-        {
-          id: 6,
-          cuatrimestre: "T1",
-          grupo: "DG01",
-          estado: "Aprobada",
-          codigo: "DG001",
-          asignatura: "Fundamentos del Diseño",
-          aula: "Presencial",
-          cupo: 50,
-          dia: "Lunes",
-          horario: "8:00-9:30AM",
-        },
-        {
-          id: 7,
-          cuatrimestre: "T1",
-          grupo: "DG02",
-          estado: "Pendiente",
-          codigo: "ILU002",
-          asignatura: "Ilustración Digital",
-          aula: "Virtual",
-          cupo: 45,
-          dia: "Martes",
-          horario: "11:00-12:30PM",
-        },
-      ],
-    },
-  ];
-
-  const [selectedCareerId, setSelectedCareerId] = useState(careersData[0].id);
+  const [horarios, setHorarios] = useState([]);
+  const [selectedCareer, setSelectedCareer] = useState('');
+  const [selectedQuarter, setSelectedQuarter] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const [message, setMessage] = useState('');
   const itemsPerPage = 5;
 
-  const selectedCareer = careersData.find(career => career.id === selectedCareerId);
-  const currentCourses = selectedCareer ? selectedCareer.courses : [];
-  const totalPages = Math.ceil(currentCourses.length / itemsPerPage);
+  useEffect(() => {
+    const fetchHorarios = async () => {
+      try {
+        const apiUrl = `${import.meta.env.VITE_API_URL}/horarios?COLEG_ID=292&COL_PROC_INSCRIPC_ID=861`;
+        const response = await fetch(apiUrl);
+        if (!response.ok) {
+          if (response.status === 401) {
+            throw new Error("No autorizado. Por favor, inicie sesión.");
+          }
+          throw new Error(`Error al cargar los horarios: ${response.statusText}`);
+        }
+        const json = await response.json();
+        const fetchedHorarios = json.data || [];
+        if (fetchedHorarios.length === 0) {
+          throw new Error("No se encontraron horarios.");
+        }
+        setHorarios(fetchedHorarios);
+
+        if (fetchedHorarios.length > 0) {
+          const uniqueCareers = [...new Set(fetchedHorarios.map(h => h.carrera_nombre))];
+          if (uniqueCareers.length > 0) {
+            setSelectedCareer(uniqueCareers[0]);
+            const uniqueQuarters = [...new Set(fetchedHorarios.filter(h => h.carrera_nombre === uniqueCareers[0]).map(h => h.cuatrimestre))];
+            if (uniqueQuarters.length > 0) {
+              setSelectedQuarter(uniqueQuarters[0]);
+            }
+          }
+        }
+      } catch (error) {
+        setHorarios([]);
+      }
+    };
+    fetchHorarios();
+  }, []);
+
+  const uniqueCareers = [...new Set(horarios.map(h => h.carrera_nombre))];
+  const uniqueQuartersForSelectedCareer = selectedCareer
+    ? [...new Set(horarios.filter(h => h.carrera_nombre === selectedCareer).map(h => h.cuatrimestre))]
+    : [];
+
+  const filteredHorarios = horarios.filter(h =>
+    (selectedCareer ? h.carrera_nombre === selectedCareer : true) &&
+    (selectedQuarter ? h.cuatrimestre === selectedQuarter : true)
+  );
+
+  const totalPages = Math.ceil(filteredHorarios.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
-  const paginatedCourses = currentCourses.slice(startIndex, endIndex);
+  const paginatedHorarios = filteredHorarios.slice(startIndex, endIndex);
 
   useEffect(() => {
     setCurrentPage(1);
-  }, [selectedCareerId]);
+  }, [selectedCareer, selectedQuarter]);
 
   const handleNextPage = () => {
     if (currentPage < totalPages) {
@@ -142,35 +86,62 @@ const DateTime = () => {
   };
 
   const handleCareerChange = (event) => {
-    setSelectedCareerId(event.target.value);
+    const newCareer = event.target.value;
+    setSelectedCareer(newCareer);
+    const newUniqueQuarters = [...new Set(horarios.filter(h => h.carrera_nombre === newCareer).map(h => h.cuatrimestre))];
+    setSelectedQuarter(newUniqueQuarters.length > 0 ? newUniqueQuarters[0] : '');
+  };
+
+  const handleQuarterChange = (event) => {
+    setSelectedQuarter(event.target.value);
   };
 
   return (
     <div className="courses-schedule-container">
-      <div className="w-full text-center mb-4">
-        <h1>Oferta Académica</h1>
-        {/* INICIO DE CAMBIO EN JSX: Restauramos la estructura original del header-controls */}
-        <div className="header-controls">
-          <div className="career-selector-group">
-            <label htmlFor="career-select">Carrera:</label>
-            <select
-              id="career-select"
-              value={selectedCareerId}
-              onChange={handleCareerChange}
-            >
-              {careersData.map(career => (
-                <option key={career.id} value={career.id}>
-                  {career.name}
+      <h1 className="w-full text-center mb-4">Oferta Académica</h1>
+      <div className="top-info-wrapper">
+        <div className="left-info">
+          <label htmlFor="career-select" className="career-label">Carrera:</label>
+          <select
+            id="career-select"
+            value={selectedCareer}
+            onChange={handleCareerChange}
+            className="career-select"
+            disabled={uniqueCareers.length === 0}
+          >
+            {uniqueCareers.length === 0 ? (
+              <option value="">Cargando Carreras...</option>
+            ) : (
+              uniqueCareers.map(careerName => (
+                <option key={careerName} value={careerName}>
+                  {careerName}
                 </option>
-              ))}
-            </select>
-          </div>
+              ))
+            )}
+          </select>
+        </div>
+        <div className="right-info">
           <p className="header-info">
-            <span className="font-semibold">Trimestre:</span> {selectedCareer?.trimestres[0] || 'N/A'} |
+            <span className="font-semibold">Trimestre:</span>{' '}
+            <select
+              value={selectedQuarter}
+              onChange={handleQuarterChange}
+              className="quarter-select"
+              disabled={uniqueQuartersForSelectedCareer.length === 0}
+            >
+              {uniqueQuartersForSelectedCareer.length === 0 ? (
+                <option value="">No hay trimestres</option>
+              ) : (
+                uniqueQuartersForSelectedCareer.map(quarter => (
+                  <option key={quarter} value={quarter}>
+                    {quarter}
+                  </option>
+                ))
+              )}
+            </select>
             <span className="font-semibold"> Proceso:</span> Inscripción
           </p>
         </div>
-        {/* FIN DE CAMBIO EN JSX */}
       </div>
 
       {message && (
@@ -195,23 +166,25 @@ const DateTime = () => {
             </tr>
           </thead>
           <tbody>
-            {paginatedCourses.length > 0 ? (
-              paginatedCourses.map((item) => (
-                <tr key={item.id}>
+            {horarios.length > 0 ? (
+              horarios.map((item, index) => (
+                <tr key={index+1}>
                   <td><input type="checkbox" /></td>
                   <td>{item.cuatrimestre}</td>
-                  <td>{item.grupo}</td>
-                  <td>{item.codigo}</td>
+                  <td>{item.grupo_academico}</td>
+                  <td>{item.materia_codigo}</td>
                   <td>{item.asignatura}</td>
                   <td>{item.aula}</td>
-                  <td>{item.cupo}</td>
-                  <td>{item.dia}</td>
-                  <td>{item.horario}</td>
+                  <td>{item.cupo_disponible}</td>
+                  <td>{item.dia_semana}</td>
+                  <td>{`${item.hora_inicio} - ${item.hora_fin}`}</td>
                 </tr>
               ))
             ) : (
               <tr>
-                <td colSpan="9" className="px-4 py-4 text-center text-sm text-gray-500">No hay cursos disponibles para esta carrera.</td>
+                <td colSpan="9" className="px-4 py-4 text-center text-sm text-gray-500">
+                  {horarios.length === 0 ? "Cargando horarios o no hay datos disponibles." : "No hay cursos disponibles para la selección actual."}
+                </td>
               </tr>
             )}
           </tbody>
@@ -227,12 +200,12 @@ const DateTime = () => {
           Anterior
         </button>
         <span className="page-info">
-          {currentPage} de {totalPages}
+          {currentPage} de {totalPages || 1}
         </span>
         <button
           className="nav-button"
           onClick={handleNextPage}
-          disabled={currentPage === totalPages}
+          disabled={currentPage === totalPages || totalPages === 0}
         >
           Siguiente
         </button>
@@ -250,4 +223,4 @@ const DateTime = () => {
   );
 };
 
-export default DateTime
+export default DateTime;
