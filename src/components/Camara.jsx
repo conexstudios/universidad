@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState, useCallback } from "react";
+import { useRef, useEffect, useState, useCallback } from "react";
 import "../styles/Camara.css";
 
 const Camara = () => {
@@ -24,7 +24,6 @@ const Camara = () => {
                 setError("No se encontraron cámaras de video.");
             }
         } catch (err) {
-            console.error("Error enumerando dispositivos de cámara:", err);
             setError("No se pudo obtener la lista de cámaras. Asegúrate de haber dado permiso.");
         }
     }, []);
@@ -49,7 +48,6 @@ const Camara = () => {
                 setIsLive(true);
             }
         } catch (err) {
-            console.error("Error al iniciar el stream de la cámara:", err);
             if (err.name === 'NotAllowedError' || err.name === 'PermissionDeniedError') {
                 setError("Acceso a la cámara denegado. Por favor, permite el acceso en la configuración de tu navegador.");
             } else if (err.name === 'NotFoundError') {
@@ -140,9 +138,12 @@ const Camara = () => {
                         Capturar Foto
                     </button>
                 )}
-                {availableCameras.length > 1 && isLive && !capturedImage && (
-                    <button onClick={switchCamera}>
-                        Cambiar Cámara ({availableCameras.findIndex(cam => cam.deviceId === currentCameraId) + 1}/{availableCameras.length})
+                {!capturedImage && (
+                    <button 
+                        onClick={switchCamera} 
+                        disabled={availableCameras.length <= 1 || !isLive}
+                    >
+                        Cambiar Cámara ({availableCameras.length > 0 ? availableCameras.findIndex(cam => cam.deviceId === currentCameraId) + 1 : 0}/{availableCameras.length})
                     </button>
                 )}
                 {capturedImage && (

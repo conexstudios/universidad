@@ -1,9 +1,42 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../styles/Personal.css';
 
 const Personal = () => {
+  const [personalData, setPersonalData] = useState(null);
+  const [loading, setLoading] = useState(true);
   const [militarActivo, setMilitarActivo] = useState(false);
   const [discapacidad, setDiscapacidad] = useState(false);
+
+  useEffect(() => {
+    const fetchPersonalData = async () => {
+      try {
+        const apiUrl = `${import.meta.env.VITE_API_URL}/nominas?NOM_FICHANRO=1`;
+        const response = await fetch(apiUrl);
+        if (!response.ok) {
+          if (response.status === 401) {
+            throw new Error('No autorizado. Por favor, inicie sesión.');
+          }
+          throw new Error(`Error al cargar los datos personales: ${response.statusText}`);
+        }
+        const data = await response.json(); // Assuming the API returns an array, we take the first element
+        setPersonalData(data.data[0] || null);
+      } catch (error) {
+        console.error('Error fetching personal data:', error);
+        setPersonalData(null);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchPersonalData();
+  }, []);
+
+  const personalDataValue = (e) => {
+    const { name, value } = e.name;
+    setPersonalData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
 
   const handleMilitarActivoChange = (e) => {
     setMilitarActivo(e.target.checked);
@@ -16,10 +49,11 @@ const Personal = () => {
   return (
     <div className="personal-container">
       <h1>Datos Personales</h1>
+      {loading && <p>Cargando datos personales...</p>}
       <form className="personal-form">
         <div className="form-group">
           <label htmlFor="nombres">Nombres</label>
-          <input type="text" id="nombres" name="nombres" />
+          <input type="text" id="nombres" name="nombres" personalDataValue />
         </div>
         <div className="form-group">
           <label htmlFor="apellidos">Apellidos</label>
