@@ -1,87 +1,150 @@
+/* src/styles/DateTime.css */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+body {
+    font-family: 'Inter', 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+    background-color: #f8f9fa; /* Color de fondo general para que el contenedor principal "flote" */
+}
+
 .courses-schedule-container {
-  padding: 30px;
-  font-family: 'Inter', 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
-  background-color: #ffffff;
-  border-radius: 16px;
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08), 0 4px 12px rgba(0, 0, 0, 0.05);
-  margin: 40px auto;
-  max-width: 1000px;
-  overflow-x: auto;
-  border: 1px solid #eef2f7;
-  box-sizing: border-box;
+    padding: 30px;
+    background-color: #ffffff; /* Fondo blanco para el contenedor principal */
+    border-radius: 16px; /* Bordes redondeados pronunciados */
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08), 0 4px 12px rgba(0, 0, 0, 0.05); /* Doble sombra para profundidad */
+    margin: 40px auto; /* Centra el contenedor horizontalmente con margen superior/inferior */
+    max-width: 1000px; /* Ancho máximo */
+    border: 1px solid #eef2f7; /* Borde sutil */
+    box-sizing: border-box; /* Asegura que padding no afecte el tamaño total */
 }
 
 .courses-schedule-container h1 {
-  text-align: center;
-  font-size: 2.4em;
-  color: #263238;
-  margin-bottom: 35px;
-  font-weight: 700;
-  letter-spacing: -0.8px;
-  border-bottom: 3px solid #eef2f7;
-  padding-bottom: 20px;
+    text-align: center;
+    font-size: 2.4em;
+    color: #263238; /* Color de texto oscuro para el título */
+    margin-bottom: 35px;
+    font-weight: 700;
+    letter-spacing: -0.8px;
+    border-bottom: 3px solid #eef2f7; /* Línea separadora */
+    padding-bottom: 20px;
+}
+
+/* MODIFICACIONES PARA header-controls */
+.header-controls {
+    display: flex;
+    justify-content: center; /* Centra horizontalmente los elementos */
+    align-items: center; /* Alinea verticalmente los elementos */
+    gap: 20px; /* Espacio entre el selector y la info */
+    margin-bottom: 25px; /* Margen inferior para separar de la tabla */
+    flex-wrap: wrap; /* Permite que los elementos se envuelvan en pantallas pequeñas */
+    padding: 0 15px; /* Pequeño padding para evitar que toquen los bordes del contenedor principal */
+}
+
+.career-selector-group {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.career-selector-group label {
+    font-weight: 600;
+    color: #4b5a6c;
+}
+
+.career-selector-group select {
+    padding: 0.5rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.375rem;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    outline: none;
+}
+
+.career-selector-group select:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5);
+}
+
+.header-info {
+    font-size: 1.125rem;
+    color: #4b5a6c;
+}
+
+.header-info .font-semibold {
+    font-weight: 600;
+}
+
+.message-display {
+    background-color: #dbeafe;
+    border: 1px solid #93c5fd;
+    color: #1d4ed8;
+    padding: 1rem;
+    border-radius: 0.375rem;
+    position: relative;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 1.5rem;
 }
 
 .courses-table-wrapper {
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-  border: 1px solid #e0e7ee;
-  background-color: #ffffff;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e0e7ee;
+    background-color: #ffffff;
 }
 
 .courses-schedule-table {
-  width: 100%;
-  min-width: 900px;
-  border-collapse: collapse;
-  font-size: 0.95em;
-  color: #4b5a6c;
+    width: 100%;
+    min-width: 900px;
+    border-collapse: collapse;
+    font-size: 0.95em;
+    color: #4b5a6c;
 }
 
 .courses-schedule-table th,
 .courses-schedule-table td {
-  padding: 15px;
-  border-bottom: 1px solid #f0f4f7;
-  text-align: center;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+    padding: 15px;
+    border-bottom: 1px solid #f0f4f7;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .courses-schedule-table thead {
-  background-color: #e9f2f9;
+    background-color: #e9f2f9;
 }
 
 .courses-schedule-table th {
-  font-weight: 600;
-  color: #2c3e50;
-  text-transform: uppercase;
-  font-size: 0.85em;
-  letter-spacing: 0.8px;
+    font-weight: 600;
+    color: #2c3e50;
+    text-transform: uppercase;
+    font-size: 0.85em;
+    letter-spacing: 0.8px;
 }
 
 .courses-schedule-table tbody tr.category-row {
-  background-color: #e6f0ff;
-  font-weight: 700;
-  color: #0056b3;
-  text-align: left;
+    background-color: #e6f0ff;
+    font-weight: 700;
+    color: #0056b3;
+    text-align: left;
 }
 
 .courses-schedule-table tbody tr.category-row td {
-  padding: 20px 15px;
-  font-size: 1.1em;
-  border-bottom: 2px solid #b3d1ff;
-  border-top: 1px solid #cceeff;
+    padding: 20px 15px;
+    font-size: 1.1em;
+    border-bottom: 2px solid #b3d1ff;
+    border-top: 1px solid #cceeff;
 }
 
 .courses-schedule-table tbody tr:not(.category-row):nth-child(odd) {
-  background-color: #fdfefe;
+    background-color: #fdfefe;
 }
 
 .courses-schedule-table tbody tr:not(.category-row):hover {
-  background-color: #f0f7ff;
-  transition: background-color 0.2s ease;
+    background-color: #f0f7ff;
+    transition: background-color 0.2s ease;
 }
 
 .courses-schedule-table th:nth-child(1),
@@ -104,203 +167,214 @@
 .courses-schedule-table td:nth-child(9) { text-align: center; padding-right: 20px;}
 
 .courses-schedule-table input[type="checkbox"] {
-  transform: scale(1.2);
-  accent-color: #007bff;
-  cursor: pointer;
-  margin-right: 0;
+    transform: scale(1.2);
+    accent-color: #007bff;
+    cursor: pointer;
+    margin-right: 0;
 }
 
 .pagination-controls {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 30px;
-  gap: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+    gap: 15px;
 }
 
 .pagination-controls .page-info {
-  font-size: 1em;
-  color: #555;
-  font-weight: 500;
+    font-size: 1em;
+    color: #555;
+    font-weight: 500;
 }
 
 .pagination-controls .nav-button {
-  padding: 10px 20px;
-  background-color: #f0f7ff;
-  color: #007bff;
-  border: 1px solid #cceeff;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: 600;
-  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+    padding: 10px 20px;
+    background-color: #f0f7ff;
+    color: #007bff;
+    border: 1px solid #cceeff;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .pagination-controls .nav-button:hover {
-  background-color: #e0f2ff;
-  box-shadow: 0 2px 8px rgba(0, 123, 255, 0.1);
+    background-color: #e0f2ff;
+    box-shadow: 0 2px 8px rgba(0, 123, 255, 0.1);
 }
 
 .pagination-controls .nav-button:disabled {
-  background-color: #f8f8f8;
-  color: #b0b0b0;
-  border-color: #e0e0e0;
-  cursor: not-allowed;
-  box-shadow: none;
+    background-color: #f8f8f8;
+    color: #b0b0b0;
+    border-color: #e0e0e0;
+    cursor: not-allowed;
+    box-shadow: none;
 }
 
 .action-buttons {
-  display: flex;
-  justify-content: center;
-  margin-top: 30px;
-  gap: 20px;
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    gap: 20px;
 }
 
 .action-buttons .button {
-  padding: 12px 25px;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  font-weight: 600;
-  font-size: 1em;
-  transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 12px 25px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1em;
+    transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .action-buttons .guardar-seleccion {
-  background-color: #007bff;
-  color: #fff;
+    background-color: #007bff;
+    color: #fff;
 }
 
 .action-buttons .guardar-seleccion:hover {
-  background-color: #0056b3;
-  transform: translateY(-1px);
-  box-shadow: 0 6px 15px rgba(0, 123, 255, 0.25);
+    background-color: #0056b3;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 15px rgba(0, 123, 255, 0.25);
 }
 
 .action-buttons .cancelar-seleccion {
-  background-color: #dc3545;
-  color: #fff;
+    background-color: #dc3545;
+    color: #fff;
 }
 
 .action-buttons .cancelar-seleccion:hover {
-  background-color: #c82333;
-  transform: translateY(-1px);
-  box-shadow: 0 6px 15px rgba(220, 53, 69, 0.25);
+    background-color: #c82333;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 15px rgba(220, 53, 69, 0.25);
 }
 
+/* Media Queries para Responsividad */
 @media (max-width: 992px) {
-  .courses-schedule-container {
-    padding: 25px;
-    margin: 30px auto;
-    max-width: 95%;
-  }
-  .courses-schedule-container h1 {
-    font-size: 2em;
-    margin-bottom: 30px;
-    padding-bottom: 15px;
-  }
-  .courses-schedule-table {
-    min-width: 768px;
-  }
-  .courses-schedule-table th,
-  .courses-schedule-table td {
-    padding: 12px;
-    font-size: 0.9em;
-  }
-  .courses-schedule-table th {
-    font-size: 0.8em;
-    letter-spacing: 0.5px;
-  }
-  .courses-schedule-table tbody tr.category-row td {
-    padding: 15px 12px;
-    font-size: 1em;
-  }
-  .action-buttons .button {
-    padding: 10px 20px;
-    font-size: 0.95em;
-  }
+    .courses-schedule-container {
+        padding: 25px;
+        margin: 30px auto;
+        max-width: 95%;
+    }
+    .courses-schedule-container h1 {
+        font-size: 2em;
+        margin-bottom: 30px;
+        padding-bottom: 15px;
+    }
+    .header-controls {
+        flex-direction: column; /* Apila el selector y la info en pantallas más pequeñas */
+        gap: 15px;
+    }
+    .career-selector-group,
+    .header-info {
+        /* Asegura que ocupen su propio espacio y no se estiren demasiado */
+        width: auto;
+        max-width: 100%;
+    }
+    .courses-table-wrapper {
+        min-width: 768px;
+    }
+    .courses-schedule-table th,
+    .courses-schedule-table td {
+        padding: 12px;
+        font-size: 0.9em;
+    }
+    .courses-schedule-table th {
+        font-size: 0.8em;
+        letter-spacing: 0.5px;
+    }
+    .courses-schedule-table tbody tr.category-row td {
+        padding: 15px 12px;
+        font-size: 1em;
+    }
+    .action-buttons .button {
+        padding: 10px 20px;
+        font-size: 0.95em;
+    }
 }
 
 @media (max-width: 768px) {
-  .courses-schedule-container {
-    padding: 20px;
-    margin: 20px auto;
-    border-radius: 12px;
-  }
-  .courses-schedule-container h1 {
-    font-size: 1.8em;
-    margin-bottom: 25px;
-    padding-bottom: 12px;
-  }
-  .courses-table-wrapper {
-    border-radius: 10px;
-  }
-  .courses-schedule-table {
-    min-width: 600px;
-  }
-  .courses-schedule-table th,
-  .courses-schedule-table td {
-    padding: 10px;
-    font-size: 0.85em;
-  }
-  .courses-schedule-table tbody tr.category-row td {
-    padding: 12px 10px;
-    font-size: 0.95em;
-  }
-  .courses-schedule-table th:nth-child(4),
-  .courses-schedule-table td:nth-child(4),
-  .courses-schedule-table th:nth-child(6),
-  .courses-schedule-table td:nth-child(6) {
-    display: none;
-  }
-  .pagination-controls {
-    flex-direction: column;
-    gap: 10px;
-  }
-  .action-buttons {
-    flex-direction: column;
-    gap: 15px;
-  }
-  .action-buttons .button {
-    width: 100%;
-    padding: 10px 15px;
-    font-size: 0.9em;
-  }
+    .courses-schedule-container {
+        padding: 20px;
+        margin: 20px auto;
+        border-radius: 12px;
+    }
+    .courses-schedule-container h1 {
+        font-size: 1.8em;
+        margin-bottom: 25px;
+        padding-bottom: 12px;
+    }
+    .courses-table-wrapper {
+        border-radius: 10px;
+    }
+    .courses-schedule-table {
+        min-width: 600px;
+    }
+    .courses-schedule-table th,
+    .courses-schedule-table td {
+        padding: 10px;
+        font-size: 0.85em;
+    }
+    .courses-schedule-table tbody tr.category-row td {
+        padding: 12px 10px;
+        font-size: 0.95em;
+    }
+    .courses-schedule-table th:nth-child(4), /* Código */
+    .courses-schedule-table td:nth-child(4),
+    .courses-schedule-table th:nth-child(6), /* Aula */
+    .courses-schedule-table td:nth-child(6) {
+        display: none;
+    }
+    .pagination-controls {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .action-buttons {
+        flex-direction: column;
+        gap: 15px;
+    }
+    .action-buttons .button {
+        width: 100%;
+        padding: 10px 15px;
+        font-size: 0.9em;
+    }
 }
 
 @media (max-width: 480px) {
-  .courses-schedule-container {
-    padding: 15px;
-    margin: 15px auto;
-    border-radius: 10px;
-  }
-  .courses-schedule-container h1 {
-    font-size: 1.5em;
-    margin-bottom: 20px;
-    padding-bottom: 10px;
-  }
-  .courses-table-wrapper {
-    border-radius: 8px;
-  }
-  .courses-schedule-table {
-    min-width: 400px;
-  }
-  .courses-schedule-table th,
-  .courses-schedule-table td {
-    padding: 8px;
-    font-size: 0.8em;
-  }
-  .courses-schedule-table tbody tr.category-row td {
-    padding: 10px 8px;
-    font-size: 0.9em;
-  }
-  .courses-schedule-table th:nth-child(7),
-  .courses-schedule-table td:nth-child(7) {
-    display: none;
-  }
-  .action-buttons .button {
-    padding: 8px 12px;
-    font-size: 0.85em;
-    border-radius: 8px;
-  }
+    .courses-schedule-container {
+        padding: 15px;
+        margin: 15px auto;
+        border-radius: 10px;
+    }
+    .courses-schedule-container h1 {
+        font-size: 1.5em;
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+    }
+    .courses-table-wrapper {
+        border-radius: 8px;
+    }
+    .courses-schedule-table {
+        min-width: 400px;
+    }
+    .courses-schedule-table th,
+    .courses-schedule-table td {
+        padding: 8px;
+        font-size: 0.8em;
+    }
+    .courses-schedule-table tbody tr.category-row td {
+        padding: 10px 8px;
+        font-size: 0.9em;
+    }
+    .courses-schedule-table th:nth-child(7), /* Cupo Disponible */
+    .courses-schedule-table td:nth-child(7) {
+        display: none;
+    }
+    .action-buttons .button {
+        padding: 8px 12px;
+        font-size: 0.85em;
+        border-radius: 8px;
+    }
 }

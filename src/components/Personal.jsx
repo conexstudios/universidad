@@ -2,7 +2,26 @@ import React, { useState, useEffect } from 'react';
 import '../styles/Personal.css';
 
 const Personal = () => {
-  const [personalData, setPersonalData] = useState(null);
+  const [personalData, setPersonalData] = useState({
+    nombres: '',
+    apellidos: '',
+    cedula: '',
+    fechaNacimiento: '',
+    email: '',
+    telefono: '',
+    sexo: '',
+    estadoCivil: '',
+    discapacidad: false,
+    tipoDiscapacidad: '',
+    codigoDiscapacidad: '',
+    relacionContacto: '',
+    militarActivo: false,
+    componenteMilitar: '',
+    notificar: '',
+    telefonoContacto: '',
+    situacionLaboral: '',
+    empresa: ''
+  });
   const [loading, setLoading] = useState(true);
   const [militarActivo, setMilitarActivo] = useState(false);
   const [discapacidad, setDiscapacidad] = useState(false);
@@ -18,8 +37,32 @@ const Personal = () => {
           }
           throw new Error(`Error al cargar los datos personales: ${response.statusText}`);
         }
-        const data = await response.json(); // Assuming the API returns an array, we take the first element
-        setPersonalData(data.data[0] || null);
+        const json = await response.json();
+        if (json.length === 0) {
+          throw new Error('No se encontraron datos personales.');
+        }
+        const jsonData = json.data[0];
+        console.log('Datos personales obtenidos:', jsonData);
+        setPersonalData({
+          nombres: jsonData.nom_nombres,
+          apellidos: jsonData.nom_apellidos,
+          cedula: jsonData.nom_cedulaid,
+          fechaNacimiento: jsonData.nom_nacim_fecha,
+          email: jsonData.nom_email,
+          telefono: jsonData.NOM_TELEFONO,
+          sexo: jsonData.NOM_SEXO,
+          estadoCivil: jsonData.NOM_ESTADOCIVIL,
+          discapacidad: jsonData.NOM_DISCAPACIDAD,
+          tipoDiscapacidad: jsonData.NOM_TIPODISCAPACIDAD,
+          codigoDiscapacidad: jsonData.NOM_CODIGODISCAPACIDAD,
+          relacionContacto: jsonData.NOM_RELACIONCONTACTO,
+          militarActivo: jsonData.NOM_MILITARACTIVO,
+          componenteMilitar: jsonData.NOM_COMPONENTEMILITAR,
+          notificar: jsonData.NOM_NOTIFICAR,
+          telefonoContacto: jsonData.NOM_TELEFONOCONTACTO,
+          situacionLaboral: jsonData.NOM_SITUACIONLABORAL,
+          empresa: jsonData.NOM_EMPRESA
+        });
       } catch (error) {
         console.error('Error fetching personal data:', error);
         setPersonalData(null);
@@ -29,14 +72,6 @@ const Personal = () => {
     };
     fetchPersonalData();
   }, []);
-
-  const personalDataValue = (e) => {
-    const { name, value } = e.name;
-    setPersonalData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-  };
 
   const handleMilitarActivoChange = (e) => {
     setMilitarActivo(e.target.checked);
@@ -53,27 +88,27 @@ const Personal = () => {
       <form className="personal-form">
         <div className="form-group">
           <label htmlFor="nombres">Nombres</label>
-          <input type="text" id="nombres" name="nombres" personalDataValue />
+          <input type="text" id="nombres" name="nombres" value={personalData.nombres} />
         </div>
         <div className="form-group">
           <label htmlFor="apellidos">Apellidos</label>
-          <input type="text" id="apellidos" name="apellidos" />
+          <input type="text" id="apellidos" name="apellidos" value={personalData.apellidos}/>
         </div>
         <div className="form-group">
           <label htmlFor="cedula">Cédula de identidad</label>
-          <input type="text" id="cedula" name="cedula" />
+          <input type="text" id="cedula" name="cedula" value={personalData.cedula} />
         </div>
         <div className="form-group">
           <label htmlFor="fecha-nacimiento">Fecha de Nacimiento</label>
-          <input type="date" id="fecha-nacimiento" name="fecha-nacimiento" />
+          <input type="date" id="fecha-nacimiento" name="fecha-nacimiento" value={personalData.fechaNacimiento} />
         </div>
         <div className="form-group">
           <label htmlFor="email">Email</label>
-          <input type="email" id="email" name="email" />
+          <input type="email" id="email" name="email" value={personalData.email} />
         </div>
         <div className="form-group">
           <label htmlFor="telefono">Teléfono celular</label>
-          <input type="text" id="telefono" name="telefono" />
+          <input type="text" id="telefono" name="telefono" value={personalData.telefono} />
         </div>
         <div className="form-group">
           <label htmlFor="sexo">Sexo</label>
