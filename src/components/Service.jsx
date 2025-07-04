@@ -1,7 +1,7 @@
-import React, { use } from "react";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "../styles/Service.css";
+import { getDecadeLabel } from "react-calendar/src/shared/dates.js";
 
 const ServiceRequestsList = () => {
   const [orders, setOrders] = useState([]);
@@ -20,15 +20,13 @@ const ServiceRequestsList = () => {
           );
         }
         const json = await response.json();
-
         if (json.length === 0) {
           throw new Error("No se encontraron órdenes.");
         }
-        console.log("Órdenes obtenidas:", json);
+        console.log("Órdenes cargadas:", json.data);
         setOrders(json.data);
       } catch (error) {
         console.error("Error al cargar las órdenes:", error);
-        alert("Error al cargar las órdenes. Por favor, inténtelo más tarde.");
       }
     };
 
@@ -53,36 +51,35 @@ const ServiceRequestsList = () => {
           </tr>
         </thead>
         <tbody>
-          {orders.map((request) => (
-            <tr key={request.id}>
-              <td className="request-number">
-                <a href="#">{request.id}</a>
-              </td>
-              <td>{request.tipo}</td>
-              <td>{request.fecha}</td>
-              <td>{request.moneda}</td>
-              <td className="request-total">{request.total.toFixed(2)}</td>
-              <td>
-                {request.estatus === "Pendiente pago" ? (
-                  <Link
-                    to={`/dashboard/order-payments/${request.id}`}
-                    className="pay-button"
-                  >
-                    Pagar
-                  </Link>
-                ) : (
-                  "-"
-                )}
-              </td>
-              <td
-                className={`request-status status-${request.estatus
-                  .toLowerCase()
-                  .replace(" ", "-")}`}
-              >
-                {request.estatus}
-              </td>
-            </tr>
-          ))}
+          {
+            orders.length === 0 && (
+              <tr>
+                <td colSpan="7" className="no-orders">
+                  No hay órdenes disponibles.
+                </td>
+              </tr>
+            ) || (
+              orders.data.map((order) => (
+                <tr key={order.id}>
+                  <td>{order.id}</td>
+                  <td>{order.tipo}</td>
+                  <td>{new Date(order.fecha_orden).toLocaleDateString()}</td>
+                  <td>{order.moneda}</td>
+                  <td>{order.total.toFixed(2)}</td>
+                  <td>
+                    {order.pagar ? (
+                      <Link to={`/pagar/${order.id}`} className="pay-link">
+                        Pagar
+                      </Link>
+                    ) : (
+                      "No disponible"
+                    )}
+                  </td>
+                  <td>{order.estatus}</td>
+                </tr>
+              ))
+            )
+          }
         </tbody>
       </table>
     </div>

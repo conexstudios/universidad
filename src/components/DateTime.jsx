@@ -78,6 +78,7 @@ const DateTime = () => {
   const handleGuardarSeleccion = () => {
     setMessage('¡Selección guardada!');
     setTimeout(() => setMessage(''), 3000);
+    navigate('/dashboard/confirmar');
   };
 
   const handleCancelarSeleccion = () => {
@@ -191,22 +192,12 @@ const DateTime = () => {
         </table>
       </div>
 
-      <div className="pagination-controls">
-        <button
-          className="nav-button"
-          onClick={handlePreviousPage}
-          disabled={currentPage === 1}
-        >
+     <div className="pagination-controls">
+        <button onClick={handlePreviousPage} disabled={currentPage === 1}>
           Anterior
         </button>
-        <span className="page-info">
-          {currentPage} de {totalPages || 1}
-        </span>
-        <button
-          className="nav-button"
-          onClick={handleNextPage}
-          disabled={currentPage === totalPages || totalPages === 0}
-        >
+        <span>{currentPage} de {totalPages || 1}</span>
+        <button onClick={handleNextPage} disabled={currentPage === totalPages || totalPages === 0}>
           Siguiente
         </button>
       </div>

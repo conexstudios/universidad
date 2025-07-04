@@ -45,6 +45,7 @@ import Messaging  from './pages/Messaging.jsx';
 import Payrolls  from './pages/Payrolls.jsx';
 import FinalNotes  from './pages/FinalNotes.jsx';
 import Customer  from './pages/Customer.jsx';
+import ConfirmSelection  from './pages/ConfirmSelection.jsx';
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <BrowserRouter>
@@ -74,6 +75,7 @@ createRoot(document.getElementById("root")).render(
         <Route path="/dashboard/mensajeria" element={<Mensajeria />}></Route>
         <Route path="/dashboard/academicpre" element={<AcademicPre />}></Route>
         <Route path="/dashboard/apariencia" element={<Apariencia />}></Route>
+        <Route path="/dashboard/confirmar" element={<ConfirmSelection />}></Route>
         <Route
           path="/dashboard/accesibilidad"
           element={<Accesibilidad />}
