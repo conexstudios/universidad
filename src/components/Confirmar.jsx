@@ -9,29 +9,48 @@ const Confirmar = () => {
   return (
     <div className="detalle-pago-container">
       <h1>Confirmación de Selección</h1>
-      {seleccion.length === 0 ? (
-        <p>No hay materias seleccionadas.</p>
-      ) : (
-        <>
-          <div className="detalle-lista">
-            {seleccion.map((item, idx) => (
-              <div key={idx} className="detalle-item">
-                <h2>{item.asignatura} ({item.materia_codigo})</h2>
-                <p><strong>Precio:</strong> ${item.precio ? Number(item.precio).toFixed(2) : "N/A"}</p>
-                <p><strong>Cuatrimestre:</strong> {item.cuatrimestre}</p>
-                <p><strong>Grupo:</strong> {item.grupo_academico}</p>
-                <p><strong>Aula:</strong> {item.aula}</p>
-                <p><strong>Día:</strong> {item.dia_semana}</p>
-                <p><strong>Horario:</strong> {item.hora_inicio} - {item.hora_fin}</p>
-                <p><strong>Cupo Disponible:</strong> {item.cupo_disponible}</p>
-              </div>
-            ))}
-          </div>
-          <div className="detalle-total">
-            <h3>Total a pagar: ${total.toFixed(2)}</h3>
-          </div>
-        </>
-      )}
+    {seleccion.length === 0 ? (
+      <p>No hay materias seleccionadas.</p>
+    ) : (
+      <>
+        <div className="detalle-lista">
+          <table className="detalle-tabla">
+            <thead>
+              <tr>
+                <th>Asignatura</th>
+                <th>Código</th>
+                <th>Precio</th>
+                <th>Cuatrimestre</th>
+                <th>Grupo</th>
+                <th>Aula</th>
+                <th>Día</th>
+                <th>Horario</th>
+                <th>Cupo Disponible</th>
+              </tr>
+            </thead>
+            <tbody>
+              {seleccion.map((item, idx) => (
+                <tr key={idx}>
+                  <td>{item.asignatura}</td>
+                  <td>{item.materia_codigo}</td>
+                  <td>${item.precio ? Number(item.precio).toFixed(2) : "N/A"}</td>
+                  <td>{item.cuatrimestre}</td>
+                  <td>{item.grupo_academico}</td>
+                  <td>{item.aula}</td>
+                  <td>{item.dia_semana}</td>
+                  <td>{item.hora_inicio} - {item.hora_fin}</td>
+                  <td>{item.cupo_disponible}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <div className="detalle-total">
+          <h3>Total a pagar: ${total.toFixed(2)}</h3>
+        </div>
+      </>
+    )}
+      
     </div>
   );
 };
