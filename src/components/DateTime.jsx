@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import "../styles/DateTime.css";
 
 const DateTime = () => {
@@ -7,6 +8,7 @@ const DateTime = () => {
   const [selectedQuarter, setSelectedQuarter] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const [message, setMessage] = useState('');
+  const navigate = useNavigate();
   const itemsPerPage = 5;
 
   useEffect(() => {
@@ -84,6 +86,7 @@ const DateTime = () => {
   const handleCancelarSeleccion = () => {
     setMessage('¡Selección cancelada!');
     setTimeout(() => setMessage(''), 3000);
+      navigate('/dashboard/confirmar');
   };
 
   const handleCareerChange = (event) => {
