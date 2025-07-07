@@ -8,6 +8,7 @@ const DateTime = () => {
   const [selectedQuarter, setSelectedQuarter] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const [message, setMessage] = useState('');
+  const [selectedCourses, setSelectedCourses] = useState([]); 
   const navigate = useNavigate();
   const itemsPerPage = 5;
 
@@ -77,16 +78,22 @@ const DateTime = () => {
     }
   };
 
-  const handleGuardarSeleccion = () => {
-    setMessage('¡Selección guardada!');
-    setTimeout(() => setMessage(''), 3000);
-    navigate('/dashboard/confirmar');
+  const handleCheckboxChange = (item) => {
+    setSelectedCourses((prev) =>
+      prev.some((c) => c === item)
+        ? prev.filter((c) => c !== item)
+        : [...prev, item]
+    );
   };
 
+
+  const handleGuardarSeleccion = () => {
+    navigate('/dashboard/confirmar', { state: { seleccion: selectedCourses } });
+  };
+
+  
   const handleCancelarSeleccion = () => {
-    setMessage('¡Selección cancelada!');
-    setTimeout(() => setMessage(''), 3000);
-      navigate('/dashboard/confirmar');
+    navigate('/dashboard/confirmar', { state: { seleccion: selectedCourses } });
   };
 
   const handleCareerChange = (event) => {
@@ -170,10 +177,16 @@ const DateTime = () => {
             </tr>
           </thead>
           <tbody>
-            {horarios.length > 0 ? (
-              horarios.map((item, index) => (
-                <tr key={index+1}>
-                  <td><input type="checkbox" /></td>
+            {paginatedHorarios.length > 0 ? (
+              paginatedHorarios.map((item, index) => (
+                <tr key={index + 1}>
+                  <td>
+                    <input
+                      type="checkbox"
+                      checked={selectedCourses.includes(item)}
+                      onChange={() => handleCheckboxChange(item)}
+                    />
+                  </td>
                   <td>{item.cuatrimestre}</td>
                   <td>{item.grupo_academico}</td>
                   <td>{item.materia_codigo}</td>
@@ -187,7 +200,9 @@ const DateTime = () => {
             ) : (
               <tr>
                 <td colSpan="9" className="px-4 py-4 text-center text-sm text-gray-500">
-                  {horarios.length === 0 ? "Cargando horarios o no hay datos disponibles." : "No hay cursos disponibles para la selección actual."}
+                  {horarios.length === 0
+                    ? "Cargando horarios o no hay datos disponibles."
+                    : "No hay cursos disponibles para la selección actual."}
                 </td>
               </tr>
             )}
@@ -195,7 +210,7 @@ const DateTime = () => {
         </table>
       </div>
 
-     <div className="pagination-controls">
+      <div className="pagination-controls">
         <button onClick={handlePreviousPage} disabled={currentPage === 1}>
           Anterior
         </button>
