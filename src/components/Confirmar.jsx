@@ -23,8 +23,6 @@ const Confirmar = () => {
                 <th>Cuatrimestre</th>
                 <th>Grupo</th>
                 <th>Aula</th>
-                <th>Día</th>
-                <th>Horario</th>
                 <th>Cupo Disponible</th>
               </tr>
             </thead>
@@ -37,8 +35,6 @@ const Confirmar = () => {
                   <td>{item.cuatrimestre}</td>
                   <td>{item.grupo_academico}</td>
                   <td>{item.aula}</td>
-                  <td>{item.dia_semana}</td>
-                  <td>{item.hora_inicio} - {item.hora_fin}</td>
                   <td>{item.cupo_disponible}</td>
                 </tr>
               ))}
