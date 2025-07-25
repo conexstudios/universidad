@@ -28,7 +28,7 @@ const Dashboard = () => {
   
         // --- SEGURIDAD CRÍTICA 2: Validar el TIPO y CONTENIDO del mensaje ---
         // Asegúrate de que el mensaje es el token de autenticación que esperas.
-        if (event.data && event.data.type === 'AUTH_TOKEN' && typeof event.data.token === 'string') {
+        if (event.data && event.data.type === 'auth_success' && typeof event.data.token === 'string') {
           const receivedToken = event.data.token;
           console.log('postMessage: Token recibido en React:', receivedToken);
   
