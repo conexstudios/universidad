@@ -8,51 +8,59 @@ import WelcomeArea from "../components/WelcomeArea";
 import HomeWork from "../components/HomeWork";
 import Horarios from "../components/Horarios";
 import Asignatura from "../components/Asignatura";
+import create from 'zustand';
+
+const useSessionStore = create((set) => ({
+  session: null,
+  setSession: (sessionData) => set({ session: sessionData }),
+}));
 
 const Dashboard = () => {
-  const [authToken, setAuthToken] = useState(null);
-  const [messageStatus, setMessageStatus] = useState('Esperando token...');
   const navigate = useNavigate();
+  const setSession = useSessionStore((state) => state.setSession);
+  const session = useSessionStore((state) => state.session);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-      const handleMessage = (event) => {
-        // --- SEGURIDAD CRÍTICA 1: Validar el ORIGEN del mensaje ---
-        // Reemplaza 'https://your-login-domain.com' con el dominio exacto
-        // de tu página de inicio de sesión o servicio de autenticación.
-        const trustedLoginOrigin = 'https://demouniv.conexstudios.com';
-        if (event.origin !== trustedLoginOrigin) {
-          console.warn('postMessage: Mensaje recibido de un origen no autorizado:', event.origin);
-          setMessageStatus('Error de seguridad: Origen no autorizado.');
-          return; // Ignorar mensajes de orígenes no confiables
-        }
-  
-        // --- SEGURIDAD CRÍTICA 2: Validar el TIPO y CONTENIDO del mensaje ---
-        // Asegúrate de que el mensaje es el token de autenticación que esperas.
-        if (event.data && event.data.type === 'auth_success' && typeof event.data.token === 'string') {
-          const receivedToken = event.data.token;
-          console.log('postMessage: Token recibido en React:', receivedToken);
-  
-          // Almacenar el token en el estado de React
-          setAuthToken(receivedToken);
-          setMessageStatus('Token recibido y almacenado.');
-  
-          // --- Almacenamiento Persistente (Opcional, con precaución) ---
-          // Si necesitas que el token persista después de recargar, puedes guardarlo en localStorage.
-          // ¡CUIDADO! localStorage es vulnerable a XSS. Considera usar HttpOnly cookies si tu arquitectura lo permite.
-          localStorage.setItem('jwtToken', receivedToken);
-          navigate('/dashboard'); 
-  
-        } else {
-          console.warn('postMessage: Mensaje recibido, pero no es el tipo de token esperado o el formato es incorrecto:', event.data);
-          setMessageStatus('Error: Mensaje inesperado recibido.');
-        }
-      };
- 
-      window.addEventListener('message', handleMessage);
-      return () => {
-        window.removeEventListener('message', handleMessage);
-      };
-    }, []);
+    if (session) {
+      setLoading(false);
+      return;
+    }
+    const url = new URL(window.location.href);
+    const user = url.searchParams.get('user');
+    const id = url.searchParams.get('id');
+    const referer = document.referrer;
+
+    if (!user || !id || !referer) {
+      setError('Faltan parámetros en la URL o no hay REFERER.');
+      setLoading(false);
+      return;
+    }
+
+    fetch(referer, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ user, id }),
+    })
+      .then((res) => {
+        if (!res.ok) throw new Error('Error en la petición de sesión');
+        return res.json();
+      })
+      .then((data) => {
+        setSession(data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        setError(err.message);
+        setLoading(false);
+      });
+  }, [setSession, session]);
+
+  if (loading) return <div>Cargando sesión...</div>;
+  if (error) return <div>Error: {error}</div>;
 
   return (
     <>
@@ -68,4 +76,4 @@ const Dashboard = () => {
     </>
   );
 };
- export default Dashboard;
+export default Dashboard;
