@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import { useFetchWithSession } from '../store/fetchWithSession';
+import useSessionStore from '../store/sessionStore';
 import { Link } from "react-router-dom";
 import "../styles/Service.css";
 import { getDecadeLabel } from "react-calendar/src/shared/dates.js";
@@ -7,10 +9,16 @@ const ServiceRequestsList = () => {
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {
+    const fetchWithSession = useFetchWithSession();
     const fetchOrders = async () => {
       try {
-        const apiUrl = `${import.meta.env.VITE_API_URL}/ordenes`;
-        const response = await fetch(apiUrl);
+        if (!session) return;
+        const params = new URLSearchParams({
+          user: session.user,
+          id: session.id,
+        });
+        const apiUrl = `${import.meta.env.VITE_API_URL}/ordenes?${params.toString()}`;
+        const response = await fetchWithSession(apiUrl);
         if (!response.ok) {
           if (response.status === 401) {
             throw new Error("No autorizado. Por favor, inicie sesión.");

@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
+import { useFetchWithSession } from '../store/fetchWithSession';
+import useSessionStore from '../store/sessionStore';
 import "../styles/DateTime.css";
 
 const DateTime = () => {
@@ -12,11 +14,21 @@ const DateTime = () => {
   const navigate = useNavigate();
   const itemsPerPage = 5;
 
+  const session = useSessionStore((state) => state.session);
+
   useEffect(() => {
     const fetchHorarios = async () => {
       try {
-        const apiUrl = `${import.meta.env.VITE_API_URL}/horarios?COLEG_ID=292&COL_PROC_INSCRIPC_ID=861`;
-        const response = await fetch(apiUrl);
+      if (!session) return;
+      const params = new URLSearchParams({
+        COLEG_ID: session.COLEG_ID,
+        COL_PROC_INSCRIPC_ID: session.COL_PROC_INSCRIPC_ID,
+        user: session.user,
+        id: session.id,
+      });
+      const apiUrl = `${import.meta.env.VITE_API_URL}/horarios?${params.toString()}`;
+      const fetchWithSession = useFetchWithSession();
+      const response = await fetchWithSession(apiUrl);
         if (!response.ok) {
           if (response.status === 401) {
             throw new Error("No autorizado. Por favor, inicie sesión.");

@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { useFetchWithSession } from '../store/fetchWithSession';
+import useSessionStore from '../store/sessionStore';
 import '../styles/Personal.css';
 
 const Personal = () => {
@@ -29,8 +31,15 @@ const Personal = () => {
   useEffect(() => {
     const fetchPersonalData = async () => {
       try {
-        const apiUrl = `${import.meta.env.VITE_API_URL}/nominas?NOM_FICHANRO=1`;
-        const response = await fetch(apiUrl);
+        if (!session) return;
+        const params = new URLSearchParams({
+          NOM_FICHANRO: session.NOM_FICHANRO,
+          user: session.user,
+          id: session.id,
+        });
+        const apiUrl = `${import.meta.env.VITE_API_URL}/nominas?${params.toString()}`;
+        const fetchWithSession = useFetchWithSession();
+        const response = await fetchWithSession(apiUrl);
         if (!response.ok) {
           if (response.status === 401) {
             throw new Error('No autorizado. Por favor, inicie sesión.');
