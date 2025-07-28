@@ -35,9 +35,6 @@ const Dashboard = () => {
 
     fetch(import.meta.env.VITE_LOGIN_URL, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-      },
       body: formData,
     })
       .then((res) => {
