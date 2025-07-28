@@ -17,11 +17,6 @@ const Dashboard = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   
-  if (!session) {
-    document.location.href = import.meta.env.VITE_LOGIN_URL;
-    setLoading(false);
-    return;
-  }
   useEffect(() => {
     const url = new URL(window.location.href);
     const user = url.searchParams.get('user');
@@ -52,6 +47,7 @@ const Dashboard = () => {
       .catch((err) => {
         setError(err.message);
         setLoading(false);
+        document.location.href = import.meta.env.VITE_LOGIN_URL;
       });
   }, [setSession, session]);
 
