@@ -8,12 +8,7 @@ import WelcomeArea from "../components/WelcomeArea";
 import HomeWork from "../components/HomeWork";
 import Horarios from "../components/Horarios";
 import Asignatura from "../components/Asignatura";
-import create from 'zustand';
-
-const useSessionStore = create((set) => ({
-  session: null,
-  setSession: (sessionData) => set({ session: sessionData }),
-}));
+import useSessionStore  from '../store/sessionStore';
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -21,12 +16,13 @@ const Dashboard = () => {
   const session = useSessionStore((state) => state.session);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
+  
+  if (!session) {
+    document.location.href = import.meta.env.VITE_LOGIN_URL;
+    setLoading(false);
+    return;
+  }
   useEffect(() => {
-    if (session) {
-      setLoading(false);
-      return;
-    }
     const url = new URL(window.location.href);
     const user = url.searchParams.get('user');
     const id = url.searchParams.get('id');
