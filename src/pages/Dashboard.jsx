@@ -8,7 +8,7 @@ import WelcomeArea from "../components/WelcomeArea";
 import HomeWork from "../components/HomeWork";
 import Horarios from "../components/Horarios";
 import Asignatura from "../components/Asignatura";
-import useSessionStore  from '../store/sessionStore';
+import useSessionStore from '../store/sessionStore';
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -16,7 +16,7 @@ const Dashboard = () => {
   const session = useSessionStore((state) => state.session);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  
+
   useEffect(() => {
     const url = new URL(window.location.href);
     const user = url.searchParams.get('user');
@@ -33,23 +33,25 @@ const Dashboard = () => {
     formData.append('id', id);
     formData.append('referer', referer);
 
-    fetch(import.meta.env.VITE_LOGIN_URL, {
-      method: 'POST',
-      body: formData,
-    })
-      .then((res) => {
-        if (!res.ok) throw new Error('Error en la petición de sesión');
-        return res.json();
+    if (!session) {
+      fetch(import.meta.env.VITE_LOGIN_URL, {
+        method: 'POST',
+        body: formData,
       })
-      .then((data) => {
-        setSession(data);
-        setLoading(false);
-      })
-      .catch((err) => {
-        setError(err.message);
-        setLoading(false);
-        // document.location.href = import.meta.env.VITE_LOGIN_URL;
-      });
+        .then((res) => {
+          if (!res.ok) throw new Error('Error en la petición de sesión');
+          return res.json();
+        })
+        .then((data) => {
+          setSession(data);
+          setLoading(false);
+        })
+        .catch((err) => {
+          setError(err.message);
+          setLoading(false);
+          // document.location.href = import.meta.env.VITE_LOGIN_URL;
+        });
+    }
   }, [setSession, session]);
 
   if (loading) return <div>Cargando sesión...</div>;
