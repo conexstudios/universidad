@@ -28,13 +28,17 @@ const Dashboard = () => {
       setLoading(false);
       return;
     }
+    const formData = new FormData();
+    formData.append('user', user);
+    formData.append('id', id);
+    formData.append('referer', referer);
 
     fetch(import.meta.env.VITE_LOGIN_URL, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/x-www-form-urlencoded',
       },
-      body: JSON.stringify({ user, id }),
+      body: formData,
     })
       .then((res) => {
         if (!res.ok) throw new Error('Error en la petición de sesión');
