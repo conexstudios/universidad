@@ -23,13 +23,13 @@ const Dashboard = () => {
     const id = url.searchParams.get('id');
     const referer = document.referrer;
 
-    if (!user || !id || !referer) {
+    if (!user || !id) {
       setError('Faltan parámetros en la URL o no hay REFERER.');
       setLoading(false);
       return;
     }
 
-    fetch(referer, {
+    fetch(import.meta.env.VITE_LOGIN_URL, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
