@@ -18,38 +18,39 @@ const Dashboard = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const url = new URL(window.location.href);
-    const user = url.searchParams.get('user');
-    const id = url.searchParams.get('id');
-    const referer = document.referrer;
-    const nom_fichanro = url.searchParams.get('nom_fichanro');
-    const usuario_id = url.searchParams.get('usuario_id');
-    const usu_grupo = url.searchParams.get('usu_grupo');
-    const col_lapso_acad_id = url.searchParams.get('col_lapso_acad_id');
-    const colap_nombre = url.searchParams.get('colap_nombre');
-
-    const newParams = new URLSearchParams({
-      user,
-      id,
-      referer,
-      nom_fichanro,
-      usuario_id,
-      usu_grupo,
-      col_lapso_acad_id,
-      colap_nombre,
-    });
-
-    if (!user || !id) {
-      setError('Faltan parámetros en la URL o no hay REFERER.');
-      setLoading(false);
-      return;
-    }
-    const formData = new FormData();
-    formData.append('user', user);
-    formData.append('id', id);
-    formData.append('referer', referer);
 
     if (!session) {
+      const url = new URL(window.location.href);
+      const user = url.searchParams.get('user');
+      const id = url.searchParams.get('id');
+      const referer = document.referrer;
+      const nom_fichanro = url.searchParams.get('nom_fichanro');
+      const usuario_id = url.searchParams.get('usuario_id');
+      const usu_grupo = url.searchParams.get('usu_grupo');
+      const col_lapso_acad_id = url.searchParams.get('col_lapso_acad_id');
+      const colap_nombre = url.searchParams.get('colap_nombre');
+
+      const newParams = new URLSearchParams({
+        user,
+        id,
+        referer,
+        nom_fichanro,
+        usuario_id,
+        usu_grupo,
+        col_lapso_acad_id,
+        colap_nombre,
+      });
+
+      if (!user || !id) {
+        setError('Faltan parámetros en la URL o no hay REFERER.');
+        setLoading(false);
+        return;
+      }
+      const formData = new FormData();
+      formData.append('user', user);
+      formData.append('id', id);
+      formData.append('referer', referer);
+      
       fetch(import.meta.env.VITE_LOGIN_URL, {
         method: 'POST',
         body: formData,
