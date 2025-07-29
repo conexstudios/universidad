@@ -17,9 +17,12 @@ const Dashboard = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  console.log(session);
+  useEffect(() => {
+    if (session && Object.keys(session).length > 0) {
+      setLoading(false);
+      return;
+    }
 
-  if (session.length === 0) {
     const url = new URL(window.location.href);
     const user = url.searchParams.get('user');
     const id = url.searchParams.get('id');
@@ -28,8 +31,10 @@ const Dashboard = () => {
     if (!user || !id) {
       setError('Faltan parámetros en la URL o no hay REFERER.');
       setLoading(false);
+      window.location.href = import.meta.env.VITE_LOGIN_URL;
       return;
     }
+
     const formData = new FormData();
     formData.append('user', user);
     formData.append('id', id);
@@ -45,32 +50,20 @@ const Dashboard = () => {
         return res.json();
       })
       .then((data) => {
-        const sessionData = {};
-        for (const key in data) {
-          if (Object.hasOwnProperty.call(data, key)) {
-            const element = data[key];
-            sessionData[key] = element;
+        const sessionData = { ...data };
+        for (const key of url.searchParams.keys()) {
+          if (!sessionData[key]) {
+            sessionData[key] = url.searchParams.get(key);
           }
         }
-        useEffect(() => {
-          for (const key of url.searchParams.keys()) {
-            if (!sessionData[key]) {
-              sessionData[key] = url.searchParams.get(key);
-            }
-          }
-          setSession(sessionData);
-          setLoading(false);
-        }, [setSession, session]);
+        setSession(sessionData);
+        setLoading(false);
       })
       .catch((err) => {
         setError(err.message);
         setLoading(false);
-        document.location.href = import.meta.env.VITE_LOGIN_URL;
       });
-  }
-  else {
-    setLoading(false);
-  }
+  }, [session, setSession]);
 
   if (loading) return <div>Cargando sesión...</div>;
   if (error) return <div>Error: {error}</div>;
