@@ -17,6 +17,8 @@ const Dashboard = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  console.log(session);
+
   if (session.length === 0) {
     const url = new URL(window.location.href);
     const user = url.searchParams.get('user');
@@ -77,9 +79,9 @@ const Dashboard = () => {
     <>
       <Menu />
       <main className="main-content dashboard-content">
+        <Buscador />
         {session && (
           <>
-            <Buscador />
             <WelcomeArea />
             <Horarios />
             <Asignatura />
