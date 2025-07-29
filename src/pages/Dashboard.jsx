@@ -17,7 +17,7 @@ const Dashboard = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  if (!session.length === 0) {
+  if (session.length === 0) {
     const url = new URL(window.location.href);
     const user = url.searchParams.get('user');
     const id = url.searchParams.get('id');
