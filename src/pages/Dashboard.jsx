@@ -37,6 +37,7 @@ const Dashboard = () => {
       fetch(import.meta.env.VITE_LOGIN_URL, {
         method: 'POST',
         body: formData,
+        credentials: 'include',
       })
         .then((res) => {
           if (!res.ok) throw new Error('Error en la petición de sesión');
