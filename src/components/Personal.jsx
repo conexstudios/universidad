@@ -33,58 +33,54 @@ const Personal = () => {
     const fetchPersonalData = async () => {
       const session = useSessionStore((state) => state.session);
       setLoading(true);
-      try {
-        const response = await fetch(import.meta.env.VITE_API_URL + '/nominas?NOM_FICHANRO=' + session.NOM_FICHANRO);
-        const json = await response.json();
-        const jsonData = json.data[0];
-        if (jsonData) {
-          setPersonalData({
-            nombres: jsonData.nom_nombres || '',
-            apellidos: jsonData.nom_apellidos || '',
-            cedula: jsonData.nom_cedulaid || '',
-            fechaNacimiento: jsonData.nom_nacim_fecha || '',
-            email: jsonData.nom_email || '',
-            telefono: jsonData.NOM_TELEFONO || '',
-            sexo: jsonData.NOM_SEXO || '',
-            estadoCivil: jsonData.NOM_ESTADOCIVIL || '',
-            discapacidad: jsonData.NOM_DISCAPACIDAD || false,
-            tipoDiscapacidad: jsonData.NOM_TIPODISCAPACIDAD || '',
-            codigoDiscapacidad: jsonData.NOM_CODIGODISCAPACIDAD || '',
-            relacionContacto: jsonData.NOM_RELACIONCONTACTO || '',
-            militarActivo: jsonData.NOM_MILITARACTIVO || false,
-            componenteMilitar: jsonData.NOM_COMPONENTEMILITAR || '',
-            notificar: jsonData.NOM_NOTIFICAR || '',
-            telefonoContacto: jsonData.NOM_TELEFONOCONTACTO || '',
-            situacionLaboral: jsonData.NOM_SITUACIONLABORAL || '',
-            empresa: jsonData.NOM_EMPRESA || ''
-          });
-        } else {
-          setPersonalData({
-            nombres: '',
-            apellidos: '',
-            cedula: '',
-            fechaNacimiento: '',
-            email: '',
-            telefono: '',
-            sexo: '',
-            estadoCivil: '',
-            discapacidad: false,
-            tipoDiscapacidad: '',
-            codigoDiscapacidad: '',
-            relacionContacto: '',
-            militarActivo: false,
-            componenteMilitar: '',
-            notificar: '',
-            telefonoContacto: '',
-            situacionLaboral: '',
-            empresa: ''
-          });
-        }
-      } catch (error) {
-        console.error("Error fetching personal data:", error);
-      } finally {
-        setLoading(false);
+
+      const response = await fetch(import.meta.env.VITE_API_URL + '/nominas?NOM_FICHANRO=' + session.NOM_FICHANRO);
+      const json = await response.json();
+      const jsonData = json.data[0];
+      if (jsonData) {
+        setPersonalData({
+          nombres: jsonData.nom_nombres || '',
+          apellidos: jsonData.nom_apellidos || '',
+          cedula: jsonData.nom_cedulaid || '',
+          fechaNacimiento: jsonData.nom_nacim_fecha || '',
+          email: jsonData.nom_email || '',
+          telefono: jsonData.NOM_TELEFONO || '',
+          sexo: jsonData.NOM_SEXO || '',
+          estadoCivil: jsonData.NOM_ESTADOCIVIL || '',
+          discapacidad: jsonData.NOM_DISCAPACIDAD || false,
+          tipoDiscapacidad: jsonData.NOM_TIPODISCAPACIDAD || '',
+          codigoDiscapacidad: jsonData.NOM_CODIGODISCAPACIDAD || '',
+          relacionContacto: jsonData.NOM_RELACIONCONTACTO || '',
+          militarActivo: jsonData.NOM_MILITARACTIVO || false,
+          componenteMilitar: jsonData.NOM_COMPONENTEMILITAR || '',
+          notificar: jsonData.NOM_NOTIFICAR || '',
+          telefonoContacto: jsonData.NOM_TELEFONOCONTACTO || '',
+          situacionLaboral: jsonData.NOM_SITUACIONLABORAL || '',
+          empresa: jsonData.NOM_EMPRESA || ''
+        });
+      } else {
+        setPersonalData({
+          nombres: '',
+          apellidos: '',
+          cedula: '',
+          fechaNacimiento: '',
+          email: '',
+          telefono: '',
+          sexo: '',
+          estadoCivil: '',
+          discapacidad: false,
+          tipoDiscapacidad: '',
+          codigoDiscapacidad: '',
+          relacionContacto: '',
+          militarActivo: false,
+          componenteMilitar: '',
+          notificar: '',
+          telefonoContacto: '',
+          situacionLaboral: '',
+          empresa: ''
+        });
       }
+
     };
     fetchPersonalData();
   }, []);
@@ -108,7 +104,7 @@ const Personal = () => {
         </div>
         <div className="form-group">
           <label htmlFor="apellidos">Apellidos</label>
-          <input type="text" id="apellidos" name="apellidos" value={personalData.apellidos || ''}/>
+          <input type="text" id="apellidos" name="apellidos" value={personalData.apellidos || ''} />
         </div>
         <div className="form-group">
           <label htmlFor="cedula">Cédula de identidad</label>
@@ -216,7 +212,7 @@ const Personal = () => {
           <label htmlFor="notificar">Notificar a</label>
           <input type="text" id="notificar" name="notificar" value={personalData.notificar || ''} />
         </div>
-        
+
         <div className="form-group">
           <label htmlFor="telefono-contacto">Teléfono de su persona de Contacto</label>
           <input type="text" id="telefono-contacto" name="telefono-contacto" value={personalData.telefonoContacto || ''} />
