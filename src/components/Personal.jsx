@@ -33,51 +33,33 @@ const Personal = () => {
     const fetchPersonalData = async () => {
       setLoading(true);
       try {
-        if (!session) return;
-        const params = new URLSearchParams({
-          NOM_FICHANRO: session.NOM_FICHANRO,
-          user: session.user,
-          id: session.id,
-        });
-        const apiUrl = `${import.meta.env.VITE_API_URL}/nominas?${params.toString()}`;
-        const fetchWithSession = useFetchWithSession();
-        const response = await fetchWithSession(apiUrl);
-        if (!response.ok) {
-          if (response.status === 401) {
-            throw new Error('No autorizado. Por favor, inicie sesión.');
-          }
-          throw new Error(`Error al cargar los datos personales: ${response.statusText}`);
-        }
+        const response = await fetch(/* tu URL aquí */);
         const json = await response.json();
-        if (json.length === 0) {
-          throw new Error('No se encontraron datos personales.');
-        }
         const jsonData = json.data[0];
-
-        if(jsonData.length > 0){
+        if (jsonData) {
           setPersonalData({
-            nombres: jsonData.nom_nombres,
-            apellidos: jsonData.nom_apellidos,
-            cedula: jsonData.nom_cedulaid,
-            fechaNacimiento: jsonData.nom_nacim_fecha,
-            email: jsonData.nom_email,
-            telefono: jsonData.NOM_TELEFONO,
-            sexo: jsonData.NOM_SEXO,
-            estadoCivil: jsonData.NOM_ESTADOCIVIL,
-            discapacidad: jsonData.NOM_DISCAPACIDAD,
-            tipoDiscapacidad: jsonData.NOM_TIPODISCAPACIDAD,
-            codigoDiscapacidad: jsonData.NOM_CODIGODISCAPACIDAD,
-            relacionContacto: jsonData.NOM_RELACIONCONTACTO,
-            militarActivo: jsonData.NOM_MILITARACTIVO,
-            componenteMilitar: jsonData.NOM_COMPONENTEMILITAR,
-            notificar: jsonData.NOM_NOTIFICAR,
-            telefonoContacto: jsonData.NOM_TELEFONOCONTACTO,
-            situacionLaboral: jsonData.NOM_SITUACIONLABORAL,
-            empresa: jsonData.NOM_EMPRESA
+            nombres: jsonData.nom_nombres || "",
+            apellidos: jsonData.nom_apellidos || "",
+            cedula: jsonData.nom_cedulaid || "",
+            fechaNacimiento: jsonData.nom_nacim_fecha || "",
+            email: jsonData.nom_email || "",
+            telefono: jsonData.NOM_TELEFONO || "",
+            sexo: jsonData.NOM_SEXO || "",
+            estadoCivil: jsonData.NOM_ESTADOCIVIL || "",
+            discapacidad: jsonData.NOM_DISCAPACIDAD || "",
+            tipoDiscapacidad: jsonData.NOM_TIPODISCAPACIDAD || "",
+            codigoDiscapacidad: jsonData.NOM_CODIGODISCAPACIDAD || "",
+            relacionContacto: jsonData.NOM_RELACIONCONTACTO || "",
+            militarActivo: jsonData.NOM_MILITARACTIVO || "",
+            componenteMilitar: jsonData.NOM_COMPONENTEMILITAR || "",
+            notificar: jsonData.NOM_NOTIFICAR || "",
+            telefonoContacto: jsonData.NOM_TELEFONOCONTACTO || "",
+            situacionLaboral: jsonData.NOM_SITUACIONLABORAL || "",
+            empresa: jsonData.NOM_EMPRESA || "",
           });
         }
       } catch (error) {
-        console.error('Error fetching personal data:', error);
+        console.error("Error fetching personal data:", error);
       } finally {
         setLoading(false);
       }
