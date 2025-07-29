@@ -27,7 +27,7 @@ const Dashboard = React.memo(() => {
       const id = url.searchParams.get('id');
       const referer = document.referrer;
 
-      if (!user || !id || session) {
+      if (!user || !id) {
         setError('Faltan parámetros en la URL o no hay REFERER.');
         setLoading(false);
         window.location.href = import.meta.env.VITE_LOGIN_URL;

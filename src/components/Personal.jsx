@@ -33,9 +33,9 @@ const Personal = () => {
     const fetchPersonalData = async () => {
       setLoading(true);
       try {
-        const response = await fetch(import.meta.env.VITE_API_URL + '/nominas');
+        const response = await fetch(import.meta.env.VITE_API_URL + '/nominas?NOM_FICHANRO=' + session.NOM_FICHANRO);
         const json = await response.json();
-        const jsonData = json.data && json.data[0];
+        const jsonData = json.data[0];
         if (jsonData) {
           setPersonalData({
             nombres: jsonData.nom_nombres || '',
@@ -80,33 +80,13 @@ const Personal = () => {
           });
         }
       } catch (error) {
-        console.error('Error fetching personal data:', error);
-        setPersonalData({
-          nombres: '',
-          apellidos: '',
-          cedula: '',
-          fechaNacimiento: '',
-          email: '',
-          telefono: '',
-          sexo: '',
-          estadoCivil: '',
-          discapacidad: false,
-          tipoDiscapacidad: '',
-          codigoDiscapacidad: '',
-          relacionContacto: '',
-          militarActivo: false,
-          componenteMilitar: '',
-          notificar: '',
-          telefonoContacto: '',
-          situacionLaboral: '',
-          empresa: ''
-        });
+        console.error("Error fetching personal data:", error);
       } finally {
         setLoading(false);
       }
     };
     fetchPersonalData();
-  }, []);
+  }, [session]);
 
   const handleMilitarActivoChange = (e) => {
     setMilitarActivo(e.target.checked);
@@ -120,15 +100,14 @@ const Personal = () => {
     <div className="personal-container">
       <h1>Datos Personales</h1>
       {loading && <p>Cargando datos personales...</p>}
-      {Object.keys(personalData).length === 0 && !loading && <p>No hay datos personales disponibles.</p>}
       <form className="personal-form">
         <div className="form-group">
           <label htmlFor="nombres">Nombres</label>
-          <input type="text" id="nombres" name="nombres" value={personalData.nom_nombres || ''} />
+          <input type="text" id="nombres" name="nombres" value={personalData.nombres || ''} />
         </div>
         <div className="form-group">
           <label htmlFor="apellidos">Apellidos</label>
-          <input type="text" id="apellidos" name="apellidos" value={personalData.nom_apellidos || ''}/>
+          <input type="text" id="apellidos" name="apellidos" value={personalData.apellidos || ''}/>
         </div>
         <div className="form-group">
           <label htmlFor="cedula">Cédula de identidad</label>
