@@ -4,7 +4,7 @@ import useSessionStore from '../store/sessionStore';
 import '../styles/Personal.css';
 
 const Personal = () => {
-  const session = useSessionStore((state) => state.session);
+
   const [personalData, setPersonalData] = useState({
     nombres: '',
     apellidos: '',
@@ -31,6 +31,7 @@ const Personal = () => {
 
   useEffect(() => {
     const fetchPersonalData = async () => {
+      const session = useSessionStore((state) => state.session);
       setLoading(true);
       try {
         const response = await fetch(import.meta.env.VITE_API_URL + '/nominas?NOM_FICHANRO=' + session.NOM_FICHANRO);
