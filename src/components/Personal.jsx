@@ -32,19 +32,20 @@ const Personal = () => {
 
   useEffect(() => {
     const fetchPersonalData = async () => {
+      if (!session || !session.NOM_FICHANRO) {
+        setError('No hay sesión activa.');
+        window.location.href = import.meta.env.VITE_LOGIN_URL;
+        setLoading(false);
+        return;
+      }
+      setLoading(true);
+      setError(null);
       try {
-        setLoading(true);
-        setError(null);
         const apiUrl = import.meta.env.VITE_API_URL || 'https://default-api-url.com';
         const response = await fetch(`${apiUrl}/nominas?NOM_FICHANRO=${session.NOM_FICHANRO}`);
-        
-        if (!response.ok) {
-          throw new Error('Failed to fetch personal data');
-        }
-
+        if (!response.ok) throw new Error('No se pudo obtener los datos personales');
         const json = await response.json();
-        const jsonData = json.data[0];
-        
+        const jsonData = json.data && json.data[0];
         if (jsonData) {
           setPersonalData({
             nombres: jsonData.nom_nombres || '',
@@ -59,30 +60,25 @@ const Personal = () => {
             tipoDiscapacidad: jsonData.nom_tipodiscapacidad || '',
             codigoDiscapacidad: jsonData.nom_codigodiscapacidad || '',
             relacionContacto: jsonData.nom_relacioncontacto || '',
-            militarActivo: jsonData.NOM_MILITARACTIVO || false,
-            componenteMilitar: jsonData.NOM_COMPONENTEMILITAR || '',
-            notificar: jsonData.NOM_NOTIFICAR || '',
-            telefonoContacto: jsonData.NOM_TELEFONOCONTACTO || '',
-            situacionLaboral: jsonData.NOM_SITUACIONLABORAL || '',
-            empresa: jsonData.NOM_EMPRESA || '',
+            militarActivo: jsonData.nom_militaractivo || false,
+            componenteMilitar: jsonData.nom_componentemilitar || '',
+            notificar: jsonData.nom_notificar || '',
+            telefonoContacto: jsonData.nom_telefonocontacto || '',
+            situacionLaboral: jsonData.nom_situacionlaboral || '',
+            empresa: jsonData.nom_empresa || '',
           });
         } else {
           setPersonalData(initialPersonalData);
         }
       } catch (err) {
         setError(err.message);
+        setPersonalData(initialPersonalData);
       } finally {
         setLoading(false);
       }
     };
-
-    if (session.NOM_FICHANRO) {
-      fetchPersonalData();
-    } else {
-      setLoading(false);
-      setError('No session data available');
-    }
-  }, [session.NOM_FICHANRO]);
+    fetchPersonalData();
+  }, [session && session.NOM_FICHANRO]);
 
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
