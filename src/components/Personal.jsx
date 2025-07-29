@@ -106,7 +106,7 @@ const Personal = () => {
       }
     };
     fetchPersonalData();
-  }, [session]);
+  }, []);
 
   const handleMilitarActivoChange = (e) => {
     setMilitarActivo(e.target.checked);
@@ -124,11 +124,11 @@ const Personal = () => {
       <form className="personal-form">
         <div className="form-group">
           <label htmlFor="nombres">Nombres</label>
-          <input type="text" id="nombres" name="nombres" value={personalData.nombres || ''} />
+          <input type="text" id="nombres" name="nombres" value={personalData.nom_nombres || ''} />
         </div>
         <div className="form-group">
           <label htmlFor="apellidos">Apellidos</label>
-          <input type="text" id="apellidos" name="apellidos" value={personalData.apellidos || ''}/>
+          <input type="text" id="apellidos" name="apellidos" value={personalData.nom_apellidos || ''}/>
         </div>
         <div className="form-group">
           <label htmlFor="cedula">Cédula de identidad</label>
