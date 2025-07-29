@@ -52,12 +52,12 @@ const Dashboard = () => {
             }
           }
           setSession(sessionData);
-          setLoading(true);
+          setLoading(false);
         })
         .catch((err) => {
           setError(err.message);
           setLoading(false);
-          // document.location.href = import.meta.env.VITE_LOGIN_URL;
+          document.location.href = import.meta.env.VITE_LOGIN_URL;
         });
     }
   }, [setSession, session]);
