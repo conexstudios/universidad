@@ -22,6 +22,22 @@ const Dashboard = () => {
     const user = url.searchParams.get('user');
     const id = url.searchParams.get('id');
     const referer = document.referrer;
+    const nom_fichanro = url.searchParams.get('nom_fichanro');
+    const usuario_id = url.searchParams.get('usuario_id');
+    const usu_grupo = url.searchParams.get('usu_grupo');
+    const col_lapso_acad_id = url.searchParams.get('col_lapso_acad_id');
+    const colap_nombre = url.searchParams.get('colap_nombre');
+
+    const newParams = new URLSearchParams({
+      user,
+      id,
+      referer,
+      nom_fichanro,
+      usuario_id,
+      usu_grupo,
+      col_lapso_acad_id,
+      colap_nombre,
+    });
 
     if (!user || !id) {
       setError('Faltan parámetros en la URL o no hay REFERER.');
@@ -51,7 +67,7 @@ const Dashboard = () => {
               sessionData[key] = element;
             }
           }
-          setSession(sessionData);
+          setSession(sessionData, newParams);
           setLoading(false);
         })
         .catch((err) => {

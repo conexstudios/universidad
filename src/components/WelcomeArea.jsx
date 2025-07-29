@@ -1,12 +1,14 @@
 import "../styles/WelcomeArea.css";
 import academicGapImage from "../assets/academic-gap.png";
+import useSessionStore from '../store/sessionStore';
 
 const WelcomeArea = () => {
+  const session = useSessionStore((state) => state.session);
   return (
     <div className="welcome-area">
       <div className="welcome-text-section"> 
         <p>
-          Hola Yolman, aquí encontrarás un resumen de tu actividad en
+          Hola {session.USUARIO_ID}, aquí encontrarás un resumen de tu actividad en
           conextudios.
         </p>
       </div>
