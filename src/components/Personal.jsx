@@ -33,33 +33,74 @@ const Personal = () => {
     const fetchPersonalData = async () => {
       setLoading(true);
       try {
-        const response = await fetch(/* tu URL aquí */);
+        const response = await fetch(import.meta.env.VITE_API_URL + '/nominas');
         const json = await response.json();
-        const jsonData = json.data[0];
+        const jsonData = json.data && json.data[0];
         if (jsonData) {
           setPersonalData({
-            nombres: jsonData.nom_nombres || "",
-            apellidos: jsonData.nom_apellidos || "",
-            cedula: jsonData.nom_cedulaid || "",
-            fechaNacimiento: jsonData.nom_nacim_fecha || "",
-            email: jsonData.nom_email || "",
-            telefono: jsonData.NOM_TELEFONO || "",
-            sexo: jsonData.NOM_SEXO || "",
-            estadoCivil: jsonData.NOM_ESTADOCIVIL || "",
-            discapacidad: jsonData.NOM_DISCAPACIDAD || "",
-            tipoDiscapacidad: jsonData.NOM_TIPODISCAPACIDAD || "",
-            codigoDiscapacidad: jsonData.NOM_CODIGODISCAPACIDAD || "",
-            relacionContacto: jsonData.NOM_RELACIONCONTACTO || "",
-            militarActivo: jsonData.NOM_MILITARACTIVO || "",
-            componenteMilitar: jsonData.NOM_COMPONENTEMILITAR || "",
-            notificar: jsonData.NOM_NOTIFICAR || "",
-            telefonoContacto: jsonData.NOM_TELEFONOCONTACTO || "",
-            situacionLaboral: jsonData.NOM_SITUACIONLABORAL || "",
-            empresa: jsonData.NOM_EMPRESA || "",
+            nombres: jsonData.nom_nombres || '',
+            apellidos: jsonData.nom_apellidos || '',
+            cedula: jsonData.nom_cedulaid || '',
+            fechaNacimiento: jsonData.nom_nacim_fecha || '',
+            email: jsonData.nom_email || '',
+            telefono: jsonData.NOM_TELEFONO || '',
+            sexo: jsonData.NOM_SEXO || '',
+            estadoCivil: jsonData.NOM_ESTADOCIVIL || '',
+            discapacidad: jsonData.NOM_DISCAPACIDAD || false,
+            tipoDiscapacidad: jsonData.NOM_TIPODISCAPACIDAD || '',
+            codigoDiscapacidad: jsonData.NOM_CODIGODISCAPACIDAD || '',
+            relacionContacto: jsonData.NOM_RELACIONCONTACTO || '',
+            militarActivo: jsonData.NOM_MILITARACTIVO || false,
+            componenteMilitar: jsonData.NOM_COMPONENTEMILITAR || '',
+            notificar: jsonData.NOM_NOTIFICAR || '',
+            telefonoContacto: jsonData.NOM_TELEFONOCONTACTO || '',
+            situacionLaboral: jsonData.NOM_SITUACIONLABORAL || '',
+            empresa: jsonData.NOM_EMPRESA || ''
+          });
+        } else {
+          setPersonalData({
+            nombres: '',
+            apellidos: '',
+            cedula: '',
+            fechaNacimiento: '',
+            email: '',
+            telefono: '',
+            sexo: '',
+            estadoCivil: '',
+            discapacidad: false,
+            tipoDiscapacidad: '',
+            codigoDiscapacidad: '',
+            relacionContacto: '',
+            militarActivo: false,
+            componenteMilitar: '',
+            notificar: '',
+            telefonoContacto: '',
+            situacionLaboral: '',
+            empresa: ''
           });
         }
       } catch (error) {
-        console.error("Error fetching personal data:", error);
+        console.error('Error fetching personal data:', error);
+        setPersonalData({
+          nombres: '',
+          apellidos: '',
+          cedula: '',
+          fechaNacimiento: '',
+          email: '',
+          telefono: '',
+          sexo: '',
+          estadoCivil: '',
+          discapacidad: false,
+          tipoDiscapacidad: '',
+          codigoDiscapacidad: '',
+          relacionContacto: '',
+          militarActivo: false,
+          componenteMilitar: '',
+          notificar: '',
+          telefonoContacto: '',
+          situacionLaboral: '',
+          empresa: ''
+        });
       } finally {
         setLoading(false);
       }
@@ -79,6 +120,7 @@ const Personal = () => {
     <div className="personal-container">
       <h1>Datos Personales</h1>
       {loading && <p>Cargando datos personales...</p>}
+      {Object.keys(personalData).length === 0 && !loading && <p>No hay datos personales disponibles.</p>}
       <form className="personal-form">
         <div className="form-group">
           <label htmlFor="nombres">Nombres</label>
