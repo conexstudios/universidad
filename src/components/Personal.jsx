@@ -87,7 +87,7 @@ const Personal = () => {
       }
     };
     fetchPersonalData();
-  }, [session]);
+  }, []);
 
   const handleMilitarActivoChange = (e) => {
     setMilitarActivo(e.target.checked);
