@@ -56,6 +56,7 @@ const Dashboard = () => {
             sessionData[key] = url.searchParams.get(key);
           }
         }
+        console.log(sessionData);
         setSession(sessionData);
         setLoading(false);
       })
