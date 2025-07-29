@@ -44,8 +44,15 @@ const Dashboard = () => {
           return res.json();
         })
         .then((data) => {
-          setSession(data);
-          setLoading(false);
+          const sessionData = {};
+          for (const key in data) {
+            if (Object.hasOwnProperty.call(data, key)) {
+              const element = data[key];
+              sessionData[key] = element;
+            }
+          }
+          setSession(sessionData);
+          setLoading(true);
         })
         .catch((err) => {
           setError(err.message);
