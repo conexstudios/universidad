@@ -52,27 +52,29 @@ const Personal = () => {
           throw new Error('No se encontraron datos personales.');
         }
         const jsonData = json.data[0];
-        console.log('Datos personales obtenidos:', jsonData);
-        setPersonalData({
-          nombres: jsonData.nom_nombres,
-          apellidos: jsonData.nom_apellidos,
-          cedula: jsonData.nom_cedulaid,
-          fechaNacimiento: jsonData.nom_nacim_fecha,
-          email: jsonData.nom_email,
-          telefono: jsonData.NOM_TELEFONO,
-          sexo: jsonData.NOM_SEXO,
-          estadoCivil: jsonData.NOM_ESTADOCIVIL,
-          discapacidad: jsonData.NOM_DISCAPACIDAD,
-          tipoDiscapacidad: jsonData.NOM_TIPODISCAPACIDAD,
-          codigoDiscapacidad: jsonData.NOM_CODIGODISCAPACIDAD,
-          relacionContacto: jsonData.NOM_RELACIONCONTACTO,
-          militarActivo: jsonData.NOM_MILITARACTIVO,
-          componenteMilitar: jsonData.NOM_COMPONENTEMILITAR,
-          notificar: jsonData.NOM_NOTIFICAR,
-          telefonoContacto: jsonData.NOM_TELEFONOCONTACTO,
-          situacionLaboral: jsonData.NOM_SITUACIONLABORAL,
-          empresa: jsonData.NOM_EMPRESA
-        });
+
+        if(jsonData.length > 0){
+          setPersonalData({
+            nombres: jsonData.nom_nombres,
+            apellidos: jsonData.nom_apellidos,
+            cedula: jsonData.nom_cedulaid,
+            fechaNacimiento: jsonData.nom_nacim_fecha,
+            email: jsonData.nom_email,
+            telefono: jsonData.NOM_TELEFONO,
+            sexo: jsonData.NOM_SEXO,
+            estadoCivil: jsonData.NOM_ESTADOCIVIL,
+            discapacidad: jsonData.NOM_DISCAPACIDAD,
+            tipoDiscapacidad: jsonData.NOM_TIPODISCAPACIDAD,
+            codigoDiscapacidad: jsonData.NOM_CODIGODISCAPACIDAD,
+            relacionContacto: jsonData.NOM_RELACIONCONTACTO,
+            militarActivo: jsonData.NOM_MILITARACTIVO,
+            componenteMilitar: jsonData.NOM_COMPONENTEMILITAR,
+            notificar: jsonData.NOM_NOTIFICAR,
+            telefonoContacto: jsonData.NOM_TELEFONOCONTACTO,
+            situacionLaboral: jsonData.NOM_SITUACIONLABORAL,
+            empresa: jsonData.NOM_EMPRESA
+          });
+        }
       } catch (error) {
         console.error('Error fetching personal data:', error);
         setPersonalData(null);
