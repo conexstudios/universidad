@@ -1,4 +1,5 @@
-import {create, persist} from "zustand";
+import {create} from "zustand";
+import { persist } from "zustand/middleware";
 
 const useSessionStore = create(
   persist(
