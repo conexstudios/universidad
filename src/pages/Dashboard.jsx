@@ -10,7 +10,7 @@ import Horarios from "../components/Horarios";
 import Asignatura from "../components/Asignatura";
 import useSessionStore from '../store/sessionStore';
 
-const Dashboard = () => {
+const Dashboard = React.memo(() => {
   const navigate = useNavigate();
   const setSession = useSessionStore((state) => state.setSession);
   const session = useSessionStore((state) => state.session);
@@ -86,5 +86,5 @@ const Dashboard = () => {
       </main>
     </>
   );
-};
+});
 export default Dashboard;
