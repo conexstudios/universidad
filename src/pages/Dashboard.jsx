@@ -64,7 +64,6 @@ const Dashboard = React.memo(() => {
           setLoading(false);
         });
     }
-
   }, [session, setSession]);
 
   if (loading) return <div>Cargando sesión...</div>;

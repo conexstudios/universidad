@@ -24,6 +24,7 @@ const Personal = () => {
     situacionLaboral: '',
     empresa: ''
   });
+  const session = useSessionStore((state) => state.session);
   const [loading, setLoading] = useState(true);
   const [militarActivo, setMilitarActivo] = useState(false);
   const [discapacidad, setDiscapacidad] = useState(false);
@@ -80,7 +81,7 @@ const Personal = () => {
       }
     };
     fetchPersonalData();
-  }, []);
+  }, [session]);
 
   const handleMilitarActivoChange = (e) => {
     setMilitarActivo(e.target.checked);
