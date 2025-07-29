@@ -21,49 +21,50 @@ const Dashboard = React.memo(() => {
     if (session && Object.keys(session).length > 0) {
       setLoading(false);
       return;
-    }
+    } else {
+      const url = new URL(window.location.href);
+      const user = url.searchParams.get('user');
+      const id = url.searchParams.get('id');
+      const referer = document.referrer;
 
-    const url = new URL(window.location.href);
-    const user = url.searchParams.get('user');
-    const id = url.searchParams.get('id');
-    const referer = document.referrer;
+      if (!user || !id || session) {
+        setError('Faltan parámetros en la URL o no hay REFERER.');
+        setLoading(false);
+        window.location.href = import.meta.env.VITE_LOGIN_URL;
+        return;
+      }
 
-    if (!user || !id || !session) {
-      setError('Faltan parámetros en la URL o no hay REFERER.');
-      setLoading(false);
-      window.location.href = import.meta.env.VITE_LOGIN_URL;
-      return;
-    }
+      const formData = new FormData();
+      formData.append('user', user);
+      formData.append('id', id);
+      formData.append('referer', referer);
 
-    const formData = new FormData();
-    formData.append('user', user);
-    formData.append('id', id);
-    formData.append('referer', referer);
-
-    fetch(import.meta.env.VITE_LOGIN_URL, {
-      method: 'POST',
-      body: formData,
-      credentials: 'include',
-    })
-      .then((res) => {
-        if (!res.ok) throw new Error('Error en la petición de sesión');
-        return res.json();
+      fetch(import.meta.env.VITE_LOGIN_URL, {
+        method: 'POST',
+        body: formData,
+        credentials: 'include',
       })
-      .then((data) => {
-        const sessionData = { ...data };
-        for (const key of url.searchParams.keys()) {
-          if (!sessionData[key]) {
-            sessionData[key] = url.searchParams.get(key);
+        .then((res) => {
+          if (!res.ok) throw new Error('Error en la petición de sesión');
+          return res.json();
+        })
+        .then((data) => {
+          const sessionData = { ...data };
+          for (const key of url.searchParams.keys()) {
+            if (!sessionData[key]) {
+              sessionData[key] = url.searchParams.get(key);
+            }
           }
-        }
-        console.log(sessionData);
-        setSession(sessionData);
-        setLoading(false);
-      })
-      .catch((err) => {
-        setError(err.message);
-        setLoading(false);
-      });
+          console.log(sessionData);
+          setSession(sessionData);
+          setLoading(false);
+        })
+        .catch((err) => {
+          setError(err.message);
+          setLoading(false);
+        });
+    }
+
   }, [session, setSession]);
 
   if (loading) return <div>Cargando sesión...</div>;
