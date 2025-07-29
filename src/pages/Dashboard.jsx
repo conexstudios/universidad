@@ -19,16 +19,12 @@ const Dashboard = () => {
 
   useEffect(() => {
 
+    // si no hay sesión, se crea
     if (!session) {
       const url = new URL(window.location.href);
       const user = url.searchParams.get('user');
       const id = url.searchParams.get('id');
       const referer = document.referrer;
-      const nom_fichanro = url.searchParams.get('NOM_FICHANRO');
-      const usuario_id = url.searchParams.get('USUARIO_ID');
-      const usu_grupo = url.searchParams.get('USU_GRUPO');
-      const col_lapso_acad_id = url.searchParams.get('COL_LAPSO_ACADEMICO_ID');
-      const colap_nombre = url.searchParams.get('COLAP_NOMBRE');
 
       if (!user || !id) {
         setError('Faltan parámetros en la URL o no hay REFERER.');
@@ -57,13 +53,13 @@ const Dashboard = () => {
               sessionData[key] = element;
             }
           }
-          // Agregar los parámetros adicionales al objeto sessionData
-          sessionData.nom_fichanro = nom_fichanro;
-          sessionData.usuario_id = usuario_id;
-          sessionData.usu_grupo = usu_grupo;
-          sessionData.col_lapso_acad_id = col_lapso_acad_id;
-          sessionData.colap_nombre = colap_nombre; 
           
+          for (const key of url.searchParams.keys()) {
+            if (!sessionData[key]) {
+              sessionData[key] = url.searchParams.get(key);
+            }
+          }
+
           setSession(sessionData);
           setLoading(false);
         })
@@ -74,6 +70,7 @@ const Dashboard = () => {
         });
     }
     else {
+      // si hay sesión, no se hace nada
       setLoading(false);
     }
   }, [setSession, session]);
