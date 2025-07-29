@@ -67,15 +67,19 @@ const Dashboard = () => {
 
   return (
     <>
-      <Menu />
-      <main className="main-content dashboard-content">
-        <Buscador />
-        <WelcomeArea />
-        <Horarios />
-        <Asignatura />
-        <HomeWork />
-        <BarraInformativa />
-      </main>
+      {session && (
+        <>
+          <Menu />
+          <main className="main-content dashboard-content">
+            <Buscador />
+            <WelcomeArea />
+            <Horarios />
+            <Asignatura />
+            <HomeWork />
+            <BarraInformativa />
+          </main>
+        </>
+      )}
     </>
   );
 };
