@@ -57,13 +57,14 @@ const Dashboard = () => {
               sessionData[key] = element;
             }
           }
-          setSession(sessionData, {
-            nom_fichanro,
-            usuario_id,
-            usu_grupo,
-            col_lapso_acad_id,
-            colap_nombre,
-          });
+          // Agregar los parámetros adicionales al objeto sessionData
+          sessionData.nom_fichanro = nom_fichanro;
+          sessionData.usuario_id = usuario_id;
+          sessionData.usu_grupo = usu_grupo;
+          sessionData.col_lapso_acad_id = col_lapso_acad_id;
+          sessionData.colap_nombre = colap_nombre; 
+          
+          setSession(sessionData);
           setLoading(false);
         })
         .catch((err) => {
