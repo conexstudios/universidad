@@ -14,7 +14,7 @@ const Dashboard = () => {
   const navigate = useNavigate();
   const setSession = useSessionStore((state) => state.setSession);
   const session = useSessionStore((state) => state.session);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -72,6 +72,9 @@ const Dashboard = () => {
           setLoading(false);
           document.location.href = import.meta.env.VITE_LOGIN_URL;
         });
+    }
+    else {
+      setLoading(false);
     }
   }, [setSession, session]);
 
