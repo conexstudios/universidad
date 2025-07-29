@@ -100,27 +100,27 @@ const Personal = () => {
       <form className="personal-form">
         <div className="form-group">
           <label htmlFor="nombres">Nombres</label>
-          <input type="text" id="nombres" name="nombres" value={personalData.nombres} />
+          <input type="text" id="nombres" name="nombres" value={personalData.nombres || ''} />
         </div>
         <div className="form-group">
           <label htmlFor="apellidos">Apellidos</label>
-          <input type="text" id="apellidos" name="apellidos" value={personalData.apellidos}/>
+          <input type="text" id="apellidos" name="apellidos" value={personalData.apellidos || ''}/>
         </div>
         <div className="form-group">
           <label htmlFor="cedula">Cédula de identidad</label>
-          <input type="text" id="cedula" name="cedula" value={personalData.cedula} />
+          <input type="text" id="cedula" name="cedula" value={personalData.cedula || ''} />
         </div>
         <div className="form-group">
           <label htmlFor="fecha-nacimiento">Fecha de Nacimiento</label>
-          <input type="date" id="fecha-nacimiento" name="fecha-nacimiento" value={personalData.fechaNacimiento} />
+          <input type="date" id="fecha-nacimiento" name="fecha-nacimiento" value={personalData.fechaNacimiento || ''} />
         </div>
         <div className="form-group">
           <label htmlFor="email">Email</label>
-          <input type="email" id="email" name="email" value={personalData.email} />
+          <input type="email" id="email" name="email" value={personalData.email || ''} />
         </div>
         <div className="form-group">
           <label htmlFor="telefono">Teléfono celular</label>
-          <input type="text" id="telefono" name="telefono" value={personalData.telefono} />
+          <input type="text" id="telefono" name="telefono" value={personalData.telefono || ''} />
         </div>
         <div className="form-group">
           <label htmlFor="sexo">Sexo</label>
@@ -165,7 +165,7 @@ const Personal = () => {
             </div>
             <div className="form-group">
               <label htmlFor="codigo-discapacidad">Código de discapacidad</label>
-              <input type="text" id="codigo-discapacidad" name="codigo-discapacidad" />
+              <input type="text" id="codigo-discapacidad" name="codigo-discapacidad" value={personalData.codigoDiscapacidad || ''} />
             </div>
           </>
         )}
@@ -210,12 +210,12 @@ const Personal = () => {
 
         <div className="form-group">
           <label htmlFor="notificar">Notificar a</label>
-          <input type="text" id="notificar" name="notificar" />
+          <input type="text" id="notificar" name="notificar" value={personalData.notificar || ''} />
         </div>
         
         <div className="form-group">
           <label htmlFor="telefono-contacto">Teléfono de su persona de Contacto</label>
-          <input type="text" id="telefono-contacto" name="telefono-contacto" />
+          <input type="text" id="telefono-contacto" name="telefono-contacto" value={personalData.telefonoContacto || ''} />
         </div>
         <div className="form-group">
           <label htmlFor="situacion-laboral">Situación Laboral</label>
@@ -230,7 +230,7 @@ const Personal = () => {
         </div>
         <div className="form-group">
           <label htmlFor="empresa">Empresa donde Trabaja</label>
-          <input type="text" id="empresa" name="empresa" />
+          <input type="text" id="empresa" name="empresa" value={personalData.empresa || ''} />
         </div>
         <div className="form-actions">
           <button type="submit" className="save-button">Guardar Cambios</button>
