@@ -4,6 +4,7 @@ import useSessionStore from '../store/sessionStore';
 import '../styles/Personal.css';
 
 const Personal = () => {
+  const session = useSessionStore((state) => state.session);
   const [personalData, setPersonalData] = useState({
     nombres: '',
     apellidos: '',
@@ -24,13 +25,13 @@ const Personal = () => {
     situacionLaboral: '',
     empresa: ''
   });
-  const session = useSessionStore((state) => state.session);
   const [loading, setLoading] = useState(true);
   const [militarActivo, setMilitarActivo] = useState(false);
   const [discapacidad, setDiscapacidad] = useState(false);
 
   useEffect(() => {
     const fetchPersonalData = async () => {
+      setLoading(true);
       try {
         if (!session) return;
         const params = new URLSearchParams({
@@ -77,7 +78,6 @@ const Personal = () => {
         }
       } catch (error) {
         console.error('Error fetching personal data:', error);
-        setPersonalData(null);
       } finally {
         setLoading(false);
       }
