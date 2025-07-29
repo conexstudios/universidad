@@ -134,7 +134,7 @@ const Personal = () => {
             type="text"
             id="nombres"
             name="nombres"
-            value={personalData.nombres}
+            value={() => setPersonalData({ ...personalData, nombres: e.target.value })}
             onChange={handleInputChange}
             required
           />
@@ -146,7 +146,7 @@ const Personal = () => {
             type="text"
             id="apellidos"
             name="apellidos"
-            value={personalData.apellidos}
+            value={() => setPersonalData({ ...personalData, apellidos: e.target.value })}
             onChange={handleInputChange}
             required
           />
@@ -158,7 +158,7 @@ const Personal = () => {
             type="text"
             id="cedula"
             name="cedula"
-            value={personalData.cedula}
+            value={() => setPersonalData({ ...personalData, cedula: e.target.value })}
             onChange={handleInputChange}
             required
           />
@@ -170,7 +170,7 @@ const Personal = () => {
             type="date"
             id="fechaNacimiento"
             name="fechaNacimiento"
-            value={personalData.fechaNacimiento}
+            value={() => setPersonalData({ ...personalData, fechaNacimiento: e.target.value })}
             onChange={handleInputChange}
             required
           />
@@ -182,7 +182,7 @@ const Personal = () => {
             type="email"
             id="email"
             name="email"
-            value={personalData.email}
+            value={() => setPersonalData({ ...personalData, email: e.target.value })}
             onChange={handleInputChange}
             required
           />
@@ -194,7 +194,7 @@ const Personal = () => {
             type="tel"
             id="telefono"
             name="telefono"
-            value={personalData.telefono}
+            value={() => setPersonalData({ ...personalData, telefono: e.target.value })}
             onChange={handleInputChange}
             required
           />
@@ -205,7 +205,7 @@ const Personal = () => {
           <select
             id="sexo"
             name="sexo"
-            value={personalData.sexo}
+            value={() => setPersonalData({ ...personalData, sexo: e.target.value })}
             onChange={handleInputChange}
             required
           >
@@ -220,7 +220,7 @@ const Personal = () => {
           <select
             id="estadoCivil"
             name="estadoCivil"
-            value={personalData.estadoCivil}
+            value={() => setPersonalData({ ...personalData, estadoCivil: e.target.value })}
             onChange={handleInputChange}
             required
           >
@@ -237,7 +237,7 @@ const Personal = () => {
             <input
               type="checkbox"
               name="discapacidad"
-              checked={personalData.discapacidad}
+              checked={() => setPersonalData({ ...personalData, discapacidad: e.target.value })}
               onChange={handleInputChange}
             />
             ¿Discapacidad?
@@ -249,7 +249,7 @@ const Personal = () => {
                 <select
                   id="tipoDiscapacidad"
                   name="tipoDiscapacidad"
-                  value={personalData.tipoDiscapacidad}
+                  value={() => setPersonalData({ ...personalData, tipoDiscapacidad: e.target.value })}
                   onChange={handleInputChange}
                   required={personalData.discapacidad}
                 >
@@ -266,7 +266,7 @@ const Personal = () => {
                   type="text"
                   id="codigoDiscapacidad"
                   name="codigoDiscapacidad"
-                  value={personalData.codigoDiscapacidad}
+                  value={() => setPersonalData({ ...personalData, codigoDiscapacidad: e.target.value })}
                   onChange={handleInputChange}
                   required={personalData.discapacidad}
                 />
@@ -280,7 +280,7 @@ const Personal = () => {
           <select
             id="relacionContacto"
             name="relacionContacto"
-            value={personalData.relacionContacto}
+            value={() => setPersonalData({ ...personalData, relacionContacto: e.target.value })}
             onChange={handleInputChange}
             required
           >
@@ -299,7 +299,7 @@ const Personal = () => {
             <input
               type="checkbox"
               name="militarActivo"
-              checked={personalData.militarActivo}
+              checked={() => setPersonalData({ ...personalData, militarActivo: e.target.value })}
               onChange={handleInputChange}
             />
             ¿Militar Activo?
@@ -310,7 +310,7 @@ const Personal = () => {
               <select
                 id="componenteMilitar"
                 name="componenteMilitar"
-                value={personalData.componenteMilitar}
+                value={() => setPersonalData({ ...personalData, componenteMilitar: e.target.value })}
                 onChange={handleInputChange}
                 required={personalData.militarActivo}
               >
@@ -331,7 +331,7 @@ const Personal = () => {
             type="text"
             id="notificar"
             name="notificar"
-            value={personalData.notificar}
+            value={() => setPersonalData({ ...personalData, notificar: e.target.value })}
             onChange={handleInputChange}
             required
           />
@@ -343,7 +343,7 @@ const Personal = () => {
             type="tel"
             id="telefonoContacto"
             name="telefonoContacto"
-            value={personalData.telefonoContacto}
+            value={() => setPersonalData({ ...personalData, telefonoContacto: e.target.value })}
             onChange={handleInputChange}
             required
           />
@@ -354,7 +354,7 @@ const Personal = () => {
           <select
             id="situacionLaboral"
             name="situacionLaboral"
-            value={personalData.situacionLaboral}
+            value={() => setPersonalData({ ...personalData, situacionLaboral: e.target.value })}
             onChange={handleInputChange}
             required
           >
@@ -373,7 +373,7 @@ const Personal = () => {
             type="text"
             id="empresa"
             name="empresa"
-            value={personalData.empresa}
+            value={() => setPersonalData({ ...personalData, empresa: e.target.value })}
             onChange={handleInputChange}
             required={personalData.situacionLaboral === 'Empleado'}
           />
