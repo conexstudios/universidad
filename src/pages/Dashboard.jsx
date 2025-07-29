@@ -30,17 +30,6 @@ const Dashboard = () => {
       const col_lapso_acad_id = url.searchParams.get('col_lapso_acad_id');
       const colap_nombre = url.searchParams.get('colap_nombre');
 
-      const newParams = new URLSearchParams({
-        user,
-        id,
-        referer,
-        nom_fichanro,
-        usuario_id,
-        usu_grupo,
-        col_lapso_acad_id,
-        colap_nombre,
-      });
-
       if (!user || !id) {
         setError('Faltan parámetros en la URL o no hay REFERER.');
         setLoading(false);
@@ -68,7 +57,13 @@ const Dashboard = () => {
               sessionData[key] = element;
             }
           }
-          setSession(sessionData, newParams);
+          setSession(sessionData, {
+            nom_fichanro,
+            usuario_id,
+            usu_grupo,
+            col_lapso_acad_id,
+            colap_nombre,
+          });
           setLoading(false);
         })
         .catch((err) => {

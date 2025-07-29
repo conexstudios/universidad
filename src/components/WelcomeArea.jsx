@@ -8,7 +8,7 @@ const WelcomeArea = () => {
     <div className="welcome-area">
       <div className="welcome-text-section"> 
         <p>
-          Hola {session.EMPRESA_ID}, aquí encontrarás un resumen de tu actividad en
+          Hola {session.usuario_id}, aquí encontrarás un resumen de tu actividad en
           conextudios.
         </p>
       </div>
