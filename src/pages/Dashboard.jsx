@@ -50,7 +50,7 @@ const Dashboard = () => {
       formData.append('user', user);
       formData.append('id', id);
       formData.append('referer', referer);
-      
+
       fetch(import.meta.env.VITE_LOGIN_URL, {
         method: 'POST',
         body: formData,
@@ -84,19 +84,19 @@ const Dashboard = () => {
 
   return (
     <>
-      {session && (
-        <>
-          <Menu />
-          <main className="main-content dashboard-content">
+      <Menu />
+      <main className="main-content dashboard-content">
+        {session && (
+          <>
             <Buscador />
             <WelcomeArea />
             <Horarios />
             <Asignatura />
             <HomeWork />
             <BarraInformativa />
-          </main>
-        </>
-      )}
+          </>
+        )}
+      </main>
     </>
   );
 };
