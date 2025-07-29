@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { useFetchWithSession } from '../store/fetchWithSession';
 import useSessionStore from '../store/sessionStore';
 import '../styles/Personal.css';
 
 const Personal = () => {
-
-  const [personalData, setPersonalData] = useState({
+  const initialPersonalData = {
     nombres: '',
     apellidos: '',
     cedula: '',
@@ -23,218 +21,375 @@ const Personal = () => {
     notificar: '',
     telefonoContacto: '',
     situacionLaboral: '',
-    empresa: ''
-  });
+    empresa: '',
+  };
+
+  const [personalData, setPersonalData] = useState(initialPersonalData);
   const [loading, setLoading] = useState(true);
-  const [militarActivo, setMilitarActivo] = useState(false);
-  const [discapacidad, setDiscapacidad] = useState(false);
+  const [error, setError] = useState(null);
+
+  const session = useSessionStore((state) => state.session);
 
   useEffect(() => {
     const fetchPersonalData = async () => {
-      const session = useSessionStore((state) => state.session);
-      setLoading(true);
+      try {
+        setLoading(true);
+        setError(null);
+        const apiUrl = import.meta.env.VITE_API_URL || 'https://default-api-url.com';
+        const response = await fetch(`${apiUrl}/nominas?NOM_FICHANRO=${session.NOM_FICHANRO}`);
+        
+        if (!response.ok) {
+          throw new Error('Failed to fetch personal data');
+        }
 
-      const response = await fetch(import.meta.env.VITE_API_URL + '/nominas?NOM_FICHANRO=' + session.NOM_FICHANRO);
-      const json = await response.json();
-      const jsonData = json.data[0];
-      if (jsonData) {
-        setPersonalData({
-          nombres: jsonData.nom_nombres || '',
-          apellidos: jsonData.nom_apellidos || '',
-          cedula: jsonData.nom_cedulaid || '',
-          fechaNacimiento: jsonData.nom_nacim_fecha || '',
-          email: jsonData.nom_email || '',
-          telefono: jsonData.NOM_TELEFONO || '',
-          sexo: jsonData.NOM_SEXO || '',
-          estadoCivil: jsonData.NOM_ESTADOCIVIL || '',
-          discapacidad: jsonData.NOM_DISCAPACIDAD || false,
-          tipoDiscapacidad: jsonData.NOM_TIPODISCAPACIDAD || '',
-          codigoDiscapacidad: jsonData.NOM_CODIGODISCAPACIDAD || '',
-          relacionContacto: jsonData.NOM_RELACIONCONTACTO || '',
-          militarActivo: jsonData.NOM_MILITARACTIVO || false,
-          componenteMilitar: jsonData.NOM_COMPONENTEMILITAR || '',
-          notificar: jsonData.NOM_NOTIFICAR || '',
-          telefonoContacto: jsonData.NOM_TELEFONOCONTACTO || '',
-          situacionLaboral: jsonData.NOM_SITUACIONLABORAL || '',
-          empresa: jsonData.NOM_EMPRESA || ''
-        });
-      } else {
-        setPersonalData({
-          nombres: '',
-          apellidos: '',
-          cedula: '',
-          fechaNacimiento: '',
-          email: '',
-          telefono: '',
-          sexo: '',
-          estadoCivil: '',
-          discapacidad: false,
-          tipoDiscapacidad: '',
-          codigoDiscapacidad: '',
-          relacionContacto: '',
-          militarActivo: false,
-          componenteMilitar: '',
-          notificar: '',
-          telefonoContacto: '',
-          situacionLaboral: '',
-          empresa: ''
-        });
+        const json = await response.json();
+        const jsonData = json.data[0];
+        
+        if (jsonData) {
+          setPersonalData({
+            nombres: jsonData.nom_nombres || '',
+            apellidos: jsonData.nom_apellidos || '',
+            cedula: jsonData.nom_cedulaid || '',
+            fechaNacimiento: jsonData.nom_nacim_fecha || '',
+            email: jsonData.nom_email || '',
+            telefono: jsonData.nom_telefono || '',
+            sexo: jsonData.nom_sexo || '',
+            estadoCivil: jsonData.nom_estadocivil || '',
+            discapacidad: jsonData.nom_discapacidad || false,
+            tipoDiscapacidad: jsonData.nom_tipodiscapacidad || '',
+            codigoDiscapacidad: jsonData.nom_codigodiscapacidad || '',
+            relacionContacto: jsonData.nom_relacioncontacto || '',
+            militarActivo: jsonData.NOM_MILITARACTIVO || false,
+            componenteMilitar: jsonData.NOM_COMPONENTEMILITAR || '',
+            notificar: jsonData.NOM_NOTIFICAR || '',
+            telefonoContacto: jsonData.NOM_TELEFONOCONTACTO || '',
+            situacionLaboral: jsonData.NOM_SITUACIONLABORAL || '',
+            empresa: jsonData.NOM_EMPRESA || '',
+          });
+        } else {
+          setPersonalData(initialPersonalData);
+        }
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (session.NOM_FICHANRO) {
+      fetchPersonalData();
+    } else {
+      setLoading(false);
+      setError('No session data available');
+    }
+  }, [session.NOM_FICHANRO]);
+
+  const handleInputChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setPersonalData((prev) => ({
+      ...prev,
+      [name]: type === 'checkbox' ? checked : value,
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      setLoading(true);
+      setError(null);
+      const apiUrl = import.meta.env.VITE_API_URL || 'https://default-api-url.com';
+      const response = await fetch(`${apiUrl}/nominas`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...personalData, NOM_FICHANRO: session.NOM_FICHANRO }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to save personal data');
       }
 
-    };
-    fetchPersonalData();
-  }, []);
-
-  const handleMilitarActivoChange = (e) => {
-    setMilitarActivo(e.target.checked);
+      alert('Datos guardados exitosamente');
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
   };
 
-  const handleDiscapacidadChange = (e) => {
-    setDiscapacidad(e.target.checked);
+  const handleCancel = () => {
+    setPersonalData(initialPersonalData);
   };
+
+  if (loading) {
+    return <div className="loading">Cargando datos personales...</div>;
+  }
+
+  if (error) {
+    return <div className="error">Error: {error}</div>;
+  }
 
   return (
     <div className="personal-container">
-      <h1>Datos Personales</h1>
-      {loading && <p>Cargando datos personales...</p>}
-      <form className="personal-form">
+      <h2>Datos Personales</h2>
+      <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="nombres">Nombres</label>
-          <input type="text" id="nombres" name="nombres" value={personalData.nombres || ''} />
+          <input
+            type="text"
+            id="nombres"
+            name="nombres"
+            value={personalData.nombres}
+            onChange={handleInputChange}
+            required
+          />
         </div>
+
         <div className="form-group">
           <label htmlFor="apellidos">Apellidos</label>
-          <input type="text" id="apellidos" name="apellidos" value={personalData.apellidos || ''} />
+          <input
+            type="text"
+            id="apellidos"
+            name="apellidos"
+            value={personalData.apellidos}
+            onChange={handleInputChange}
+            required
+          />
         </div>
+
         <div className="form-group">
           <label htmlFor="cedula">Cédula de identidad</label>
-          <input type="text" id="cedula" name="cedula" value={personalData.cedula || ''} />
+          <input
+            type="text"
+            id="cedula"
+            name="cedula"
+            value={personalData.cedula}
+            onChange={handleInputChange}
+            required
+          />
         </div>
+
         <div className="form-group">
-          <label htmlFor="fecha-nacimiento">Fecha de Nacimiento</label>
-          <input type="date" id="fecha-nacimiento" name="fecha-nacimiento" value={personalData.fechaNacimiento || ''} />
+          <label htmlFor="fechaNacimiento">Fecha de Nacimiento</label>
+          <input
+            type="date"
+            id="fechaNacimiento"
+            name="fechaNacimiento"
+            value={personalData.fechaNacimiento}
+            onChange={handleInputChange}
+            required
+          />
         </div>
+
         <div className="form-group">
           <label htmlFor="email">Email</label>
-          <input type="email" id="email" name="email" value={personalData.email || ''} />
+          <input
+            type="email"
+            id="email"
+            name="email"
+            value={personalData.email}
+            onChange={handleInputChange}
+            required
+          />
         </div>
+
         <div className="form-group">
           <label htmlFor="telefono">Teléfono celular</label>
-          <input type="text" id="telefono" name="telefono" value={personalData.telefono || ''} />
+          <input
+            type="tel"
+            id="telefono"
+            name="telefono"
+            value={personalData.telefono}
+            onChange={handleInputChange}
+            required
+          />
         </div>
+
         <div className="form-group">
           <label htmlFor="sexo">Sexo</label>
-          <select id="sexo" name="sexo">
+          <select
+            id="sexo"
+            name="sexo"
+            value={personalData.sexo}
+            onChange={handleInputChange}
+            required
+          >
             <option value="">Seleccione</option>
-            <option value="masculino">Masculino</option>
-            <option value="femenino">Femenino</option>
+            <option value="Masculino">Masculino</option>
+            <option value="Femenino">Femenino</option>
           </select>
-        </div>
-        <div className="form-group">
-          <label htmlFor="estado-civil">Estado Civil</label>
-          <select id="estado-civil" name="estado-civil">
-            <option value="">Seleccione</option>
-            <option value="soltero">Soltero</option>
-            <option value="casado">Casado</option>
-            <option value="divorciado">Divorciado</option>
-            <option value="viudo">Viudo</option>
-          </select>
-        </div>
-        <div className="form-group">
-          <label htmlFor="discapacidad">¿Discapacidad?</label>
-          <input
-            type="checkbox"
-            id="discapacidad"
-            name="discapacidad"
-            checked={discapacidad}
-            onChange={handleDiscapacidadChange}
-          />
         </div>
 
-        {discapacidad && (
-          <>
+        <div className="form-group">
+          <label htmlFor="estadoCivil">Estado Civil</label>
+          <select
+            id="estadoCivil"
+            name="estadoCivil"
+            value={personalData.estadoCivil}
+            onChange={handleInputChange}
+            required
+          >
+            <option value="">Seleccione</option>
+            <option value="Soltero">Soltero</option>
+            <option value="Casado">Casado</option>
+            <option value="Divorciado">Divorciado</option>
+            <option value="Viudo">Viudo</option>
+          </select>
+        </div>
+
+        <div className="form-group">
+          <label>
+            <input
+              type="checkbox"
+              name="discapacidad"
+              checked={personalData.discapacidad}
+              onChange={handleInputChange}
+            />
+            ¿Discapacidad?
+          </label>
+          {personalData.discapacidad && (
+            <>
+              <div className="form-group">
+                <label htmlFor="tipoDiscapacidad">Tipo de discapacidad</label>
+                <select
+                  id="tipoDiscapacidad"
+                  name="tipoDiscapacidad"
+                  value={personalData.tipoDiscapacidad}
+                  onChange={handleInputChange}
+                  required={personalData.discapacidad}
+                >
+                  <option value="">Seleccione</option>
+                  <option value="Motriz">Motriz</option>
+                  <option value="Visual">Visual</option>
+                  <option value="Auditiva">Auditiva</option>
+                  <option value="Intelectual">Intelectual</option>
+                </select>
+              </div>
+              <div className="form-group">
+                <label htmlFor="codigoDiscapacidad">Código de discapacidad</label>
+                <input
+                  type="text"
+                  id="codigoDiscapacidad"
+                  name="codigoDiscapacidad"
+                  value={personalData.codigoDiscapacidad}
+                  onChange={handleInputChange}
+                  required={personalData.discapacidad}
+                />
+              </div>
+            </>
+          )}
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="relacionContacto">Parentesco con Contacto</label>
+          <select
+            id="relacionContacto"
+            name="relacionContacto"
+            value={personalData.relacionContacto}
+            onChange={handleInputChange}
+            required
+          >
+            <option value="">Seleccione</option>
+            <option value="Padre/Madre">Padre/Madre</option>
+            <option value="Hermano/a">Hermano/a</option>
+            <option value="Cónyuge">Cónyuge</option>
+            <option value="Hijo/a">Hijo/a</option>
+            <option value="Amigo/a">Amigo/a</option>
+            <option value="Otro">Otro</option>
+          </select>
+        </div>
+
+        <div className="form-group">
+          <label>
+            <input
+              type="checkbox"
+              name="militarActivo"
+              checked={personalData.militarActivo}
+              onChange={handleInputChange}
+            />
+            ¿Militar Activo?
+          </label>
+          {personalData.militarActivo && (
             <div className="form-group">
-              <label htmlFor="tipo-discapacidad">Tipo de discapacidad</label>
-              <select id="tipo-discapacidad" name="tipo-discapacidad">
+              <label htmlFor="componenteMilitar">Componente Militar</label>
+              <select
+                id="componenteMilitar"
+                name="componenteMilitar"
+                value={personalData.componenteMilitar}
+                onChange={handleInputChange}
+                required={personalData.militarActivo}
+              >
                 <option value="">Seleccione</option>
-                <option value="motriz">Motriz</option>
-                <option value="visual">Visual</option>
-                <option value="auditiva">Auditiva</option>
-                <option value="intelectual">Intelectual</option>
+                <option value="Ejército">Ejército</option>
+                <option value="Armada">Armada</option>
+                <option value="Aviación">Aviación</option>
+                <option value="Guardia Nacional Bolivariana">Guardia Nacional Bolivariana</option>
+                <option value="Milicia Bolivariana">Milicia Bolivariana</option>
               </select>
             </div>
-            <div className="form-group">
-              <label htmlFor="codigo-discapacidad">Código de discapacidad</label>
-              <input type="text" id="codigo-discapacidad" name="codigo-discapacidad" value={personalData.codigoDiscapacidad || ''} />
-            </div>
-          </>
-        )}
-
-        <div className="form-group">
-          <label htmlFor="relacion-contacto">Parentesco con Contacto</label>
-          <select id="relacion-contacto" name="relacion-contacto">
-            <option value="">Seleccione</option>
-            <option value="padre">Padre/Madre</option>
-            <option value="hermano">Hermano/a</option>
-            <option value="conyuge">Cónyuge</option>
-            <option value="hijo">Hijo/a</option>
-            <option value="amigo">Amigo/a</option>
-            <option value="otro">Otro</option>
-          </select>
+          )}
         </div>
-
-        <div className="form-group">
-          <label htmlFor="militar-activo">¿Militar Activo?</label>
-          <input
-            type="checkbox"
-            id="militar-activo"
-            name="militar-activo"
-            checked={militarActivo}
-            onChange={handleMilitarActivoChange}
-          />
-        </div>
-
-        {militarActivo && (
-          <div className="form-group">
-            <label htmlFor="componente-militar">Componente Militar</label>
-            <select id="componente-militar" name="componente-militar">
-              <option value="">Seleccione</option>
-              <option value="ejercito">Ejército</option>
-              <option value="armada">Armada</option>
-              <option value="aviacion">Aviación</option>
-              <option value="gnb">Guardia Nacional Bolivariana</option>
-              <option value="milicia">Milicia Bolivariana</option>
-            </select>
-          </div>
-        )}
 
         <div className="form-group">
           <label htmlFor="notificar">Notificar a</label>
-          <input type="text" id="notificar" name="notificar" value={personalData.notificar || ''} />
+          <input
+            type="text"
+            id="notificar"
+            name="notificar"
+            value={personalData.notificar}
+            onChange={handleInputChange}
+            required
+          />
         </div>
 
         <div className="form-group">
-          <label htmlFor="telefono-contacto">Teléfono de su persona de Contacto</label>
-          <input type="text" id="telefono-contacto" name="telefono-contacto" value={personalData.telefonoContacto || ''} />
+          <label htmlFor="telefonoContacto">Teléfono de su persona de Contacto</label>
+          <input
+            type="tel"
+            id="telefonoContacto"
+            name="telefonoContacto"
+            value={personalData.telefonoContacto}
+            onChange={handleInputChange}
+            required
+          />
         </div>
+
         <div className="form-group">
-          <label htmlFor="situacion-laboral">Situación Laboral</label>
-          <select id="situacion-laboral" name="situacion-laboral">
+          <label htmlFor="situacionLaboral">Situación Laboral</label>
+          <select
+            id="situacionLaboral"
+            name="situacionLaboral"
+            value={personalData.situacionLaboral}
+            onChange={handleInputChange}
+            required
+          >
             <option value="">Seleccione</option>
-            <option value="empleado">Empleado</option>
-            <option value="desempleado">Desempleado</option>
-            <option value="estudiante">Estudiante</option>
-            <option value="independiente">Trabajador Independiente</option>
-            <option value="jubilado">Jubilado</option>
+            <option value="Empleado">Empleado</option>
+            <option value="Desempleado">Desempleado</option>
+            <option value="Estudiante">Estudiante</option>
+            <option value="Trabajador Independiente">Trabajador Independiente</option>
+            <option value="Jubilado">Jubilado</option>
           </select>
         </div>
+
         <div className="form-group">
           <label htmlFor="empresa">Empresa donde Trabaja</label>
-          <input type="text" id="empresa" name="empresa" value={personalData.empresa || ''} />
+          <input
+            type="text"
+            id="empresa"
+            name="empresa"
+            value={personalData.empresa}
+            onChange={handleInputChange}
+            required={personalData.situacionLaboral === 'Empleado'}
+          />
         </div>
+
         <div className="form-actions">
-          <button type="submit" className="save-button">Guardar Cambios</button>
-          <button type="button" className="cancel-button">Cancelar</button>
+          <button type="submit" disabled={loading}>
+            Guardar Cambios
+          </button>
+          <button type="button" onClick={handleCancel} disabled={loading}>
+            Cancelar
+          </button>
         </div>
       </form>
     </div>
