@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import useSessionStore from '../store/sessionStore';
 import '../styles/Personal.css';
 
-const Personal = () => {
+const Personal = () => React.memo(() => {
   const initialPersonalData = {
     nombres: '',
     apellidos: '',
