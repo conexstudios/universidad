@@ -41,7 +41,7 @@ const Personal = () => {
       setLoading(true);
       setError(null);
       try {
-        const apiUrl = import.meta.env.VITE_API_URL || 'https://default-api-url.com';
+        const apiUrl = import.meta.env.VITE_API_URL;
         const response = await fetch(`${apiUrl}/nominas?NOM_FICHANRO=${session.NOM_FICHANRO}`);
         if (!response.ok) throw new Error('No se pudo obtener los datos personales');
         const json = await response.json();
@@ -93,7 +93,7 @@ const Personal = () => {
     try {
       setLoading(true);
       setError(null);
-      const apiUrl = import.meta.env.VITE_API_URL || 'https://default-api-url.com';
+      const apiUrl = import.meta.env.VITE_API_URL;
       const response = await fetch(`${apiUrl}/nominas`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -134,7 +134,7 @@ const Personal = () => {
             type="text"
             id="nombres"
             name="nombres"
-            value={() => setPersonalData({ ...personalData, nombres: e.target.value })}
+            value={personalData.nombres || ''}
             onChange={handleInputChange}
             required
           />
@@ -146,7 +146,7 @@ const Personal = () => {
             type="text"
             id="apellidos"
             name="apellidos"
-            value={() => setPersonalData({ ...personalData, apellidos: e.target.value })}
+            value={personalData.apellidos || ''}
             onChange={handleInputChange}
             required
           />
@@ -158,7 +158,7 @@ const Personal = () => {
             type="text"
             id="cedula"
             name="cedula"
-            value={() => setPersonalData({ ...personalData, cedula: e.target.value })}
+            value={personalData.cedula || ''}
             onChange={handleInputChange}
             required
           />
@@ -170,7 +170,7 @@ const Personal = () => {
             type="date"
             id="fechaNacimiento"
             name="fechaNacimiento"
-            value={() => setPersonalData({ ...personalData, fechaNacimiento: e.target.value })}
+            value={personalData.fechaNacimiento || ''}
             onChange={handleInputChange}
             required
           />
@@ -182,7 +182,7 @@ const Personal = () => {
             type="email"
             id="email"
             name="email"
-            value={() => setPersonalData({ ...personalData, email: e.target.value })}
+            value={personalData.email || ''}
             onChange={handleInputChange}
             required
           />
@@ -194,7 +194,7 @@ const Personal = () => {
             type="tel"
             id="telefono"
             name="telefono"
-            value={() => setPersonalData({ ...personalData, telefono: e.target.value })}
+            value={personalData.telefono || ''}
             onChange={handleInputChange}
             required
           />
@@ -205,7 +205,7 @@ const Personal = () => {
           <select
             id="sexo"
             name="sexo"
-            value={() => setPersonalData({ ...personalData, sexo: e.target.value })}
+            value={personalData.sexo || ''}
             onChange={handleInputChange}
             required
           >
@@ -220,7 +220,7 @@ const Personal = () => {
           <select
             id="estadoCivil"
             name="estadoCivil"
-            value={() => setPersonalData({ ...personalData, estadoCivil: e.target.value })}
+            value={personalData.estadoCivil || ''}
             onChange={handleInputChange}
             required
           >
@@ -237,7 +237,7 @@ const Personal = () => {
             <input
               type="checkbox"
               name="discapacidad"
-              checked={() => setPersonalData({ ...personalData, discapacidad: e.target.value })}
+              checked={personalData.discapacidad}
               onChange={handleInputChange}
             />
             ¿Discapacidad?
@@ -249,7 +249,7 @@ const Personal = () => {
                 <select
                   id="tipoDiscapacidad"
                   name="tipoDiscapacidad"
-                  value={() => setPersonalData({ ...personalData, tipoDiscapacidad: e.target.value })}
+                  value={personalData.tipoDiscapacidad || ''}
                   onChange={handleInputChange}
                   required={personalData.discapacidad}
                 >
@@ -266,7 +266,7 @@ const Personal = () => {
                   type="text"
                   id="codigoDiscapacidad"
                   name="codigoDiscapacidad"
-                  value={() => setPersonalData({ ...personalData, codigoDiscapacidad: e.target.value })}
+                  value={personalData.codigoDiscapacidad || ''}
                   onChange={handleInputChange}
                   required={personalData.discapacidad}
                 />
@@ -280,7 +280,7 @@ const Personal = () => {
           <select
             id="relacionContacto"
             name="relacionContacto"
-            value={() => setPersonalData({ ...personalData, relacionContacto: e.target.value })}
+            value={personalData.relacionContacto || ''}
             onChange={handleInputChange}
             required
           >
@@ -299,7 +299,7 @@ const Personal = () => {
             <input
               type="checkbox"
               name="militarActivo"
-              checked={() => setPersonalData({ ...personalData, militarActivo: e.target.value })}
+              checked={personalData.militarActivo}
               onChange={handleInputChange}
             />
             ¿Militar Activo?
@@ -310,7 +310,7 @@ const Personal = () => {
               <select
                 id="componenteMilitar"
                 name="componenteMilitar"
-                value={() => setPersonalData({ ...personalData, componenteMilitar: e.target.value })}
+                value={personalData.componenteMilitar || ''}
                 onChange={handleInputChange}
                 required={personalData.militarActivo}
               >
@@ -331,7 +331,7 @@ const Personal = () => {
             type="text"
             id="notificar"
             name="notificar"
-            value={() => setPersonalData({ ...personalData, notificar: e.target.value })}
+            value={personalData.notificar || ''}
             onChange={handleInputChange}
             required
           />
@@ -343,7 +343,7 @@ const Personal = () => {
             type="tel"
             id="telefonoContacto"
             name="telefonoContacto"
-            value={() => setPersonalData({ ...personalData, telefonoContacto: e.target.value })}
+            value={personalData.telefonoContacto || ''}
             onChange={handleInputChange}
             required
           />
@@ -354,7 +354,7 @@ const Personal = () => {
           <select
             id="situacionLaboral"
             name="situacionLaboral"
-            value={() => setPersonalData({ ...personalData, situacionLaboral: e.target.value })}
+            value={personalData.situacionLaboral || ''}
             onChange={handleInputChange}
             required
           >
@@ -373,7 +373,7 @@ const Personal = () => {
             type="text"
             id="empresa"
             name="empresa"
-            value={() => setPersonalData({ ...personalData, empresa: e.target.value })}
+            value={personalData.empresa || ''}
             onChange={handleInputChange}
             required={personalData.situacionLaboral === 'Empleado'}
           />
