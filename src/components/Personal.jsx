@@ -122,7 +122,7 @@ const Personal = () => {
 
   return (
     <div className="personal-container">
-      {error && <div className="error">Error: {error}</div>}
+      {error && <div className="error">Error al cargar los datos personales</div>}
       <h2>Datos Personales</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
