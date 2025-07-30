@@ -390,6 +390,6 @@ const Personal = () => React.memo(() => {
       </form>
     </div>
   );
-};
+});
 
 export default Personal;
