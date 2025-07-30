@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import useSessionStore from '../store/sessionStore';
 import '../styles/Personal.css';
 
-const Personal = () => React.memo(() => {
+const Personal = () => {
   const initialPersonalData = {
     nombres: '',
     apellidos: '',
@@ -390,6 +390,6 @@ const Personal = () => React.memo(() => {
       </form>
     </div>
   );
-});
+};
 
 export default Personal;
