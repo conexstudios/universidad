@@ -116,12 +116,11 @@ const Personal = () => {
     setPersonalData(initialPersonalData);
   };
 
-  if (loading) {
-    return <div className="loading">Cargando datos personales...</div>;
-  }
-
+  
   return (
     <div className="personal-container">
+
+       {loading && <div className="loading">Cargando datos personales...</div>}
       {error && <div className="error">Error al cargar los datos personales</div>}
       <h2>Datos Personales</h2>
       <form onSubmit={handleSubmit}>

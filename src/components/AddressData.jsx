@@ -4,11 +4,11 @@ import { useState, useEffect } from 'react';
 import useSessionStore from '../store/sessionStore';
 import useCatalogStore from '../store/catalogStore';
 
-const AddressData = () => {
+const AddressForm = () => {
 
   const session = useSessionStore((state) => state.session);
   const [addressData, setAddressData] = useState({
-    paisHabitacion: '',
+    nom_hab_pais_id: '',
     estadoHabitacion: '',
     municipioHabitacion: '',
     parroquiaHabitacion: '',
@@ -103,7 +103,7 @@ const AddressData = () => {
     if (cities.length === 0) fetchCities();
     if (municipalities.length === 0) fetchMunicipalities();
     if (parishes.length === 0) fetchParishes();
-  }, []);
+  });
 
   const filterByCountry = (countryId) => {
     const filteredStates = states.filter((state) => state.PAIS_ID == countryId);
@@ -215,4 +215,4 @@ const AddressData = () => {
   );
 };
 
-export default AddressData;
+export default AddressForm;
