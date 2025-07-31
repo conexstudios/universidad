@@ -62,9 +62,6 @@ const AcademicData = () => {
         }));
     };
     
-    {loading && <div className="loading">Cargando datos personales...</div>}
-    {error && <div className="error">Error al cargar los datos personales</div>}
-
     return (
         <div className="academic-container">
             <h1>Datos Académicos</h1>
