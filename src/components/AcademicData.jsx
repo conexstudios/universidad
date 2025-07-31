@@ -1,7 +1,70 @@
 import React from 'react';
 import '../styles/AcademicData.css';
-
+import { useState, useEffect } from 'react';
+import useSessionStore from '../store/sessionStore';
+import useCatalogStore from '../store/catalogStore';                
 const AcademicData = () => {
+    const session = useSessionStore((state) => state.session);
+    const [academicData, setAcademicData] = useState({
+        etapa_actual: '',
+        plan_estudios_actual: '',
+        carrera_actual: '',
+        mencion_actual: '',
+        turno_pre_asignado: '',
+        rusnies_id: '',
+        plantel_procedencia: '',
+        codigo_dea: '',
+        tipo_discapacidad: '',
+        titulo_educacion_media: '',
+        numero_titulo_emg: '',
+        fecha_graduacion_emg: '',
+        carrera_desea: '',
+        modalidad_ingreso: '',
+        nivel_academico: '',
+    });
+    
+    
+    const fetchAcademicData = async () => {
+        try {
+            setLoading(true);
+            const response = await fetch(
+                `${import.meta.env.VITE_API_URL}/nominas?NOM_FICHANRO=${session.NOM_FICHANRO}`
+            );
+            
+            if (!response.ok) {
+                throw new Error('Error al cargar los datos académicos');
+            }
+            
+            const data = await response.json();
+            setAcademicData(prev => ({
+                ...prev,
+                ...data
+            }));
+        } catch (error) {
+            console.error('Error fetching academic data:', error);
+            setError(error.message);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    useEffect(() => {
+        if (session?.NOM_FICHANRO) {
+            fetchAcademicData();
+        }
+    }, [session?.NOM_FICHANRO]);
+
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setAcademicData(prev => ({
+            ...prev,
+            [name]: value
+        }));
+    };
+    
+    {loading && <div className="loading">Cargando datos personales...</div>}
+    {error && <div className="error">Error al cargar los datos personales</div>}
+
     return (
         <div className="academic-container">
             <h1>Datos Académicos</h1>
@@ -9,19 +72,43 @@ const AcademicData = () => {
                 <div className="form-section">
                     <div className="form-group">
                         <label htmlFor="etapa-actual">Etapa Actual</label>
-                        <input type="text" id="etapa-actual" name="etapa-actual" />
+                        <input 
+                            type="text" 
+                            id="etapa-actual" 
+                            name="etapa-actual" 
+                            value={academicData.etapa_actual || ''}
+                            onChange={(e) => setAcademicData({...academicData, etapa_actual: e.target.value})}
+                        />
                     </div>
                     <div className="form-group">
                         <label htmlFor="plan-estudios">Plan de Estudios Actual</label>
-                        <input type="text" id="plan-estudios" name="plan-estudios" />
+                        <input 
+                            type="text" 
+                            id="plan-estudios" 
+                            name="plan-estudios" 
+                            value={academicData.plan_estudios_actual || ''}
+                            onChange={(e) => setAcademicData({...academicData, plan_estudios_actual: e.target.value})}
+                        />
                     </div>
                     <div className="form-group">
                         <label htmlFor="carrera-actual">Carrera Actual</label>
-                        <input type="text" id="carrera-actual" name="carrera-actual" />
+                        <input 
+                            type="text" 
+                            id="carrera-actual" 
+                            name="carrera-actual" 
+                            value={academicData.carrera_actual || ''}
+                            onChange={(e) => setAcademicData({...academicData, carrera_actual: e.target.value})}
+                        />
                     </div>
                     <div className="form-group">
                         <label htmlFor="mencion-actual">Mención Actual</label>
-                        <input type="text" id="mencion-actual" name="mencion-actual" />
+                        <input 
+                            type="text" 
+                            id="mencion-actual" 
+                            name="mencion-actual" 
+                            value={academicData.mencion_actual || ''}
+                            onChange={(e) => setAcademicData({...academicData, mencion_actual: e.target.value})}
+                        />
                     </div>
                     <div className="form-group">
                         <label htmlFor="turno-pre-asignado">Turno Pre-Asignado</label>
