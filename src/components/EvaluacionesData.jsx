@@ -5,6 +5,7 @@ import useSessionStore from '../store/sessionStore';
 import useCatalogStore from '../store/catalogStore'; 
 
 const EvaluacionesData = () => {
+    const catalog = useCatalogStore((state) => state.catalog);
     const session = useSessionStore((state) => state.session);
     const [evaluaciones, setEvaluaciones] = useState([
         { id: 1, subject: "Matemáticas", evaluationType: "Examen de Unidad 2", dueDate: "30/05/2025" },

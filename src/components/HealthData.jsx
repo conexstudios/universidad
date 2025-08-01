@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import useSessionStore from '../store/sessionStore';
 import useCatalogStore from '../store/catalogStore'; 
 const HealthData = () => {
+  const catalog = useCatalogStore((state) => state.catalog);
   const session = useSessionStore((state) => state.session);
   const [healthData, setHealthData] = useState({
     tipo_sangre: '',

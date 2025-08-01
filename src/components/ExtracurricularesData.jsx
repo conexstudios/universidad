@@ -5,6 +5,7 @@ import useSessionStore from '../store/sessionStore';
 import useCatalogStore from '../store/catalogStore'; 
 
 const ExtracurricularData = () => {
+    const catalog = useCatalogStore((state) => state.catalog);
     const session = useSessionStore((state) => state.session);
     const [extracurricularData, setExtracurricularData] = useState({
         tipo_actividad: '',

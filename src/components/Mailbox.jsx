@@ -1,11 +1,18 @@
 import { useState } from 'react';
 import '../styles/Mailbox.css';
-
+import useSessionStore from '../store/sessionStore';
+import useCatalogStore from '../store/catalogStore'; 
 const Mailbox = () => {
+    const catalog = useCatalogStore((state) => state.catalog);
+    const session = useSessionStore((state) => state.session);
     const [showComposeForm, setShowComposeForm] = useState(false);
     const [selectedMessage, setSelectedMessage] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+    const [messages, setMessages] = useState([]);
 
     const allMessages = [
+        { id: 0, title: "Bandeja de Entrada", time: "Hace 200 días", sender: "LUIS MARIO RIVAS HERNÁNDEZ", dateTime: "2023-09-18T16:57:17", content: "Hola, estoy teniendo algunas dudas sobre el análisis DAFO que estamos utilizando en el proyecto. ¿Podemos discutirlas?", reply: "Claro, estaré encantado de ayudarte con tus dudas. ¿Quieres reunirnos en la biblioteca mañana por la tarde?", author: "JAVIER ALEJANDRO NAVA CARRENO" },
         { id: 1, title: "Dudas sobre el análisis DAFO", time: "Hace 200 días", sender: "LUIS MARIO RIVAS HERNÁNDEZ", dateTime: "2023-09-18T16:57:17", content: "Hola, estoy teniendo algunas dudas sobre el análisis DAFO que estamos utilizando en el proyecto. ¿Podemos discutirlas?", reply: "Claro, estaré encantado de ayudarte con tus dudas. ¿Quieres reunirnos en la biblioteca mañana por la tarde?", author: "JAVIER ALEJANDRO NAVA CARRENO" },
         { id: 2, title: "Recopilación de datos de mercado", time: "Hace 200 días", sender: "ANA PEREZ", dateTime: "2023-09-18T10:30:00", content: "Necesito los últimos datos de mercado para el informe trimestral.", reply: null, author: null },
         { id: 3, title: "Revisión de la estrategia propuesta", time: "Hace 200 días", sender: "CARLOS GOMEZ", dateTime: "2023-09-17T09:00:00", content: "Favor revisar la estrategia propuesta para la próxima reunión.", reply: null, author: null },

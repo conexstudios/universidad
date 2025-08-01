@@ -4,8 +4,10 @@ import useSessionStore from '../store/sessionStore';
 import { Link } from "react-router-dom";
 import "../styles/Service.css";
 import { getDecadeLabel } from "react-calendar/src/shared/dates.js";
+import useCatalogStore from "../store/catalogStore";
 
 const ServiceRequestsList = () => {
+    const catalog = useCatalogStore((state) => state.catalog);
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {
