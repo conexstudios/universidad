@@ -10,7 +10,7 @@ const Mailbox = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [messages, setMessages] = useState([]);
-
+    
     const allMessages = [
         { id: 0, title: "Bandeja de Entrada", time: "Hace 200 días", sender: "LUIS MARIO RIVAS HERNÁNDEZ", dateTime: "2023-09-18T16:57:17", content: "Hola, estoy teniendo algunas dudas sobre el análisis DAFO que estamos utilizando en el proyecto. ¿Podemos discutirlas?", reply: "Claro, estaré encantado de ayudarte con tus dudas. ¿Quieres reunirnos en la biblioteca mañana por la tarde?", author: "JAVIER ALEJANDRO NAVA CARRENO" },
         { id: 1, title: "Dudas sobre el análisis DAFO", time: "Hace 200 días", sender: "LUIS MARIO RIVAS HERNÁNDEZ", dateTime: "2023-09-18T16:57:17", content: "Hola, estoy teniendo algunas dudas sobre el análisis DAFO que estamos utilizando en el proyecto. ¿Podemos discutirlas?", reply: "Claro, estaré encantado de ayudarte con tus dudas. ¿Quieres reunirnos en la biblioteca mañana por la tarde?", author: "JAVIER ALEJANDRO NAVA CARRENO" },

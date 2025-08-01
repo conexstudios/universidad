@@ -1,173 +1,202 @@
-import React from 'react';
-import '../styles/AcademicData.css';
 import { useState, useEffect } from 'react';
+import '../styles/Mailbox.css';
 import useSessionStore from '../store/sessionStore';
-import useCatalogStore from '../store/catalogStore';                
-const AcademicData = () => {
+import useCatalogStore from '../store/catalogStore';
+
+const Mailbox = () => {
     const catalog = useCatalogStore((state) => state.catalog);
     const session = useSessionStore((state) => state.session);
-    const [academicData, setAcademicData] = useState({
-        etapa_actual: '',
-        plan_estudios_actual: '',
-        carrera_actual: '',
-        mencion_actual: '',
-        turno_pre_asignado: '',
-        rusnies_id: '',
-        plantel_procedencia: '',
-        codigo_dea: '',
-        tipo_discapacidad: '',
-        titulo_educacion_media: '',
-        numero_titulo_emg: '',
-        fecha_graduacion_emg: '',
-        carrera_desea: '',
-        modalidad_ingreso: '',
-        nivel_academico: '',
-    });
-    
-    
-    const fetchAcademicData = async () => {
-        try {
-            setLoading(true);
-            const response = await fetch(
-                `${import.meta.env.VITE_API_URL}/nominas?NOM_FICHANRO=${session.NOM_FICHANRO}`
-            );
-            
-            if (!response.ok) {
-                throw new Error('Error al cargar los datos académicos');
-            }
-            
-            const data = await response.json();
-            setAcademicData(prev => ({
-                ...prev,
-                ...data
-            }));
-        } catch (error) {
-            console.error('Error fetching academic data:', error);
-            setError(error.message);
-        } finally {
-            setLoading(false);
-        }
-    };
+    const [showComposeForm, setShowComposeForm] = useState(false);
+    const [selectedMessage, setSelectedMessage] = useState(null);
+    const [messages, setMessages] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
+    const API_URL = import.meta.env.VITE_API_URL;
     useEffect(() => {
-        if (session?.NOM_FICHANRO) {
-            fetchAcademicData();
-        }
-    }, [session?.NOM_FICHANRO]);
+        const fetchMessages = async () => {
+            if (!session?.NOM_FICHANRO) {
+                setError("El número de ficha de la sesión no está disponible.");
+                setLoading(false);
+                return;
+            }
 
-    const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        setAcademicData(prev => ({
-            ...prev,
-            [name]: value
-        }));
+            try {
+                setLoading(true);
+                setError(null);
+                
+                const url = `${API_URL}/nominas?NOM_FICHANRO=${session.NOM_FICHANRO}`;
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error(`Failed to fetch messages: ${response.status} ${response.statusText}`);
+                }
+                
+                const data = await response.json();
+             
+                if (!Array.isArray(data)) {
+                    throw new Error("El formato de datos de la API no es válido.");
+                }
+
+             
+                const sorted = [...data].sort((a, b) => new Date(b.dateTime) - new Date(a.dateTime));
+                
+                setMessages(sorted);
+                if (sorted.length > 0) {
+                    setSelectedMessage(sorted[0]);
+                }
+            } catch (err) {
+                console.error("Error al cargar los mensajes:", err);
+                setError(`Error al cargar los mensajes: ${err.message}`);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchMessages();
+    }, [session?.NOM_FICHANRO, API_URL]);
+
+    const handleSelectMessage = (message) => {
+        setSelectedMessage(message);
     };
+
+    const handleComposeClick = () => {
+        setShowComposeForm(true);
+    };
+
+    const handleCloseComposeForm = () => {
+        setShowComposeForm(false);
+    };
+    
+    const handleSendMessage = () => {
+        alert("Mensaje enviado (funcionalidad de envío real aún no implementada)");
+        setShowComposeForm(false);
+    };
+
+    const formatDateTime = (isoString) => {
+        if (!isoString) return 'Fecha no disponible';
+        const date = new Date(isoString);
+        if (isNaN(date.getTime())) return 'Fecha inválida';
+        const options = { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', hour12: true };
+        return date.toLocaleString('es-ES', options);
+    };
+
+    if (loading) {
+        return (
+            <div className="mailbox-container">
+                <p>Cargando mensajes...</p>
+            </div>
+        );
+    }
+
+    if (error) {
+        return (
+            <div className="mailbox-container">
+                <p className="error-message">{error}</p>
+            </div>
+        );
+    }
     
     return (
-        <div className="academic-container">
-            <h1>Datos Académicos</h1>
-            <form className="academic-form">
-                <div className="form-section">
-                    <div className="form-group">
-                        <label htmlFor="etapa-actual">Etapa Actual</label>
-                        <input 
-                            type="text" 
-                            id="etapa-actual" 
-                            name="etapa-actual" 
-                            value={academicData.etapa_actual || ''}
-                            onChange={(e) => setAcademicData({...academicData, etapa_actual: e.target.value})}
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="plan-estudios">Plan de Estudios Actual</label>
-                        <input 
-                            type="text" 
-                            id="plan-estudios" 
-                            name="plan-estudios" 
-                            value={academicData.plan_estudios_actual || ''}
-                            onChange={(e) => setAcademicData({...academicData, plan_estudios_actual: e.target.value})}
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="carrera-actual">Carrera Actual</label>
-                        <input 
-                            type="text" 
-                            id="carrera-actual" 
-                            name="carrera-actual" 
-                            value={academicData.carrera_actual || ''}
-                            onChange={(e) => setAcademicData({...academicData, carrera_actual: e.target.value})}
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="mencion-actual">Mención Actual</label>
-                        <input 
-                            type="text" 
-                            id="mencion-actual" 
-                            name="mencion-actual" 
-                            value={academicData.mencion_actual || ''}
-                            onChange={(e) => setAcademicData({...academicData, mencion_actual: e.target.value})}
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="turno-pre-asignado">Turno Pre-Asignado</label>
-                        <input type="text" id="turno-pre-asignado" name="turno-pre-asignado" />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="rusnies-id">RUSNIES ID (OPSU)</label>
-                        <input type="text" id="rusnies-id" name="rusnies-id" />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="plantel-procedencia">Plantel de Procedencia</label>
-                        <select id="plantel-procedencia" name="plantel-procedencia">
-                            <option value="">Seleccione</option>
+        <div className="mailbox-container">
+            <h1>Mensajería</h1>
+            <div className="mailbox-header">
+                <button className="mail-button">Correo</button>
+                <button className="mail-button">Telegram</button>
+                <button className="mail-button">Whatsapp</button>
+            </div>
+            <div className="mailbox-content">
+                <div className="mailbox-sidebar">
+                    <div className="filters">
+                        <select>
+                            <option>Buscar Curso</option>
                         </select>
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="codigo-dea">Código DEA del Plantel</label>
-                        <input type="text" id="codigo-dea" name="codigo-dea" />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="tipo-discapacidad">Tipo de discapacidad</label>
-                        <input type="text" id="tipo-discapacidad" name="tipo-discapacidad" />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="titulo-educacion-media">Título de Educación Media</label>
-                        <input type="text" id="titulo-educacion-media" name="titulo-educacion-media" />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="numero-titulo-emg">Número del título de EMG</label>
-                        <input type="text" id="numero-titulo-emg" name="numero-titulo-emg" />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="fecha-graduacion-emg">Fecha de graduación EMG</label>
-                        <input type="date" id="fecha-graduacion-emg" name="fecha-graduacion-emg" />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="carrera-desea">Carrera que desea estudiar</label>
-                        <select id="carrera-desea" name="carrera-desea">
-                            <option value="">Seleccione</option>
+                        <select>
+                            <option>Bandeja de Entrada</option>
                         </select>
+                        <input type="text" placeholder="Buscar Mensaje por texto" />
+                        <button className="compose-button" onClick={handleComposeClick}>Redactar</button>
                     </div>
-                    <div className="form-group">
-                        <label htmlFor="modalidad-ingreso">Modalidad Ingreso</label>
-                        <select id="modalidad-ingreso" name="modalidad-ingreso">
-                            <option value="">Seleccione</option>
-                        </select>
+                    <ul className="message-list">
+                        {messages.length > 0 ? (
+                            messages.map((message) => (
+                                <li
+                                    key={message.id}
+                                    className={`message-item ${selectedMessage && selectedMessage.id === message.id ? 'selected' : ''}`}
+                                    onClick={() => handleSelectMessage(message)} 
+                                >
+                                    <div className="message-avatar">👤</div>
+                                    <div>
+                                        <p className="message-title">{message.title}</p>
+                                        <p className="message-time">{formatDateTime(message.dateTime)}</p>
+                                    </div>
+                                </li>
+                            ))
+                        ) : (
+                            <li className="no-messages">No hay mensajes.</li>
+                        )}
+                    </ul>
+                </div>
+                <div className="mailbox-details">
+                    {selectedMessage ? ( 
+                        <>
+                            <h2>{selectedMessage.title}</h2>
+                            <p>De: {selectedMessage.sender}</p>
+                            <p>Recibido: {formatDateTime(selectedMessage.dateTime)}</p>
+                            <button className="reply-button">RESPONDER</button>
+                            <div className="message-content">
+                                <p>{selectedMessage.content}</p>
+                                {selectedMessage.reply && (
+                                    <p className="reply">
+                                        RE: {selectedMessage.title} (Recibido: {formatDateTime(selectedMessage.dateTime)})<br />
+                                        {selectedMessage.reply}<br />
+                                        Autor: {selectedMessage.author}
+                                    </p>
+                                )}
+                            </div>
+                        </>
+                    ) : (
+                        <p className="no-message-selected">Selecciona un mensaje para ver los detalles.</p>
+                    )}
+                </div>
+            </div>
+
+            {showComposeForm && (
+                <div className="compose-message-window">
+                    <div className="compose-header">
+                        <span>Nuevo Mensaje</span>
+                        <div className="compose-controls">
+                            <button className="close-compose-button" onClick={handleCloseComposeForm}>✕</button>
+                        </div>
                     </div>
-                    <div className="form-group">
-                        <label htmlFor="nivel-academico">Nivel Académico Completado</label>
-                        <select id="nivel-academico" name="nivel-academico">
-                            <option value="">Seleccione</option>
-                        </select>
+                    <div className="compose-body">
+                        <div className="compose-recipient">
+                            <label htmlFor="compose-to">Para</label>
+                            <input type="text" id="compose-to" placeholder="" />
+                            <div className="cc-bcc">
+                                <span>Cc</span>
+                                <span>Bcc</span>
+                            </div>
+                        </div>
+                        <div className="compose-subject">
+                            <label htmlFor="compose-subject">Asunto</label>
+                            <input type="text" id="compose-subject" placeholder="" />
+                        </div>
+                        <textarea
+                            className="compose-content"
+                            placeholder=""
+                        ></textarea>
+                    </div>
+                    <div className="compose-footer">
+                        <button className="send-button" onClick={handleSendMessage}>Enviar</button>
+                        <span className="footer-icon">📎</span> 
+                        <span className="footer-icon">💰</span> 
+                        <span className="footer-icon">😀</span> 
+                        <span className="footer-icon">🗑️</span> 
                     </div>
                 </div>
-                <div className="form-actions">
-                    <button type="submit" className="save-button">Guardar Cambios</button>
-                    <button type="button" className="cancel-button">Cancelar</button>
-                </div>
-            </form>
+            )}
         </div>
     );
 };
 
-export default AcademicData;
+export default Mailbox;
