@@ -3,95 +3,189 @@ import { useFetchWithSession } from '../store/fetchWithSession';
 import useSessionStore from '../store/sessionStore';
 import { Link } from "react-router-dom";
 import "../styles/Service.css";
-import { getDecadeLabel } from "react-calendar/src/shared/dates.js";
 import useCatalogStore from "../store/catalogStore";
 
 const ServiceRequestsList = () => {
-    const catalog = useCatalogStore((state) => state.catalog);
   const [orders, setOrders] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const session = useSessionStore((state) => state.session);
+  const fetchWithSession = useFetchWithSession();
+  const catalog = useCatalogStore((state) => state.catalog);
+
+  const fetchOrders = async () => {
+    if (!session?.user) {
+      setError("No hay una sesión activa");
+      setLoading(false);
+      return;
+    }
+
+    try {
+      setLoading(true);
+      setError(null);
+      
+      const params = new URLSearchParams({
+        user: session.user,
+        id: session.id,
+      });
+      
+      const apiUrl = `${import.meta.env.VITE_API_URL}/ordenes?${params.toString()}`;
+      const response = await fetchWithSession(apiUrl);
+      
+      if (!response.ok) {
+        if (response.status === 401) {
+          throw new Error("No autorizado. Por favor, inicie sesión.");
+        }
+        throw new Error(`Error al cargar las órdenes: ${response.statusText}`);
+      }
+      
+      const json = await response.json();
+      
+      if (!json.data || json.data.length === 0) {
+        setOrders([]);
+        return;
+      }
+      
+      setOrders(json.data);
+    } catch (error) {
+      console.error("Error al cargar las órdenes:", error);
+      setError(error.message || "Error al cargar las órdenes. Por favor, intente de nuevo más tarde.");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    const fetchWithSession = useFetchWithSession();
-    const fetchOrders = async () => {
-      try {
-        if (!session) return;
-        const params = new URLSearchParams({
-          user: session.user,
-          id: session.id,
-        });
-        const apiUrl = `${import.meta.env.VITE_API_URL}/ordenes?${params.toString()}`;
-        const response = await fetchWithSession(apiUrl);
-        if (!response.ok) {
-          if (response.status === 401) {
-            throw new Error("No autorizado. Por favor, inicie sesión.");
-          }
-          throw new Error(
-            `Error al cargar las órdenes: ${response.statusText}`
-          );
-        }
-        const json = await response.json();
-        if (json.length === 0) {
-          throw new Error("No se encontraron órdenes.");
-        }
-        console.log("Órdenes cargadas:", json.data);
-        setOrders(json.data);
-      } catch (error) {
-        console.error("Error al cargar las órdenes:", error);
-      }
-    };
-
     fetchOrders();
-  }, []);
+  }, [session]);
+
+  const formatCurrency = (amount, currency = 'USD') => {
+    return new Intl.NumberFormat('es-VE', {
+      style: 'currency',
+      currency: currency,
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2
+    }).format(amount);
+  };
+
+  const getStatusBadge = (status) => {
+    const statusClasses = {
+      'pendiente': 'status-pending',
+      'pagado': 'status-paid',
+      'procesando': 'status-processing',
+      'completado': 'status-completed',
+      'cancelado': 'status-cancelled'
+    };
+    
+    const statusText = status?.toLowerCase() || 'desconocido';
+    const className = statusClasses[statusText] || 'status-default';
+    
+    return (
+      <span className={`status-badge ${className}`}>
+        {statusText.charAt(0).toUpperCase() + statusText.slice(1)}
+      </span>
+    );
+  };
+
+  if (loading) {
+    return (
+      <div className="loading-container">
+        <div className="spinner"></div>
+        <p>Cargando órdenes de servicio...</p>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="error-container">
+        <p className="error-message">{error}</p>
+        <button 
+          className="retry-button"
+          onClick={fetchOrders}
+        >
+          Reintentar
+        </button>
+      </div>
+    );
+  }
 
   return (
-    <div className="service-requests-box">
-      <h2 className="service-requests-title">
-        Lista de Solicitudes de Servicio
-      </h2>
-      <table className="service-requests-table">
-        <thead>
-          <tr>
-            <th>Número</th>
-            <th>Tipo</th>
-            <th>Fecha Orden</th>
-            <th>Moneda</th>
-            <th>Total</th>
-            <th>Pagar</th>
-            <th>Estatus</th>
-          </tr>
-        </thead>
-        <tbody>
-          {
-            orders.length === 0 && (
+    <div className="service-requests-container">
+      <div className="service-requests-header">
+        <h2 className="service-requests-title">
+          Lista de Solicitudes de Servicio
+        </h2>
+        <button 
+          className="refresh-button"
+          onClick={fetchOrders}
+          disabled={loading}
+        >
+          {loading ? 'Actualizando...' : 'Actualizar'}
+        </button>
+      </div>
+      
+      <div className="table-responsive">
+        <table className="service-requests-table">
+          <thead>
+            <tr>
+              <th>Número</th>
+              <th>Tipo</th>
+              <th>Fecha</th>
+              <th>Moneda</th>
+              <th>Total</th>
+              <th>Acciones</th>
+              <th>Estatus</th>
+            </tr>
+          </thead>
+          <tbody>
+            {orders.length === 0 ? (
               <tr>
                 <td colSpan="7" className="no-orders">
-                  No hay órdenes disponibles.
+                  No hay órdenes de servicio disponibles.
                 </td>
               </tr>
-            ) || (
-              orders.data.map((order) => (
-                <tr key={order.id}>
-                  <td>{order.id}</td>
-                  <td>{order.tipo}</td>
-                  <td>{new Date(order.fecha_orden).toLocaleDateString()}</td>
-                  <td>{order.moneda}</td>
-                  <td>{order.total.toFixed(2)}</td>
+            ) : (
+              orders.map((order) => (
+                <tr key={order.id} className="order-row">
+                  <td>#{order.id}</td>
+                  <td>{order.tipo || 'N/A'}</td>
+                  <td>{order.fecha_orden ? new Date(order.fecha_orden).toLocaleDateString() : 'N/A'}</td>
+                  <td>{order.moneda || 'USD'}</td>
+                  <td>{formatCurrency(order.total || 0, order.moneda)}</td>
                   <td>
                     {order.pagar ? (
-                      <Link to={`/pagar/${order.id}`} className="pay-link">
+                      <Link 
+                        to={`/pagar/${order.id}`} 
+                        className="pay-button"
+                        title="Pagar esta orden"
+                      >
                         Pagar
                       </Link>
                     ) : (
-                      "No disponible"
+                      <span className="no-payment">No disponible</span>
                     )}
+                    <Link 
+                      to={`/orden/${order.id}`} 
+                      className="details-link"
+                      title="Ver detalles"
+                    >
+                      Detalles
+                    </Link>
                   </td>
-                  <td>{order.estatus}</td>
+                  <td>
+                    {getStatusBadge(order.estatus)}
+                  </td>
                 </tr>
               ))
-            )
-          }
-        </tbody>
-      </table>
+            )}
+          </tbody>
+        </table>
+      </div>
+      
+      <div className="service-requests-footer">
+        <p>Mostrando {orders.length} órdenes</p>
+      </div>
     </div>
   );
 };
