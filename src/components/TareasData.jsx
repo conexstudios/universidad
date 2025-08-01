@@ -1,6 +1,17 @@
+import React from 'react';
 import "../styles/TareasData.css";
+import { useState, useEffect } from 'react';
+import useSessionStore from '../store/sessionStore';
+import useCatalogStore from '../store/catalogStore'; 
 
 const TareasData = () => {
+    const session = useSessionStore((state) => state.session);
+    const [tareasData, setTareasData] = useState({
+        subject: '',
+        task: '',
+        dueDate: '',
+        status: '',
+    });
     const allTareas = [
         { id: 1, subject: "Matemáticas", task: "Guía de ejercicios 3.1", dueDate: "25/05/2025", status: "Pendiente" },
         { id: 2, subject: "Física", task: "Pre-informe de laboratorio N°2", dueDate: "28/05/2025", status: "No entregada" },
@@ -21,6 +32,29 @@ const TareasData = () => {
         return dateA - dateB;
     });
 
+    const fetchTareasData = async () => {
+        try {
+            const response = await fetch(import.meta.env.VITE_API_URL + '/nominas?NOM_FICHANRO=' + session.NOM_FICHANRO);
+            const data = await response.json()
+            setTareasData(data);
+        } catch (error) {
+            console.error('Error fetching tareas data:', error);
+        }
+    };
+    
+    useEffect(() => {
+        fetchTareasData();
+    }, []);
+    
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setTareasData(prev => ({
+            ...prev,
+            [name]: value
+        }));
+    };
+
+    
     return (
         <article className="pending-tasks-card" id="pending-tasks-section-container">
             <h3>Planificación de Tareas</h3>
