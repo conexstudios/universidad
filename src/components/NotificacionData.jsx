@@ -112,14 +112,12 @@ const NotificationData = () => {
                                 <label htmlFor="dnd-from">Desde</label>
                                 <div className="time-input-wrapper">
                                     <input type="text" id="dnd-from" defaultValue="10:00 PM" readOnly />
-                                    <span className="material-icons time-icon">access_time</span>
                                 </div>
                             </div>
                             <div className="time-input-group">
                                 <label htmlFor="dnd-to">Hasta</label>
                                 <div className="time-input-wrapper">
                                     <input type="text" id="dnd-to" defaultValue="08:00 AM" readOnly />
-                                    <span className="material-icons time-icon">access_time</span>
                                 </div>
                             </div>
                         </div>
