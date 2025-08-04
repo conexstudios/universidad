@@ -1,7 +1,57 @@
-import React from 'react';
-import '../styles/AcademicPreferences.css'; 
+import React, { useState, useEffect } from 'react';
+import '../styles/AcademicPreferences.css';
+import detectDeviceType from '../utils/detectDivece';
+import useCatalogStore from '../store/catalogStore';
 
 const AcademicPreferences = () => {
+  const deviceType = detectDeviceType();
+  const { 
+    preferences, 
+    updatePreferences,
+    setVisibleCategories 
+  } = useCatalogStore();
+  
+  const [localCategories, setLocalCategories] = useState(preferences.visibleCategories);
+  const [localPreferences, setLocalPreferences] = useState({
+    calendarView: preferences.calendarView,
+    timeFormat: preferences.timeFormat,
+    firstDayOfWeek: preferences.firstDayOfWeek,
+    showCompletedTasks: preferences.showCompletedTasks,
+    taskReminders: preferences.taskReminders,
+    showCourseProgress: preferences.showCourseProgress
+  });
+
+
+  useEffect(() => {
+    setLocalCategories(preferences.visibleCategories);
+    setLocalPreferences({
+      calendarView: preferences.calendarView,
+      timeFormat: preferences.timeFormat,
+      firstDayOfWeek: preferences.firstDayOfWeek,
+      showCompletedTasks: preferences.showCompletedTasks,
+      taskReminders: preferences.taskReminders,
+      showCourseProgress: preferences.showCourseProgress
+    });
+  }, [preferences]);
+
+  const handleCategoryToggle = (category) => {
+    const updatedCategories = {
+      ...localCategories,
+      [category]: !localCategories[category]
+    };
+    setLocalCategories(updatedCategories);
+    setVisibleCategories(updatedCategories);
+  };
+
+  const handlePreferenceChange = (field, value) => {
+    const updatedPreferences = {
+      ...localPreferences,
+      [field]: value
+    };
+    setLocalPreferences(updatedPreferences);
+    updatePreferences(updatedPreferences);
+  };
+
   return (
     <div className="academic-prefs-container">
       <div className="academic-prefs-main-content">
@@ -14,8 +64,13 @@ const AcademicPreferences = () => {
           <div className="card-body">
             <div className="form-group">
               <label htmlFor="vista-calendario">Vista de Calendario Predeterminada</label>
-              <select id="vista-calendario" name="vista-calendario" defaultValue="Semana">
-                <option value="Dia">Día</option>
+              <select 
+                id="vista-calendario" 
+                name="vista-calendario" 
+                value={localPreferences.calendarView}
+                onChange={(e) => handlePreferenceChange('calendarView', e.target.value)}
+              >
+                <option value="Día">Día</option>
                 <option value="Semana">Semana</option>
                 <option value="Mes">Mes</option>
                 <option value="Agenda">Agenda</option>
@@ -23,14 +78,44 @@ const AcademicPreferences = () => {
             </div>
             <div className="form-group">
               <label htmlFor="formato-horario">Formato de Horario</label>
-              <select id="formato-horario" name="formato-horario" defaultValue="12 horas (AM/PM)">
+              <select 
+                id="formato-horario" 
+                name="formato-horario" 
+                value={localPreferences.timeFormat}
+                onChange={(e) => handlePreferenceChange('timeFormat', e.target.value)}
+              >
                 <option value="12 horas (AM/PM)">12 horas (AM/PM)</option>
                 <option value="24 horas">24 horas</option>
               </select>
             </div>
             <div className="form-group">
+              <label>Categorías Visibles</label>
+              <div className="category-toggles">
+                {Object.entries(localCategories).map(([category, isVisible]) => (
+                  <div key={category} className="category-toggle">
+                    <label className="toggle-switch">
+                      <input
+                        type="checkbox"
+                        checked={isVisible}
+                        onChange={() => handleCategoryToggle(category)}
+                      />
+                      <span className="toggle-slider"></span>
+                    </label>
+                    <span className="category-label">
+                      {category.charAt(0).toUpperCase() + category.slice(1)}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="form-group">
               <label htmlFor="primer-dia-semana">Primer Día de la Semana</label>
-              <select id="primer-dia-semana" name="primer-dia-semana" defaultValue="Lunes">
+              <select 
+                id="primer-dia-semana" 
+                name="primer-dia-semana" 
+                value={localPreferences.firstDayOfWeek}
+                onChange={(e) => handlePreferenceChange('firstDayOfWeek', e.target.value)}
+              >
                 <option value="Lunes">Lunes</option>
                 <option value="Domingo">Domingo</option>
               </select>
@@ -40,7 +125,12 @@ const AcademicPreferences = () => {
               <label htmlFor="mostrar-tareas-completadas">Mostrar Tareas Completadas</label>
               <p className="toggle-description">Mantener tareas completadas en la lista</p>
               <label className="switch">
-                <input type="checkbox" id="mostrar-tareas-completadas" defaultChecked />
+                <input 
+                  type="checkbox" 
+                  id="mostrar-tareas-completadas" 
+                  checked={localPreferences.showCompletedTasks}
+                  onChange={(e) => handlePreferenceChange('showCompletedTasks', e.target.checked)}
+                />
                 <span className="slider round"></span>
               </label>
             </div>
@@ -49,7 +139,12 @@ const AcademicPreferences = () => {
               <label htmlFor="recordatorios-tareas">Recordatorios de Tareas</label>
               <p className="toggle-description">Recibir alertas antes de la fecha límite</p>
               <label className="switch">
-                <input type="checkbox" id="recordatorios-tareas" defaultChecked />
+                <input 
+                  type="checkbox" 
+                  id="recordatorios-tareas" 
+                  checked={localPreferences.taskReminders}
+                  onChange={(e) => handlePreferenceChange('taskReminders', e.target.checked)}
+                />
                 <span className="slider round"></span>
               </label>
             </div>
@@ -58,14 +153,18 @@ const AcademicPreferences = () => {
               <label htmlFor="mostrar-progreso-curso">Mostrar Progreso del Curso</label>
               <p className="toggle-description">Ver indicadores de progreso en cursos</p>
               <label className="switch">
-                <input type="checkbox" id="mostrar-progreso-curso" defaultChecked />
+                <input 
+                  type="checkbox" 
+                  id="mostrar-progreso-curso" 
+                  checked={localPreferences.showCourseProgress}
+                  onChange={(e) => handlePreferenceChange('showCourseProgress', e.target.checked)}
+                />
                 <span className="slider round"></span>
               </label>
             </div>
           </div>
         </div>
 
-        {/* Información Académica Section */}
         <div className="card academic-info-card">
           <div className="card-header">
             <h3>Información Académica</h3>
