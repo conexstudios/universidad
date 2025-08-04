@@ -66,7 +66,6 @@ const AccesibilidadData = () => {
                                 <p className="toggle-description">Reproducir sonidos en interacciones</p>
                                 <label className="switch">
                                     <input type="checkbox" id="system-sounds" defaultChecked />
-                                    <span className="slider round"></span>
                                 </label>
                             </div>
                             <div className="toggle-group">
@@ -74,15 +73,12 @@ const AccesibilidadData = () => {
                                 <p className="toggle-description">Alertas audibles para notificaciones</p>
                                 <label className="switch">
                                     <input type="checkbox" id="audible-notifications" defaultChecked />
-                                    <span className="slider round"></span>
                                 </label>
                             </div>
                             <div className="setting-group volume-slider-group">
                                 <label htmlFor="volume-slider">Volumen</label>
                                 <div className="slider-container">
-                                    <span className="material-icons">volume_mute</span>
                                     <input type="range" id="volume-slider" min="0" max="100" defaultValue="50" className="volume-slider" />
-                                    <span className="material-icons">volume_up</span>
                                 </div>
                             </div>
                             <div className="form-group">

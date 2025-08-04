@@ -13,7 +13,6 @@ const NotificationData = () => {
                     <div className="card-body">
                         <div className="notification-item">
                             <div className="notification-icon-text">
-                                <span className="material-icons">mail_outline</span>
                                 <div className="text-content">
                                     <label htmlFor="email-notifications">Correo Electrónico</label>
                                     <p className="email-address">ana.gonzalez@universidad.edu</p>
@@ -21,13 +20,11 @@ const NotificationData = () => {
                             </div>
                             <label className="switch">
                                 <input type="checkbox" id="email-notifications" defaultChecked />
-                                <span className="slider round"></span>
                             </label>
                         </div>
 
                         <div className="notification-item">
                             <div className="notification-icon-text">
-                                <span className="material-icons">notifications_none</span>
                                 <div className="text-content">
                                     <label htmlFor="push-notifications">Notificaciones Push</label>
                                     <p className="notification-description">En navegador y aplicación móvil</p>
@@ -41,7 +38,6 @@ const NotificationData = () => {
 
                         <div className="notification-item">
                             <div className="notification-icon-text">
-                                <span className="material-icons">sms</span>
                                 <div className="text-content">
                                     <label htmlFor="sms-notifications">SMS</label>
                                     <p className="phone-number">+52 555 987 6543</p>

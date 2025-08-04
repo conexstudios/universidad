@@ -137,19 +137,15 @@ const Account = () => {
                         </div>
                         <div className="form-grid">
                             <div className="form-group">
-                                <label htmlFor="nombre">Nombre(s)</label>
+                                <label htmlFor="nombre">Nombre Del Usuario</label>
                                 <input type="text" id="nombre" value={session.NOM_NOMBRE} readOnly />
                             </div>
                             <div className="form-group">
-                                <label htmlFor="apellidos">Apellidos</label>
-                                <input type="text" id="apellidos" value={session.NOM_APELLIDOS} readOnly />
-                            </div>
-                            <div className="form-group">
-                                <label htmlFor="correo-institucional">Correo Institucional</label>
+                                <label htmlFor="correo-institucional">Correo Del Usuario</label>
                                 <input type="email" id="correo-institucional" value={session.CORREO_INSTITUCIONAL} readOnly />
                             </div>
                             <div className="form-group">
-                                <label htmlFor="correo-personal">Correo Personal</label>
+                                <label htmlFor="correo-personal">Contraseña</label>
                                 <input
                                     type="email"
                                     id="correoPersonal"
@@ -166,18 +162,7 @@ const Account = () => {
                                     onChange={handleChange}
                                 />
                             </div>
-                            <div className="form-group">
-                                <label htmlFor="fecha-nacimiento">Fecha de Nacimiento</label>
-                                <input type="text" id="fecha-nacimiento" value={session.FECHA_NACIMIENTO} readOnly />
-                            </div>
                             <div className="form-group full-width">
-                                <label htmlFor="direccion">Dirección</label>
-                                <input
-                                    type="text"
-                                    id="direccion"
-                                    value={formData.direccion}
-                                    onChange={handleChange}
-                                />
                             </div>
                             <div className="form-group">
                                 <label htmlFor="contacto-emergencia-nombre">Contacto de Emergencia</label>
@@ -199,7 +184,7 @@ const Account = () => {
                             </div>
 
                             
-                            <div className="form-group full-width">
+                            <div className="form-group">
                                 <label>Ubicación Actual</label>
                                 <button
                                     type="button"
