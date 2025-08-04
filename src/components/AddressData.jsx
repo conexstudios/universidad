@@ -4,20 +4,21 @@ import { useState, useEffect } from 'react';
 import useSessionStore from '../store/sessionStore';
 import useCatalogStore from '../store/catalogStore';
 
-const AddressData = () => {
+const AddressForm = () => {
 
   const session = useSessionStore((state) => state.session);
   const [addressData, setAddressData] = useState({
-    paisHabitacion: '',
-    estadoHabitacion: '',
-    municipioHabitacion: '',
-    parroquiaHabitacion: '',
-    direccionPrincipal: '',
-    urbanizacion: '',
-    sector: '',
-    otraDireccion: '',
-    telefono1: '',
-    telefono2: '',
+    nom_hab_pais_id: '',
+    nom_hab_estado_id: '',
+    nom_hab_municipio_id: '',
+    nom_hab_parroquia_id: '',
+    nom_hab_direcc1: '',
+    nom_hab_direcc2: '',
+    nom_hab_urbanizacion: '',
+    nom_hab_sector: '',
+    nom_hab_otra_direccion: '',
+    nom_hab_telefono1: '',
+    nom_hab_telefono2: '',
   });
 
   const countries = useCatalogStore((state) => state.countries);
@@ -140,7 +141,7 @@ const AddressData = () => {
           <select id="pais-habitacion" name="pais-habitacion" onChange={(e) => filterByCountry(e.target.value)}>
             <option value="">Seleccione</option>
             {countries.map((country) => (
-              <option key={country.PAIS_ID} value={country.PAIS_ID}>
+              <option key={country.PAIS_ID} value={country.PAIS_ID} selected={country.PAIS_ID == addressData.nom_hab_pais_id} onChange={(e) => setAddressData({ ...addressData, nom_hab_pais_id: e.target.value })}>
                 {country.PAIS_NOMBRE}
               </option>
             ))}
@@ -151,7 +152,7 @@ const AddressData = () => {
           <select id="estado-habitacion" name="estado-habitacion" onChange={(e) => filterByState(e.target.value)}>
             <option value="">Seleccione</option>
             {selectedState.map((state) => (
-              <option key={state.ESTADO_ID} value={state.ESTADO_ID}>
+              <option key={state.ESTADO_ID} value={state.ESTADO_ID} selected={state.ESTADO_ID == addressData.nom_hab_estado_id} onChange={(e) => setAddressData({ ...addressData, nom_hab_estado_id: e.target.value })}>
                 {state.EST_NOMBRE}
               </option>
             ))}
@@ -162,7 +163,7 @@ const AddressData = () => {
           <select id="municipio-habitacion" name="municipio-habitacion" onChange={(e) => filterByMunicipality(e.target.value)}>
             <option value="">Seleccione</option>
             {selectedMunicipality.map((municipality) => (
-              <option key={municipality.MUNICIPIO_ID} value={municipality.MUNICIPIO_ID}>
+              <option key={municipality.MUNICIPIO_ID} value={municipality.MUNICIPIO_ID} selected={municipality.MUNICIPIO_ID == addressData.nom_hab_municipio_id} onChange={(e) => setAddressData({ ...addressData, nom_hab_municipio_id: e.target.value })}>
                 {municipality.MUN_NOMBRE}
               </option>
             ))}
@@ -170,10 +171,10 @@ const AddressData = () => {
         </div>
         <div className="form-group">
           <label htmlFor="parroquia-habitacion">Parroquia</label>
-          <select id="parroquia-habitacion" name="parroquia-habitacion" onChange={e => setAddressData({ ...addressData, parroquiaHabitacion: e.target.value })}>
+          <select id="parroquia-habitacion" name="parroquia-habitacion" onChange={e => setAddressData({ ...addressData, nom_hab_parroquia_id: e.target.value })}>
             <option value="">Seleccione</option>
             {selectedParish.map((parish) => (
-              <option key={parish.PARROQUIA_ID} value={parish.PARROQUIA_ID}>
+              <option key={parish.PARROQUIA_ID} value={parish.PARROQUIA_ID} selected={parish.PARROQUIA_ID == addressData.nom_hab_parroquia_id} onChange={(e) => setAddressData({ ...addressData, nom_hab_parroquia_id: e.target.value })}>
                 {parish.PARROQ_NOMBRE}
               </option>
             ))}
@@ -181,19 +182,19 @@ const AddressData = () => {
         </div>
         <div className="form-group">
           <label htmlFor="direccion-principal">Dirección Principal</label>
-          <input type="text" id="direccion-principal" name="direccion-principal" value={addressData.direccion_principal} onChange={(e) => setAddressData({ ...addressData, direccionPrincipal: e.target.value })} />
+          <input type="text" id="direccion-principal" name="direccion-principal" value={addressData.nom_hab_direcc1} onChange={(e) => setAddressData({ ...addressData, nom_hab_direcc1: e.target.value })} />
         </div>
         <div className="form-group">
           <label htmlFor="urbanizacion">Urbanización</label>
-          <input type="text" id="urbanizacion" name="urbanizacion" value={addressData.urbanizacion} onChange={(e) => setAddressData({ ...addressData, urbanizacion: e.target.value })} />
+          <input type="text" id="urbanizacion" name="urbanizacion" value={addressData.nom_hab_urbanizacion} onChange={(e) => setAddressData({ ...addressData, nom_hab_urbanizacion: e.target.value })} />
         </div>
         <div className="form-group">
           <label htmlFor="sector">Sector</label>
-          <input type="text" id="sector" name="sector" value={addressData.sector} onChange={(e) => setAddressData({ ...addressData, sector: e.target.value })} />
+          <input type="text" id="sector" name="sector" value={addressData.nom_hab_sector} onChange={(e) => setAddressData({ ...addressData, nom_hab_sector: e.target.value })} />
         </div>
         <div className="form-group">
           <label htmlFor="otra-direccion">Otra Dirección</label>
-          <input type="text" id="otra-direccion" name="otra-direccion" value={addressData.otraDireccion} onChange={(e) => setAddressData({ ...addressData, otraDireccion: e.target.value })} />
+          <input type="text" id="otra-direccion" name="otra-direccion" value={addressData.nom_hab_direcc2} onChange={(e) => setAddressData({ ...addressData, nom_hab_direcc2: e.target.value })} />
         </div>
       </div>
 
@@ -215,4 +216,4 @@ const AddressData = () => {
   );
 };
 
-export default AddressData;
+export default AddressForm;
