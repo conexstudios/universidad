@@ -1,4 +1,4 @@
-.privacy-settings-container {
+.contenedor-preferencias {
     padding: 20px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #f0f2f5;
@@ -8,7 +8,7 @@
     align-items: center;
 }
 
-.privacy-settings-main-content {
+.contenido-principal {
     display: flex;
     gap: 20px;
     max-width: 1200px;
@@ -16,15 +16,15 @@
     margin-bottom: 30px;
 }
 
-.left-column,
-.right-column {
+.columna-izquierda,
+.columna-derecha {
     flex: 1;
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
 
-.card {
+.tarjeta {
     background-color: #ffffff;
     border-radius: 12px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
@@ -33,43 +33,46 @@
     flex-direction: column;
 }
 
-.card-header {
+.encabezado-tarjeta {
     border-bottom: 1px solid #eee;
     padding-bottom: 15px;
     margin-bottom: 20px;
 }
 
-.card-header h3 {
+.encabezado-tarjeta h3 {
     color: #333;
     font-size: 1.6em;
     margin: 0;
     font-weight: 600;
 }
 
-.card-header p {
+.encabezado-tarjeta p {
     color: #777;
     font-size: 0.95em;
     margin: 5px 0 0;
 }
 
-.card-body {
+.cuerpo-tarjeta {
     flex-grow: 1;
 }
 
-.form-group {
+.grupo-formulario {
     margin-bottom: 20px;
     display: flex;
     flex-direction: column;
 }
 
-.form-group label {
+.grupo-formulario label {
     margin-bottom: 8px;
     font-weight: 500;
     color: #333;
     font-size: 1.05em;
 }
 
-.form-group select {
+.grupo-formulario select,
+.grupo-formulario input[type="text"],
+.grupo-formulario input[type="email"],
+.grupo-formulario input[type="tel"] {
     width: 100%;
     padding: 10px 12px;
     border: 1px solid #ddd;
@@ -77,6 +80,9 @@
     font-size: 1em;
     color: #555;
     background-color: #f9f9f9;
+}
+
+.grupo-formulario select {
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -87,7 +93,7 @@
     cursor: pointer;
 }
 
-.toggle-group {
+.grupo-interruptor {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -95,42 +101,45 @@
     border-bottom: 1px solid #eee;
 }
 
-.toggle-group.last-toggle {
+.grupo-interruptor:last-child {
     border-bottom: none;
 }
 
-.toggle-group label:first-of-type {
+.grupo-interruptor .texto {
     flex-grow: 1;
-    font-weight: 500;
-    color: #333;
-    font-size: 1.05em;
     margin-right: 15px;
 }
 
-.toggle-description {
-    font-size: 0.85em;
-    color: #777;
+.grupo-interruptor label {
+    font-weight: 500;
+    color: #333;
+    font-size: 1.05em;
     margin: 0;
-    flex-basis: 60%;
-    text-align: right;
-    padding-right: 10px;
+    cursor: pointer;
 }
 
-.switch {
+.grupo-interruptor .descripcion {
+    color: #777;
+    font-size: 0.9em;
+    margin: 4px 0 0;
+}
+
+/* Estilos para los interruptores */
+.interruptor {
     position: relative;
     display: inline-block;
     width: 50px;
-    height: 28px;
-    flex-shrink: 0;
+    height: 24px;
+    margin-left: 10px;
 }
 
-.switch input {
+.interruptor input {
     opacity: 0;
     width: 0;
     height: 0;
 }
 
-.slider {
+.deslizador {
     position: absolute;
     cursor: pointer;
     top: 0;
@@ -138,51 +147,114 @@
     right: 0;
     bottom: 0;
     background-color: #ccc;
-    -webkit-transition: .4s;
     transition: .4s;
+    border-radius: 24px;
 }
 
-.slider:before {
+.deslizador:before {
     position: absolute;
     content: "";
-    height: 20px;
-    width: 20px;
+    height: 16px;
+    width: 16px;
     left: 4px;
     bottom: 4px;
     background-color: white;
-    -webkit-transition: .4s;
     transition: .4s;
-}
-
-input:checked + .slider {
-    background-color: #6a6ee0;
-}
-
-input:focus + .slider {
-    box-shadow: 0 0 1px #6a6ee0;
-}
-
-input:checked + .slider:before {
-    -webkit-transform: translateX(22px);
-    -ms-transform: translateX(22px);
-    transform: translateX(22px);
-}
-
-.slider.round {
-    border-radius: 28px;
-}
-
-.slider.round:before {
     border-radius: 50%;
 }
 
-.blocked-messages-section {
+input:checked + .deslizador {
+    background-color: #6a6ee0;
+}
+
+input:focus + .deslizador {
+    box-shadow: 0 0 1px #6a6ee0;
+}
+
+input:checked + .deslizador:before {
+    transform: translateX(26px);
+}
+
+/* Estilos para los botones de acción */
+.acciones {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+
+.boton {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    font-size: 1em;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.boton-secundario {
+    background-color: #f0f0f0;
+    color: #555;
+}
+
+.boton-secundario:hover {
+    background-color: #e0e0e0;
+}
+
+.boton-primario {
+    background-color: #6a6ee0;
+    color: white;
+}
+
+.boton-primario:hover {
+    background-color: #5a5ec7;
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+    .contenido-principal {
+        flex-direction: column;
+    }
+    
+    .columna-izquierda,
+    .columna-derecha {
+        width: 100%;
+    }
+}
+
+/* Estilos para los grupos de formulario anidados */
+.grupo-anidado {
+    margin-left: 20px;
+    padding-left: 15px;
+    border-left: 2px solid #eee;
+    margin-top: 10px;
+}
+
+/* Estilos para los títulos de sección */
+h4 {
+    color: #555;
+    margin: 20px 0 15px 0;
+    font-size: 1.1em;
+}
+
+/* Estilos para los mensajes de ayuda */
+.mensaje-ayuda {
+    font-size: 0.85em;
+    color: #777;
+    margin-top: 5px;
+    font-style: italic;
+}
+
+.seccion-mensajes-bloqueados {
     margin-top: 25px;
     padding-top: 15px;
     border-top: 1px solid #eee;
 }
 
-.blocked-messages-section h4 {
+.seccion-mensajes-bloqueados h4 {
     margin-top: 0;
     margin-bottom: 10px;
     color: #333;
@@ -190,20 +262,20 @@ input:checked + .slider:before {
     font-weight: 600;
 }
 
-.blocked-users-list p {
+.lista-usuarios-bloqueados p {
     color: #777;
     font-style: italic;
     font-size: 0.9em;
 }
 
-.request-data-section {
+.seccion-solicitud-datos {
     margin-top: 25px;
     padding-top: 15px;
     border-top: 1px solid #eee;
     text-align: center;
 }
 
-.request-data-button {
+.boton-solicitud-datos {
     background-color: #f2f5fc;
     color: #6a6ee0;
     border: 1px solid #ccdaef;
@@ -218,17 +290,17 @@ input:checked + .slider:before {
     transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
 }
 
-.request-data-button .material-icons {
+.boton-solicitud-datos .material-icons {
     font-size: 20px;
     color: #6a6ee0;
 }
 
-.request-data-button:hover {
+.boton-solicitud-datos:hover {
     background-color: #e6ecfa;
     border-color: #b0c2e6;
 }
 
-.privacy-actions {
+.acciones-privacidad {
     width: 100%;
     max-width: 1200px;
     display: flex;
@@ -243,7 +315,7 @@ input:checked + .slider:before {
     z-index: 100;
 }
 
-.btn {
+.boton-cancelar {
     padding: 12px 25px;
     border: none;
     border-radius: 8px;
@@ -253,79 +325,74 @@ input:checked + .slider:before {
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.cancel-btn {
-    background-color: #e0e0e0;
-    color: #555;
-}
-
-.cancel-btn:hover {
+.boton-cancelar:hover {
     background-color: #d0d0d0;
     transform: translateY(-1px);
 }
 
-.save-btn {
+.boton-guardar {
     background-color: #6a6ee0;
     color: white;
 }
 
-.save-btn:hover {
+.boton-guardar:hover {
     background-color: #5b5ee6;
     transform: translateY(-1px);
 }
 
 @media (max-width: 900px) {
-    .privacy-settings-main-content {
+    .contenido-principal {
         flex-direction: column;
         align-items: center;
     }
 
-    .left-column,
-    .right-column {
+    .columna-izquierda,
+    .columna-derecha {
         width: 100%;
     }
 
-    .toggle-group {
+    .grupo-interruptor {
         flex-direction: column;
         align-items: flex-start;
     }
 
-    .toggle-group label:first-of-type {
+    .grupo-interruptor .texto {
         width: 100%;
         margin-right: 0;
         margin-bottom: 5px;
     }
 
-    .toggle-description {
+    .grupo-interruptor .descripcion {
         width: 100%;
         text-align: left;
         padding-right: 0;
         margin-bottom: 10px;
     }
 
-    .switch {
+    .interruptor {
         align-self: flex-end;
     }
 }
 
 @media (max-width: 500px) {
-    .privacy-settings-container {
+    .contenedor-preferencias {
         padding: 10px;
     }
 
-    .card {
+    .tarjeta {
         padding: 20px;
     }
 
-    .card-header h3 {
+    .encabezado-tarjeta h3 {
         font-size: 1.4em;
     }
 
-    .btn {
+    .boton {
         padding: 10px 20px;
         font-size: 0.9em;
     }
 
-    .privacy-actions {
+    .acciones-privacidad {
         padding: 15px;
     }
 }

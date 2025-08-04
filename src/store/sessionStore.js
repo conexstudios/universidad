@@ -6,7 +6,6 @@ const useSessionStore = create(
     (set, get) => ({
       session: {},
       userPreferences: {
-        // Información de contacto
         contactInfo: {
           personalEmail: '',
           phone: '',
@@ -14,24 +13,76 @@ const useSessionStore = create(
           emergencyContactName: '',
           emergencyContactPhone: ''
         },
-        // Preferencias de notificación
+        
         notifications: {
           email: true,
           push: true,
           sms: false
         },
-        // Configuración de privacidad
+        
         privacy: {
           showEmail: true,
           showPhone: true,
           showLocation: false
+        },
+        
+        preferenciasApariencia: {
+          tema: 'sistema',
+          colorPrimario: '#6a6ee0',
+          densidad: 'estandar',
+          tamanoFuente: 16,
+          widgets: {
+            calendario: true,
+            tareasPendientes: true,
+            proximasClases: true,
+            noticias: true,
+            eventos: true
+          }
+        },
+       
+        preferenciasAccesibilidad: {
+          altoContraste: false,
+          reducirMovimiento: false,
+          textoAVoz: false,
+          tamanoFuente: 100, 
+          espaciadoTexto: 'normal',
+          fuenteLegible: false,
+          altoContrasteInputs: false,
+          resaltarEnlaces: false
+        },
+        
+        preferenciasAvanzadas: {
+         
+          modoOffline: false,
+          sincronizacionAutomatica: true,
+          frecuenciaSincronizacion: '15', 
+          
+         
+          modoAhorroDatos: false,
+          tamanoCache: 500, 
+          
+         
+          modoDesarrollador: false,
+          logsDepuracion: false,
+          
+          
+          telemetria: true,
+          anunciosPersonalizados: true,
+          
+        
+          copiaSeguridadAutomatica: true,
+          frecuenciaCopiaSeguridad: 'diaria',
+          
+      
+          endpointPersonalizado: '',
+          tiempoEsperaAPI: 30 
         }
       },
       
-      // Actualizar la sesión completa
+    
       setSession: (data) => set({ session: data }),
       
-      // Actualizar preferencias de usuario
+  
       updateUserPreferences: (updates) => set(state => ({
         userPreferences: {
           ...state.userPreferences,
@@ -39,7 +90,7 @@ const useSessionStore = create(
         }
       })),
       
-      // Actualizar información de contacto
+      
       updateContactInfo: (contactInfo) => set(state => ({
         userPreferences: {
           ...state.userPreferences,
@@ -50,7 +101,7 @@ const useSessionStore = create(
         }
       })),
       
-      // Actualizar preferencias de notificación
+      
       updateNotificationPreferences: (notifications) => set(state => ({
         userPreferences: {
           ...state.userPreferences,
@@ -61,7 +112,7 @@ const useSessionStore = create(
         }
       })),
       
-      // Actualizar configuración de privacidad
+    
       updatePrivacySettings: (privacy) => set(state => ({
         userPreferences: {
           ...state.userPreferences,
@@ -72,8 +123,40 @@ const useSessionStore = create(
         }
       })),
       
-      // Limpiar sesión
-      clearSession: () => set({ 
+      
+      updateAppearancePreferences: (preferencias) => set(state => ({
+        userPreferences: {
+          ...state.userPreferences,
+          preferenciasApariencia: {
+            ...state.userPreferences.preferenciasApariencia,
+            ...preferencias
+          }
+        }
+      })),
+      
+      
+      updateAccessibilityPreferences: (preferencias) => set(state => ({
+        userPreferences: {
+          ...state.userPreferences,
+          preferenciasAccesibilidad: {
+            ...state.userPreferences.preferenciasAccesibilidad,
+            ...preferencias
+          }
+        }
+      })),
+      
+    
+      updateAdvancedPreferences: (preferencias) => set(state => ({
+        userPreferences: {
+          ...state.userPreferences,
+          preferenciasAvanzadas: {
+            ...state.userPreferences.preferenciasAvanzadas,
+            ...preferencias
+          }
+        }
+      })),
+
+      clearSession: () => set({
         session: {},
         userPreferences: {
           contactInfo: {
@@ -92,16 +175,54 @@ const useSessionStore = create(
             showEmail: true,
             showPhone: true,
             showLocation: false
+          },
+          preferenciasApariencia: {
+            tema: 'sistema',
+            colorPrimario: '#6a6ee0',
+            densidad: 'estandar',
+            tamanoFuente: 16,
+            widgets: {
+              calendario: true,
+              tareasPendientes: true,
+              proximasClases: true,
+              noticias: true,
+              eventos: true
+            }
+          },
+          preferenciasAccesibilidad: {
+            altoContraste: false,
+            reducirMovimiento: false,
+            textoAVoz: false,
+            tamanoFuente: 100,
+            espaciadoTexto: 'normal',
+            fuenteLegible: false,
+            altoContrasteInputs: false,
+            resaltarEnlaces: false
+          },
+          preferenciasAvanzadas: {
+            modoOffline: false,
+            sincronizacionAutomatica: true,
+            frecuenciaSincronizacion: '15',
+            modoAhorroDatos: false,
+            tamanoCache: 500,
+            modoDesarrollador: false,
+            logsDepuracion: false,
+            telemetria: true,
+            anunciosPersonalizados: true,
+            copiaSeguridadAutomatica: true,
+            frecuenciaCopiaSeguridad: 'diaria',
+            endpointPersonalizado: '',
+            tiempoEsperaAPI: 30
           }
         }
-      }),
+      })
     }),
     {
       name: "session-storage",
-      getStorage: () => localStorage,
-      partialize: (state) => ({ 
+      getStorage: () => sessionStorage,
+      partialize: (state) => ({
         session: state.session,
-        userPreferences: state.userPreferences 
+        userPreferences: state.userPreferences
       })
     }
   )
