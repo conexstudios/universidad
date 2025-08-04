@@ -55,7 +55,6 @@ const AcademicPreferences = () => {
   return (
     <div className="academic-prefs-container">
       <div className="academic-prefs-main-content">
-
         <div className="card academic-prefs-card">
           <div className="card-header">
             <h3>Preferencias Académicas</h3>
