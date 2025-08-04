@@ -8,19 +8,11 @@ const HealthData = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  
-  
-  const {
-    bloodTypes,
-    dominantSides,
-    physicalConditions,
-    fetchBloodTypes,
-    fetchDominantSides,
-    fetchPhysicalConditions,
-  } = useCatalogStore();
+  const [bloodTypes, setBloodTypes] = useState([]);
+  const [dominantSides, setDominantSides] = useState([]);
+  const [physicalConditions, setPhysicalConditions] = useState([]);
 
   const session = useSessionStore((state) => state.session);
-  
   const [healthData, setHealthData] = useState({
     tipo_sangre: '',
     donante_sangre: false,
@@ -32,6 +24,65 @@ const HealthData = () => {
     observacion: '',
   });
 
+  const fetchBloodTypes = async () => {
+    try {
+      const apiUrl = import.meta.env.VITE_API_URL;
+      const response = await fetch(`${apiUrl}/tipos-sangre`);
+      
+      if (!response.ok) {
+        throw new Error('Error al cargar los tipos de sangre');
+      }
+      
+      const bloodTypes = await response.json();
+      if (bloodTypes) {
+        setBloodTypes(bloodTypes);
+        useCatalogStore.setBloodTypes(bloodTypes);
+      }
+    } catch (error) {
+      console.error('Error fetching blood types:', error);
+      throw error;
+    }
+  };
+
+  const fetchDominantSides = async () => {
+    try {
+      const apiUrl = import.meta.env.VITE_API_URL;
+      const response = await fetch(`${apiUrl}/dominant-sides`);
+      
+      if (!response.ok) {
+        throw new Error('Error al cargar los lados dominantes');
+      }
+      
+      const dominantSides = await response.json();
+      if (dominantSides) {
+        setDominantSides(dominantSides);
+        useCatalogStore.setDominantSides(dominantSides);
+      }
+    } catch (error) {
+      console.error('Error fetching dominant sides:', error);
+      throw error;
+    }
+  };
+
+  const fetchPhysicalConditions = async () => {
+    try {
+      const apiUrl = import.meta.env.VITE_API_URL;
+      const response = await fetch(`${apiUrl}/physical-conditions`);
+      
+      if (!response.ok) {
+        throw new Error('Error al cargar las condiciones físicas');
+      }
+      
+      const physicalConditions = await response.json();
+      if (physicalConditions) {
+        setPhysicalConditions(physicalConditions);
+        useCatalogStore.setPhysicalConditions(physicalConditions);
+      }
+    } catch (error) {
+      console.error('Error fetching physical conditions:', error);
+      throw error;
+    }
+  };
  
   useEffect(() => {
     const loadData = async () => {
@@ -44,8 +95,8 @@ const HealthData = () => {
       try {
         setLoading(true);
         setError(null);
-        
-        
+      
+        const { fetchBloodTypes, fetchDominantSides, fetchPhysicalConditions } = useCatalogStore();
         await Promise.all([
           fetchBloodTypes(),
           fetchDominantSides(),
@@ -54,8 +105,7 @@ const HealthData = () => {
         ]);
         
       } catch (err) {
-        console.error('Error loading data:', err);
-        setError('Error al cargar los datos');
+        setError('Error al cargar los datos de salud');
         toast.error('Error al cargar los datos de salud');
       } finally {
         setLoading(false);
@@ -67,7 +117,9 @@ const HealthData = () => {
 
   
   const fetchHealthData = async () => {
+    setLoading(true);
     try {
+      setError(null);
       const apiUrl = import.meta.env.VITE_API_URL;
       const response = await fetch(`${apiUrl}/health-data?userId=${session.NOM_FICHANRO}`);
       
@@ -84,7 +136,12 @@ const HealthData = () => {
           donante_organos: Boolean(data.donante_organos)
         }));
       }
+      setLoading(false);
     } catch (error) {
+      setTimeout(() => {
+        setError('Error al cargar los datos de salud');
+        setLoading(false);
+      }, 1000);
       console.error('Error fetching health data:', error);
       throw error;
     }
@@ -132,32 +189,26 @@ const HealthData = () => {
     }
   };
 
-  if (loading) {
-    return (
-      <div className="loading-container">
-        <div className="spinner"></div>
-        <p>Cargando datos de salud...</p>
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div className="error-container">
-        <p className="error-message">{error}</p>
-        <button 
-          className="retry-button" 
-          onClick={() => window.location.reload()}
-        >
-          Reintentar
-        </button>
-      </div>
-    );
-  }
-
   return (
     <div className="health-container">
       <h1>Datos de Salud</h1>
+      {loading && (
+        <div className="loading-container">
+          <div className="spinner"></div>
+          <p>Cargando datos de salud...</p>
+        </div>
+      )}
+      {error && (
+        <div className="error-container">
+          <p className="error-message">{error}</p>
+          <button 
+            className="retry-button" 
+            onClick={fetchHealthData}
+          >
+            Reintentar
+          </button>
+        </div>
+      )}
       <form className="health-form" onSubmit={handleSubmit}>
         <div className="form-section">
           <div className="form-group">

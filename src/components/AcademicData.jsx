@@ -7,7 +7,6 @@ const AcademicData = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  
 
   const {
     academicStages,
@@ -58,13 +57,14 @@ const AcademicData = () => {
       if (!session?.NOM_FICHANRO) {
         setError('No hay sesión activa');
         setLoading(false);
+        setError(null);
         return;
       }
 
       try {
         setLoading(true);
         setError(null);
-        o
+        
         await Promise.all([
           fetchAcademicStages(),
           fetchStudyPlans(),
@@ -82,7 +82,7 @@ const AcademicData = () => {
       } catch (err) {
         console.error('Error loading data:', err);
         setError('Error al cargar los datos académicos');
-        alert('Error al cargar los datos académicos. Por favor, intente nuevamente.');
+        setLoading(false);
       } finally {
         setLoading(false);
       }
@@ -92,7 +92,9 @@ const AcademicData = () => {
   }, [session?.NOM_FICHANRO]);
 
   const fetchAcademicData = async () => {
+    setLoading(true);
     try {
+      setError(null);
       const apiUrl = import.meta.env.VITE_API_URL;
       const response = await fetch(`${apiUrl}/academic?userId=${session.NOM_FICHANRO}`);
       
@@ -107,10 +109,13 @@ const AcademicData = () => {
           ...data,
           fecha_graduacion_emg: data.fecha_graduacion_emg ? data.fecha_graduacion_emg.split('T')[0] : ''
         }));
+        setLoading(false);
       }
     } catch (error) {
-      console.error('Error fetching academic data:', error);
-      throw error;
+      setTimeout(() => {
+        setError('Error al cargar los datos académicos');
+        setLoading(false);
+      }, 1000);
     }
   };
 
@@ -146,42 +151,33 @@ const AcademicData = () => {
         throw new Error('Error al guardar los datos');
       }
       
-      alert('Datos académicos guardados correctamente');
-      
     } catch (error) {
       console.error('Error saving academic data:', error);
-      alert('Error al guardar los datos académicos. Por favor, intente nuevamente.');
     } finally {
       setIsSubmitting(false);
     }
   };
 
-  if (loading) {
-    return (
-      <div className="loading-container">
-        <div className="spinner"></div>
-        <p>Cargando datos académicos...</p>
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div className="error-container">
-        <p className="error-message">{error}</p>
-        <button 
-          className="retry-button" 
-          onClick={() => window.location.reload()}
-        >
-          Reintentar
-        </button>
-      </div>
-    );
-  }
-
   return (
     <div className="academic-container">
       <h1>Datos Académicos</h1>
+      {loading && (
+        <div className="loading-container">
+          <div className="spinner"></div>
+          <p>Cargando datos académicos...</p>
+        </div>
+      )}
+      {error && (
+        <div className="error-container">
+          <p className="error-message">{error}</p>
+          <button 
+            className="retry-button" 
+            onClick={fetchAcademicData}
+          >
+            Reintentar
+          </button>
+        </div>
+      )}
       <form className="academic-form" onSubmit={handleSubmit}>
         <div className="form-section">
           <div className="form-group">

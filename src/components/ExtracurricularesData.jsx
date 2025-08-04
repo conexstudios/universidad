@@ -111,43 +111,35 @@ const ExtracurricularData = () => {
       if (!response.ok) {
         throw new Error('Error al guardar los datos');
       }
-      
-      alert('Datos de actividades extracurriculares guardados correctamente');
-      
+      toast.success('Datos de actividades extracurriculares guardados correctamente');
     } catch (error) {
       console.error('Error saving extracurricular data:', error);
-      alert('Error al guardar los datos de actividades extracurriculares');
+      toast.error('Error al guardar los datos de actividades extracurriculares');
     } finally {
       setIsSubmitting(false);
     }
   };
 
-  if (loading) {
-    return (
-      <div className="loading-container">
-        <div className="spinner"></div>
-        <p>Cargando datos de actividades extracurriculares...</p>
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div className="error-container">
-        <p className="error-message">{error}</p>
-        <button 
-          className="retry-button" 
-          onClick={() => window.location.reload()}
-        >
-          Reintentar
-        </button>
-      </div>
-    );
-  }
-
   return (
     <div className="extracurricular-container">
       <h1>Actividades Extracurriculares</h1>
+      {loading && (
+        <div className="loading-container">
+          <div className="spinner"></div>
+          <p>Cargando datos de actividades extracurriculares...</p>
+        </div>
+      )}
+      {error && (
+        <div className="error-container">
+          <p className="error-message">{error}</p>
+          <button 
+            className="retry-button" 
+            onClick={() => window.location.reload()}
+          >
+            Reintentar
+          </button>
+        </div>
+      )}
       <form className="extracurricular-form" onSubmit={handleSubmit}>
         <div className="form-section">
           <div className="form-group">

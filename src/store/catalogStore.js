@@ -15,6 +15,15 @@ const useCatalogStore = create((set) => ({
 
   parishes: [],
   setParishes: (parishes) => set({ parishes }),
+
+  bloodTypes: [],
+  setBloodTypes: (bloodTypes) => set({ bloodTypes }),
+
+  dominantSides: [],
+  setDominantSides: (dominantSides) => set({ dominantSides }),
+
+  physicalConditions: [],
+  setPhysicalConditions: (physicalConditions) => set({ physicalConditions }),
 }));
 
 export default useCatalogStore;
