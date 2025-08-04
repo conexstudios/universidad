@@ -124,66 +124,33 @@ const Account = () => {
                         <p>Actualiza tu información personal y datos de contacto</p>
                     </div>
                     <div className="card-body">
-                        <div className="user-profile-summary">
-                            <div className="user-avatar"></div>
-                            <div className="user-details-text">
-                                <h4>{session.NOM_NOMBRE}</h4>
-                                <p>Licenciatura en Psicología</p>
-                                <div className="user-meta">
-                                    <span>6to Semestre</span>
-                                    <span>Matricula: 2021050789</span>
-                                </div>
-                            </div>
+                        <div className="form-group">
+                            <label htmlFor="nombre">Nombre Del Usuario</label>
+                            <input type="text" id="nombre" value={session.NOM_NOMBRE} readOnly />
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="correo-institucional">Correo Del Usuario</label>
+                            <input type="email" id="correo-institucional" value={session.CORREO_INSTITUCIONAL} readOnly />
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="correo-personal">Contraseña</label>
+                            <input
+                                type="password"
+                                id="password"
+                                value={formData.correoPersonal}
+                                onChange={handleChange}
+                            />
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="telefono">Teléfono</label>
+                            <input
+                                type="tel"
+                                id="telefono"
+                                value={formData.telefono}
+                                onChange={handleChange}
+                            />
                         </div>
                         <div className="form-grid">
-                            <div className="form-group">
-                                <label htmlFor="nombre">Nombre Del Usuario</label>
-                                <input type="text" id="nombre" value={session.NOM_NOMBRE} readOnly />
-                            </div>
-                            <div className="form-group">
-                                <label htmlFor="correo-institucional">Correo Del Usuario</label>
-                                <input type="email" id="correo-institucional" value={session.CORREO_INSTITUCIONAL} readOnly />
-                            </div>
-                            <div className="form-group">
-                                <label htmlFor="correo-personal">Contraseña</label>
-                                <input
-                                    type="email"
-                                    id="correoPersonal"
-                                    value={formData.correoPersonal}
-                                    onChange={handleChange}
-                                />
-                            </div>
-                            <div className="form-group">
-                                <label htmlFor="telefono">Teléfono</label>
-                                <input
-                                    type="tel"
-                                    id="telefono"
-                                    value={formData.telefono}
-                                    onChange={handleChange}
-                                />
-                            </div>
-                            <div className="form-group full-width">
-                            </div>
-                            <div className="form-group">
-                                <label htmlFor="contacto-emergencia-nombre">Contacto de Emergencia</label>
-                                <input
-                                    type="text"
-                                    id="contactoEmergenciaNombre"
-                                    value={formData.contactoEmergenciaNombre}
-                                    onChange={handleChange}
-                                />
-                            </div>
-                            <div className="form-group">
-                                <label htmlFor="contacto-emergencia-telefono">Teléfono de Emergencia</label>
-                                <input
-                                    type="tel"
-                                    id="contactoEmergenciaTelefono"
-                                    value={formData.contactoEmergenciaTelefono}
-                                    onChange={handleChange}
-                                />
-                            </div>
-
-                            
                             <div className="form-group">
                                 <label>Ubicación Actual</label>
                                 <button
