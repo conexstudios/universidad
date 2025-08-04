@@ -1,7 +1,120 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../styles/Account.css';
+import useSessionStore from '../store/sessionStore';
+import useCatalogStore from '../store/catalogStore';
+import { useFetchWithSession } from '../store/fetchWithSession';
 
 const Account = () => {
+    const { session, setSession } = useSessionStore();
+    const { catalog } = useCatalogStore();
+    const fetchWithSession = useFetchWithSession();
+
+    const [formData, setFormData] = useState({
+        correoPersonal: session.CORREO_PERSONAL || '',
+        telefono: session.TELEFONO || '',
+        direccion: session.DIRECCION || '',
+        contactoEmergenciaNombre: session.CONTACTO_EMERGENCIA_NOMBRE || '',
+        contactoEmergenciaTelefono: session.CONTACTO_EMERGENCIA_TELEFONO || ''
+    });
+
+    const [location, setLocation] = useState({
+        latitud: session.LATITUD || null,
+        longitud: session.LONGITUD || null,
+    });
+    const [isLoading, setIsLoading] = useState(false);
+    const [locationError, setLocationError] = useState(null);
+
+
+    const handleChange = (e) => {
+        const { id, value } = e.target;
+        setFormData(prevFormData => ({
+            ...prevFormData,
+            [id]: value
+        }));
+    };
+
+    const handleGetLocation = () => {
+        if (!("geolocation" in navigator)) {
+            alert('La geolocalización no está disponible en tu navegador.');
+            return;
+        }
+
+        setIsLoading(true);
+        setLocationError(null);
+
+        const options = {
+            enableHighAccuracy: true,
+            timeout: 5000,
+            maximumAge: 0,
+        };
+
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                const { latitude, longitude } = position.coords;
+                setLocation({ latitud: latitude, longitud: longitude });
+                setIsLoading(false);
+                alert('Ubicación obtenida con éxito.');
+            },
+            (error) => {
+                setIsLoading(false);
+                let errorMessage = 'Error al obtener la ubicación. Por favor, asegúrate de haber dado permiso.';
+                if (error.code === error.PERMISSION_DENIED) {
+                    errorMessage = 'Has denegado el permiso de geolocalización.';
+                } else if (error.code === error.TIMEOUT) {
+                    errorMessage = 'Se ha agotado el tiempo de espera para obtener la ubicación.';
+                }
+                setLocationError(errorMessage);
+                alert(errorMessage);
+            },
+            options
+        );
+    };
+
+  
+    const handleSaveChanges = async (e) => {
+        e.preventDefault();
+        try {
+           
+            const dataToSave = {
+                ...formData,
+                latitud: location.latitud,
+                longitud: location.longitud
+            };
+
+            const updatedUser = await fetchWithSession('/api/user/update', {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(dataToSave),
+            });
+
+            if (updatedUser) {
+                setSession({ ...session, ...updatedUser });
+                alert('¡Información actualizada con éxito!');
+            }
+        } catch (error) {
+            console.error('Error al guardar los cambios:', error);
+            alert('Hubo un error al actualizar la información.');
+        }
+    };
+    
+   
+    const handleCancel = () => {
+        setFormData({
+            correoPersonal: session.CORREO_PERSONAL || '',
+            telefono: session.TELEFONO || '',
+            direccion: session.DIRECCION || '',
+            contactoEmergenciaNombre: session.CONTACTO_EMERGENCIA_NOMBRE || '',
+            contactoEmergenciaTelefono: session.CONTACTO_EMERGENCIA_TELEFONO || ''
+        });
+        setLocation({
+            latitud: session.LATITUD || null,
+            longitud: session.LONGITUD || null,
+        });
+        setLocationError(null);
+    };
+
     return (
         <div className="account-container">
             <div className="account-main-content">
@@ -14,7 +127,7 @@ const Account = () => {
                         <div className="user-profile-summary">
                             <div className="user-avatar"></div>
                             <div className="user-details-text">
-                                <h4>Ana María González</h4>
+                                <h4>{session.NOM_NOMBRE}</h4>
                                 <p>Licenciatura en Psicología</p>
                                 <div className="user-meta">
                                     <span>6to Semestre</span>
@@ -25,39 +138,83 @@ const Account = () => {
                         <div className="form-grid">
                             <div className="form-group">
                                 <label htmlFor="nombre">Nombre(s)</label>
-                                <input type="text" id="nombre" value="Ana Maria" readOnly />
+                                <input type="text" id="nombre" value={session.NOM_NOMBRE} readOnly />
                             </div>
                             <div className="form-group">
                                 <label htmlFor="apellidos">Apellidos</label>
-                                <input type="text" id="apellidos" value="González Rodríguez" readOnly />
+                                <input type="text" id="apellidos" value={session.NOM_APELLIDOS} readOnly />
                             </div>
                             <div className="form-group">
                                 <label htmlFor="correo-institucional">Correo Institucional</label>
-                                <input type="email" id="correo-institucional" value="ana.gonzalez@universidad.edu" readOnly />
+                                <input type="email" id="correo-institucional" value={session.CORREO_INSTITUCIONAL} readOnly />
                             </div>
                             <div className="form-group">
                                 <label htmlFor="correo-personal">Correo Personal</label>
-                                <input type="email" id="correo-personal" value="ana.glez@gmail.com" />
+                                <input
+                                    type="email"
+                                    id="correoPersonal"
+                                    value={formData.correoPersonal}
+                                    onChange={handleChange}
+                                />
                             </div>
                             <div className="form-group">
                                 <label htmlFor="telefono">Teléfono</label>
-                                <input type="tel" id="telefono" value="+52 555 987 6543" />
+                                <input
+                                    type="tel"
+                                    id="telefono"
+                                    value={formData.telefono}
+                                    onChange={handleChange}
+                                />
                             </div>
                             <div className="form-group">
                                 <label htmlFor="fecha-nacimiento">Fecha de Nacimiento</label>
-                                <input type="text" id="fecha-nacimiento" value="05/15/1999" readOnly />
+                                <input type="text" id="fecha-nacimiento" value={session.FECHA_NACIMIENTO} readOnly />
                             </div>
                             <div className="form-group full-width">
                                 <label htmlFor="direccion">Dirección</label>
-                                <input type="text" id="direccion" value="Calle Estudiantes 456, Col. Universidad, Ciudad de Venezuela, CP 04500" />
+                                <input
+                                    type="text"
+                                    id="direccion"
+                                    value={formData.direccion}
+                                    onChange={handleChange}
+                                />
                             </div>
                             <div className="form-group">
                                 <label htmlFor="contacto-emergencia-nombre">Contacto de Emergencia</label>
-                                <input type="text" id="contacto-emergencia-nombre" value="Roberto González (Padre)" />
+                                <input
+                                    type="text"
+                                    id="contactoEmergenciaNombre"
+                                    value={formData.contactoEmergenciaNombre}
+                                    onChange={handleChange}
+                                />
                             </div>
                             <div className="form-group">
                                 <label htmlFor="contacto-emergencia-telefono">Teléfono de Emergencia</label>
-                                <input type="tel" id="contacto-emergencia-telefono" value="+52 555 123 4567" />
+                                <input
+                                    type="tel"
+                                    id="contactoEmergenciaTelefono"
+                                    value={formData.contactoEmergenciaTelefono}
+                                    onChange={handleChange}
+                                />
+                            </div>
+
+                            
+                            <div className="form-group full-width">
+                                <label>Ubicación Actual</label>
+                                <button
+                                    type="button"
+                                    onClick={handleGetLocation}
+                                    disabled={isLoading}
+                                    className="get-location-button"
+                                >
+                                    {isLoading ? 'Obteniendo...' : 'Obtener Ubicación'}
+                                </button>
+                                {location.latitud && (
+                                    <p className="location-info">
+                                        Latitud: {location.latitud.toFixed(6)}, Longitud: {location.longitud.toFixed(6)}
+                                    </p>
+                                )}
+                                {locationError && <p className="location-error-message">{locationError}</p>}
                             </div>
                         </div>
                     </div>
@@ -86,7 +243,6 @@ const Account = () => {
                                 </button>
                             </li>
                         </ul>
-
                         <div className="access-history">
                             <h4>Historial de Acceso</h4>
                             <ul>
@@ -135,8 +291,8 @@ const Account = () => {
             </div>
 
             <div className="account-footer-actions">
-                <button className="cancel-button">Cancelar</button>
-                <button className="save-changes-button">Guardar Cambios</button>
+                <button className="cancel-button" onClick={handleCancel}>Cancelar</button>
+                <button className="save-changes-button" onClick={handleSaveChanges}>Guardar Cambios</button>
             </div>
         </div>
     );
