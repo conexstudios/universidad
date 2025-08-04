@@ -100,25 +100,64 @@ const useCatalogStore = create((set) => ({
     }
   })),
 
+  
+  // Preferencias de visualización
+  preferences: {
+    // Categorías visibles
+    visibleCategories: {
+      academic: true,
+      events: true,
+      tasks: true,
+      announcements: true,
+      calendar: true,
+      messages: true,
+      grades: true,
+      attendance: true
+    },
+    
+    // Preferencias de calendario
+    calendarView: 'Semana',
+    timeFormat: '12 horas (AM/PM)',
+    firstDayOfWeek: 'Lunes',
+    showCompletedTasks: true,
+    taskReminders: true,
+    showCourseProgress: true
+  },
+  
+  updatePreferences: (updates) => set(state => ({
+    preferences: {
+      ...state.preferences,
+      ...updates
+    }
+  })),
+  
+  setVisibleCategories: (categoryUpdates) => set(state => ({
+    preferences: {
+      ...state.preferences,
+      visibleCategories: {
+        ...state.preferences.visibleCategories,
+        ...categoryUpdates
+      }
+    }
+  })),
+  
   clearSession: () => set({
     session: {
       location: {},
       device: {},
       events: []
+    },
+    visibleCategories: {
+      academic: true,
+      events: true,
+      tasks: true,
+      announcements: true,
+      calendar: true,
+      messages: true,
+      grades: true,
+      attendance: true
     }
   })
 }));
-
-
-
-
-
-
-function detectDeviceType() {
-  const userAgent = navigator.userAgent;
-  if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(userAgent)) return 'Tablet';
-  if (/Mobile|Android|iP(hone|od)|IEMobile|BlackBerry|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/.test(userAgent)) return 'Mobile';
-  return 'Desktop';
-}
 
 export default useCatalogStore;
