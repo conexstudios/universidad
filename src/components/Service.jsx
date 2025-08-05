@@ -25,8 +25,7 @@ const ServiceRequestsList = () => {
       setError(null);
       
       const params = new URLSearchParams({
-        user: session.user,
-        id: session.id,
+        NOM_FICHANRO: session.NOM_FICHANRO
       });
       
       const apiUrl = `${import.meta.env.VITE_API_URL}/ordenes?${params.toString()}`;
@@ -46,7 +45,7 @@ const ServiceRequestsList = () => {
         return;
       }
       
-      setOrders(json.data);
+      setOrders(json.data.data);
     } catch (error) {
       console.error("Error al cargar las órdenes:", error);
       setError(error.message || "Error al cargar las órdenes. Por favor, intente de nuevo más tarde.");
@@ -57,7 +56,7 @@ const ServiceRequestsList = () => {
 
   useEffect(() => {
     fetchOrders();
-  }, [session]);
+  }, []);
 
   const formatCurrency = (amount, currency = 'USD') => {
     return new Intl.NumberFormat('es-VE', {
@@ -87,31 +86,25 @@ const ServiceRequestsList = () => {
     );
   };
 
-  if (loading) {
-    return (
-      <div className="loading-container">
-        <div className="spinner"></div>
-        <p>Cargando órdenes de servicio...</p>
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div className="error-container">
-        <p className="error-message">{error}</p>
-        <button 
-          className="retry-button"
-          onClick={fetchOrders}
-        >
-          Reintentar
-        </button>
-      </div>
-    );
-  }
-
   return (
     <div className="service-requests-container">
+      {loading && (
+        <div className="loading-container">
+          <div className="spinner"></div>
+          <p>Cargando órdenes de servicio...</p>
+        </div>
+      )}
+      {error && (
+        <div className="error-container">
+          <p className="error-message">{error}</p>
+          <button 
+            className="retry-button"
+            onClick={fetchOrders}
+          >
+            Reintentar
+          </button>
+        </div>
+      )}
       <div className="service-requests-header">
         <h2 className="service-requests-title">
           Lista de Solicitudes de Servicio
