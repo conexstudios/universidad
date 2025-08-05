@@ -195,7 +195,7 @@ const fetchWithSession = useFetchWithSession();
   
   useEffect(() => {
     fetchTareas();
-  }, [fetchTrades]);
+  }, [fetchTareas]);
 
   
   const handleInputChange = (e) => {
