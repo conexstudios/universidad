@@ -374,7 +374,12 @@ const fetchWithSession = useFetchWithSession();
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
-          <i className="search-icon">🔍</i>
+          <img 
+            src="/src/assets/buscar.png" 
+            alt="Buscar" 
+            className="search-icon"
+            style={{ width: '20px', height: '20px' }}
+          />
         </div>
         
         <div className="filter-group">
