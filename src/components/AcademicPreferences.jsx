@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react';
 import '../styles/AcademicPreferences.css';
 import detectDeviceType from '../utils/detectDivece';
 import useCatalogStore from '../store/catalogStore';
+import useSessionStore from '../store/sessionStore';
 
 const AcademicPreferences = () => {
+  const { session } = useSessionStore();
   const deviceType = detectDeviceType();
   const { 
     preferences, 
@@ -58,7 +60,7 @@ const AcademicPreferences = () => {
         <div className="card academic-prefs-card">
           <div className="card-header">
             <h3>Preferencias Académicas</h3>
-            <p>Personaliza tus preferencias de estudio y visualización académica</p>
+            <p>Personaliza tus preferencias de estudio y visualización academica</p>
           </div>
           <div className="card-body">
             <div className="form-group">

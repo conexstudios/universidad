@@ -100,10 +100,8 @@ const useCatalogStore = create((set) => ({
     }
   })),
 
-  
-  // Preferencias de visualización
+ 
   preferences: {
-    // Categorías visibles
     visibleCategories: {
       academic: true,
       events: true,
@@ -115,7 +113,6 @@ const useCatalogStore = create((set) => ({
       attendance: true
     },
     
-    // Preferencias de calendario
     calendarView: 'Semana',
     timeFormat: '12 horas (AM/PM)',
     firstDayOfWeek: 'Lunes',
