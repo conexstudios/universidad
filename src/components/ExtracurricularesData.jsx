@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import '../styles/ExtracurricularesData.css';
 import useSessionStore from '../store/sessionStore';
 import useCatalogStore from '../store/catalogStore';
+import { toast } from 'react-toastify';
 
 const ExtracurricularData = () => {
   const [loading, setLoading] = useState(true);
@@ -51,7 +52,7 @@ const ExtracurricularData = () => {
       } catch (err) {
         console.error('Error loading data:', err);
         setError('Error al cargar los datos');
-        alert('Error al cargar los datos de actividades extracurriculares');
+        toast.error('Error al cargar los datos de actividades extracurriculares');
       } finally {
         setLoading(false);
       }
@@ -74,6 +75,7 @@ const ExtracurricularData = () => {
       if (data) {
         setFormData(data);
       }
+      setLoading(false);
     } catch (error) {
       console.error('Error fetching extracurricular data:', error);
       throw error;

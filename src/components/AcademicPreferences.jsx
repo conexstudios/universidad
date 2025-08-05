@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/AcademicPreferences.css';
-import detectDeviceType from '../utils/detectDivece';
+import detectDeviceType from '../utils/detectDevices';
 import useCatalogStore from '../store/catalogStore';
 import useSessionStore from '../store/sessionStore';
 
@@ -57,7 +57,6 @@ const AcademicPreferences = () => {
   return (
     <div className="academic-prefs-container">
       <div className="academic-prefs-main-content">
-
         <div className="card academic-prefs-card">
           <div className="card-header">
             <h3>Preferencias Académicas</h3>

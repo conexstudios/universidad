@@ -25,7 +25,6 @@ const useCatalogStore = create((set) => ({
 
   physicalConditions: [],
   setPhysicalConditions: (physicalConditions) => set({ physicalConditions }),
-
  
   session: {
     location: {

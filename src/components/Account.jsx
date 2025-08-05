@@ -126,7 +126,7 @@ const Account = () => {
                     <div className="card-body">
                         <div className="form-group">
                             <label htmlFor="nombre">Nombre Del Usuario</label>
-                            <input type="text" id="nombre" value={session.NOM_NOMBRE} readOnly />
+                            <input type="text" id="nombre" value={session.USUARIO_ID} readOnly />
                         </div>
                         <div className="form-group">
                             <label htmlFor="correo-institucional">Correo Del Usuario</label>
@@ -137,7 +137,8 @@ const Account = () => {
                             <input
                                 type="password"
                                 id="password"
-                                value={formData.correoPersonal}
+                                value=""
+                                placeholder='***********'
                                 onChange={handleChange}
                             />
                         </div>
