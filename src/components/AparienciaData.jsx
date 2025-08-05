@@ -1,171 +1,205 @@
+import React, { useState, useEffect } from 'react';
 import '../styles/AparienciaData.css';
+import useSessionStore from '../store/sessionStore';
 
 const AparienciaData = () => {
-    return (
-        <div className="appearance-settings-container">
-            <div className="appearance-settings-main-content">
+  const { session, updateSession } = useSessionStore();
+  
+  const [preferencias, setPreferencias] = useState({
+    tema: session?.preferenciasApariencia?.tema || 'sistema',
+    colorPrimario: session?.preferenciasApariencia?.colorPrimario || '#6a6ee0',
+    coloresDisponibles: [
+      { nombre: 'azul', valor: '#6a6ee0' },
+      { nombre: 'morado', valor: '#9c27b0' },
+      { nombre: 'verde', valor: '#4caf50' },
+      { nombre: 'rojo', valor: '#f44336' },
+      { nombre: 'naranja', valor: '#ff9800' },
+      { nombre: 'turquesa', valor: '#009688' }
+    ],
+    densidad: session?.preferenciasApariencia?.densidad || 'estandar',
+    tamanoFuente: session?.preferenciasApariencia?.tamanoFuente || 16,
+    widgets: session?.preferenciasApariencia?.widgets || {
+      calendario: true,
+      tareasPendientes: true,
+      proximasClases: true,
+      noticias: true,
+      eventos: true
+    }
+  });
 
-                <div className="left-column">
-                    <div className="card theme-visualization-card">
-                        <div className="card-header">
-                            <h3>Tema y Visualización</h3>
-                            <p>Personaliza la apariencia de tu portal universitario</p>
-                        </div>
-                        <div className="card-body">
-                            <div className="setting-group">
-                                <label>Tema</label>
-                                <div className="button-group theme-options">
-                                    <button className="btn-option selected">Claro</button>
-                                    <button className="btn-option">Oscuro</button>
-                                    <button className="btn-option">Sistema</button>
-                                </div>
-                            </div>
-                            <div className="setting-group">
-                                <label>Color Principal</label>
-                                <div className="color-swatches">
-                                    <div className="color-swatch blue selected"></div>
-                                    <div className="color-swatch purple"></div>
-                                    <div className="color-swatch green"></div>
-                                    <div className="color-swatch red"></div>
-                                    <div className="color-swatch orange"></div>
-                                    <div className="color-swatch teal"></div>
-                                </div>
-                            </div>
-                            <div className="setting-group">
-                                <label>Densidad de Contenido</label>
-                                <div className="button-group content-density-options">
-                                    <button className="btn-option">Compacta</button>
-                                    <button className="btn-option selected">Normal</button>
-                                    <button className="btn-option">Cómoda</button>
-                                </div>
-                            </div>
-                            <div className="setting-group">
-                                <label>Tamaño de Fuente</label>
-                                <div className="button-group font-size-options">
-                                    <button className="btn-option">XS</button>
-                                    <button className="btn-option">S</button>
-                                    <button className="btn-option selected">M</button>
-                                    <button className="btn-option">L</button>
-                                    <button className="btn-option">XL</button>
-                                </div>
-                            </div>
-                            <div className="toggle-group animations-toggle">
-                                <label htmlFor="animations-enabled">Animaciones</label>
-                                <p className="toggle-description">Mostrar animaciones en la interfaz</p>
-                                <label className="switch">
-                                    <input type="checkbox" id="animations-enabled" defaultChecked />
-                                    <span className="slider round"></span>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+  useEffect(() => {
+    if (session?.preferenciasApariencia) {
+      setPreferencias(prev => ({
+        ...prev,
+        ...session.preferenciasApariencia
+      }));
+    }
+  }, [session]);
 
-                <div className="right-column">
-                    <div className="card language-region-card">
-                        <div className="card-header">
-                            <h3>Idioma y Región</h3>
-                            <p>Configura tus preferencias de idioma y formato</p>
-                        </div>
-                        <div className="card-body">
-                            <div className="form-group">
-                                <label htmlFor="language">Idioma</label>
-                                <select id="language" name="language" defaultValue="Español">
-                                    <option value="Español">Español</option>
-                                    <option value="Inglés">Inglés</option>
-                                    <option value="Francés">Francés</option>
-                                </select>
-                            </div>
-                            <div className="form-group">
-                                <label htmlFor="region">Región</label>
-                                <select id="region" name="region" defaultValue="México">
-                                    <option value="México">México</option>
-                                    <option value="España">España</option>
-                                    <option value="Colombia">Colombia</option>
-                                    <option value="Estados Unidos">Estados Unidos</option>
-                                </select>
-                            </div>
-                            <div className="form-group">
-                                <label htmlFor="date-format">Formato de Fecha</label>
-                                <select id="date-format" name="date-format" defaultValue="DD/MM/AAAA">
-                                    <option value="DD/MM/AAAA">DD/MM/AAAA</option>
-                                    <option value="MM/DD/AAAA">MM/DD/AAAA</option>
-                                    <option value="AAAA-MM-DD">AAAA-MM-DD</option>
-                                </select>
-                            </div>
-                            <div className="form-group">
-                                <label htmlFor="time-format">Formato de Hora</label>
-                                <select id="time-format" name="time-format" defaultValue="12 horas (AM/PM)">
-                                    <option value="12 horas (AM/PM)">12 horas (AM/PM)</option>
-                                    <option value="24 horas">24 horas</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="card homepage-card">
-                        <div className="card-header">
-                            <h3>Página de Inicio</h3>
-                            <p>Configura qué ver al iniciar sesión</p>
-                        </div>
-                        <div className="card-body">
-                            <div className="form-group">
-                                <label htmlFor="default-page">Página Predeterminada</label>
-                                <select id="default-page" name="default-page" defaultValue="Dashboard">
-                                    <option value="Dashboard">Dashboard</option>
-                                    <option value="Horario">Horario</option>
-                                    <option value="Calificaciones">Calificaciones</option>
-                                    <option value="Tareas">Tareas</option>
-                                </select>
-                            </div>
-                            <h4 className="widgets-title">Widgets del Dashboard</h4>
-                            <div className="widgets-list">
-                                <div className="toggle-group widget-toggle">
-                                    <label htmlFor="upcoming-classes">Próximas Clases</label>
-                                    <label className="switch">
-                                        <input type="checkbox" id="upcoming-classes" defaultChecked />
-                                        <span className="slider round"></span>
-                                    </label>
-                                </div>
-                                <div className="toggle-group widget-toggle">
-                                    <label htmlFor="pending-tasks">Tareas Pendientes</label>
-                                    <label className="switch">
-                                        <input type="checkbox" id="pending-tasks" defaultChecked />
-                                        <span className="slider round"></span>
-                                    </label>
-                                </div>
-                                <div className="toggle-group widget-toggle">
-                                    <label htmlFor="recent-grades">Calificaciones Recientes</label>
-                                    <label className="switch">
-                                        <input type="checkbox" id="recent-grades" defaultChecked />
-                                        <span className="slider round"></span>
-                                    </label>
-                                </div>
-                                <div className="toggle-group widget-toggle">
-                                    <label htmlFor="announcements">Anuncios</label>
-                                    <label className="switch">
-                                        <input type="checkbox" id="announcements" defaultChecked />
-                                        <span className="slider round"></span>
-                                    </label>
-                                </div>
-                                <div className="toggle-group widget-toggle last-toggle">
-                                    <label htmlFor="calendar-widget">Calendario</label>
-                                    <label className="switch">
-                                        <input type="checkbox" id="calendar-widget" defaultChecked />
-                                        <span className="slider round"></span>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+  const manejarCambioPreferencia = (campo, valor) => {
+    const preferenciasActualizadas = {
+      ...preferencias,
+      [campo]: valor
+    };
+    
+    setPreferencias(preferenciasActualizadas);
+    
+    updateSession({
+      ...session,
+      preferenciasApariencia: preferenciasActualizadas
+    });
+  };
 
+  const manejarCambioWidget = (widget, activo) => {
+    const widgetsActualizados = {
+      ...preferencias.widgets,
+      [widget]: activo
+    };
+    
+    manejarCambioPreferencia('widgets', widgetsActualizados);
+  };
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-tema', preferencias.tema);
+    document.documentElement.style.setProperty('--color-primario', preferencias.colorPrimario);
+    document.documentElement.style.fontSize = `${preferencias.tamanoFuente}px`;
+    document.body.classList.remove('densidad-compacto', 'densidad-estandar', 'densidad-amplio');
+    document.body.classList.add(`densidad-${preferencias.densidad}`);
+  }, [preferencias.tema, preferencias.colorPrimario, preferencias.tamanoFuente, preferencias.densidad]);
+
+  return (
+    <div className="contenedor-preferencias">
+      <div className="contenido-principal">
+        <div className="tarjeta">
+          <div className="encabezado-tarjeta">
+            <h3>Tema</h3>
+            <p>Personaliza la apariencia de tu portal universitario</p>
+          </div>
+          <div className="cuerpo-tarjeta">
+            <div className="grupo-formulario">
+              <label>Modo de Tema</label>
+              <div className="grupo-botones">
+                {[
+                  { valor: 'claro', etiqueta: 'Claro' },
+                  { valor: 'oscuro', etiqueta: 'Oscuro' },
+                  { valor: 'sistema', etiqueta: 'Sistema' }
+                ].map(opcion => (
+                  <button
+                    key={opcion.valor}
+                    className={`boton-opcion ${preferencias.tema === opcion.valor ? 'activo' : ''}`}
+                    onClick={() => manejarCambioPreferencia('tema', opcion.valor)}
+                  >
+                    {opcion.etiqueta}
+                  </button>
+                ))}
+              </div>
             </div>
-            <div className="appearance-actions">
-                <button className="btn cancel-btn">Cancelar</button>
-                <button className="btn save-btn">Guardar Cambios</button>
+
+            <div className="grupo-formulario">
+              <label>Color Principal</label>
+              <div className="muestrario-colores">
+                {preferencias.coloresDisponibles.map(color => (
+                  <button
+                    key={color.nombre}
+                    className={`muestra-color ${preferencias.colorPrimario === color.valor ? 'seleccionado' : ''}`}
+                    style={{ backgroundColor: color.valor }}
+                    onClick={() => manejarCambioPreferencia('colorPrimario', color.valor)}
+                    aria-label={`Color ${color.nombre}`}
+                    title={color.nombre.charAt(0).toUpperCase() + color.nombre.slice(1)}
+                  />
+                ))}
+              </div>
             </div>
+          </div>
         </div>
-    );
+
+        <div className="tarjeta">
+          <div className="encabezado-tarjeta">
+            <h3>Visualización</h3>
+            <p>Ajusta cómo se muestra el contenido</p>
+          </div>
+          <div className="cuerpo-tarjeta">
+            <div className="grupo-formulario">
+              <label>Densidad de Contenido</label>
+              <div className="grupo-botones">
+                {[
+                  { valor: 'compacto', etiqueta: 'Compacto' },
+                  { valor: 'estandar', etiqueta: 'Estándar' },
+                  { valor: 'amplio', etiqueta: 'Amplio' }
+                ].map(opcion => (
+                  <button
+                    key={opcion.valor}
+                    className={`boton-opcion ${preferencias.densidad === opcion.valor ? 'activo' : ''}`}
+                    onClick={() => manejarCambioPreferencia('densidad', opcion.valor)}
+                  >
+                    {opcion.etiqueta}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div className="grupo-formulario">
+              <label htmlFor="tamano-fuente">Tamaño de Fuente: {preferencias.tamanoFuente}px</label>
+              <input
+                type="range"
+                id="tamano-fuente"
+                min="12"
+                max="20"
+                step="1"
+                value={preferencias.tamanoFuente}
+                onChange={(e) => manejarCambioPreferencia('tamanoFuente', parseInt(e.target.value))}
+              />
+              <div className="rango-leyenda">
+                <span>Aa</span>
+                <span>Aa</span>
+                <span>Aa</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="tarjeta">
+          <div className="encabezado-tarjeta">
+            <h3>Widgets del Dashboard</h3>
+            <p>Selecciona qué widgets quieres mostrar en tu panel principal</p>
+          </div>
+          <div className="cuerpo-tarjeta">
+            {Object.entries(preferencias.widgets).map(([widget, activo]) => {
+              const nombresWidgets = {
+                calendario: 'Calendario',
+                tareasPendientes: 'Tareas Pendientes',
+                proximasClases: 'Próximas Clases',
+                noticias: 'Noticias',
+                eventos: 'Eventos'
+              };
+              
+              return (
+                <div key={widget} className="grupo-interruptor">
+                  <div className="texto">
+                    <label htmlFor={`widget-${widget}`}>{nombresWidgets[widget]}</label>
+                  </div>
+                  <label className="interruptor">
+                    <input
+                      type="checkbox"
+                      id={`widget-${widget}`}
+                      checked={activo}
+                      onChange={(e) => manejarCambioWidget(widget, e.target.checked)}
+                    />
+                    <span className="deslizador redondo"></span>
+                  </label>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+
+      <div className="acciones">
+        <button className="boton boton-secundario">Restablecer Valores</button>
+        <button className="boton boton-primario">Guardar Cambios</button>
+      </div>
+    </div>
+  );
 };
 
 export default AparienciaData;

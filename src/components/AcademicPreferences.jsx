@@ -61,7 +61,7 @@ const AcademicPreferences = () => {
         <div className="card academic-prefs-card">
           <div className="card-header">
             <h3>Preferencias Académicas</h3>
-            <p>Personaliza tus preferencias de estudio y visualización académica</p>
+            <p>Personaliza tus preferencias de estudio y visualización academica</p>
           </div>
           <div className="card-body">
             <div className="form-group">
